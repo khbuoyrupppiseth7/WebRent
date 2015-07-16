@@ -50,6 +50,7 @@ $searchTemp=get('srch-normal');
 														}	
 											}
 									?>
+									<form role="form" method="post" enctype="multipart/form-data">
 									<div class="form-group">
 										<label>Company Name</label>
 										 <input name="txtCompanyName" class="form-control" placeholder="Enter text" required />
@@ -69,6 +70,7 @@ $searchTemp=get('srch-normal');
 								</div>
 							  </div>
 							</div>
+						</form>
 						 </div><!-- /.row -->
 					   
                     <!-- Table row -->

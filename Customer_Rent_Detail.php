@@ -122,6 +122,7 @@ $getdatepayTo=get('dateyetpayto');
                                     
                                     
                                     <?php
+									
 									$TotalAll="";
 								//	$txtsrch = get('srch-normal');
 									if($getdatenotyetpay!="" && $getdatepayTo!=""){								

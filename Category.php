@@ -79,7 +79,7 @@
 												?>
 											</select>
 									</div>
-									
+									<form role="form" method="post" enctype="multipart/form-data">
 									<div class="form-group">
 										<label>Category Name</label>
 										<input name="txtCategory" class="form-control" placeholder="Enter text" required />
@@ -104,6 +104,7 @@
 						  </div>
 						</div>
 						</div>
+						</form>
 						</div><!-- /.row -->
 					   
                     <!-- Table row -->
@@ -162,6 +163,8 @@
                                     
                                     
                                     <?php
+									$db->disconnect();
+									$db->connect();
 								//	$txtsrch = get('srch-normal');
 									$_slide1 = $db->query("CALL sp_Category_Select_Company('".$searchTemp."')");
 						

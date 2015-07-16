@@ -49,56 +49,30 @@
 											$Thisyear = $thisy.'-'.$thism.'-'.$thisd;
 											
 											
-										$tCusName = encrypt_decrypt('encrypt', $txtCusName);
 										
-										if($txtLiveTime == 'Yes')
-										{
-											//cRedirect('http://google.com/');
-											$insert=$db->query("INSERT INTO tbldns
-												(dnsID, dnsName, DateFrom, DateTo, IsLiveTime, CusName, CusPhone, CusAddress, CusDesc)
-												VALUES(
-												'".time()."',
-												N'".sql_quote($txtDNS)."',
-												N'".sql_quote($txtFromDate)."',
-												N'2100-01-01',
-												N'2100-01-01',
-												N'".sql_quote($tCusName)."',
-												N'".sql_quote($txtPhone)."',
-												N'".sql_quote($txtAddress)."',
-												N'".sql_quote($txtDesc)."'
-												)");
+										$insert=$db->query("call spInsert_Dns_LiveTime('".$txtLiveTime."',
+																				'".time()."',
+																				N'".sql_quote($txtDNS)."',
+																				N'".sql_quote($txtCusName)."',
+																				N'".sql_quote($txtFromDate)."',
+																				N'".sql_quote($Thisyear)."',
+																				N'".sql_quote($txtPhone)."',
+																				N'".sql_quote($txtAddress)."',
+																				N'".sql_quote($txtDesc)."');
+																				");
 											
-											if($insert){
+										if($insert){
 												cRedirect('dns.php');
 											}
-										}
-										else
-											{
-											$insert=$db->query("INSERT INTO tbldns
-													(dnsID, dnsName, DateFrom, DateTo, IsLiveTime, CusName, CusPhone, CusAddress, CusDesc)
-													VALUES(
-													'".time()."',
-													N'".sql_quote($txtDNS)."',
-													N'".sql_quote($txtFromDate)."',
-													N'".sql_quote($Thisyear)."',
-													N'',
-													N'".sql_quote($tCusName)."',
-													N'".sql_quote($txtPhone)."',
-													N'".sql_quote($txtAddress)."',
-													N'".sql_quote($txtDesc)."'
-													)");
-												
-												if($insert){
-													cRedirect('dns.php');
-												}
-										}
-										$error = "Error for Create New User.";
 										
-										}
-
+										else
+											$error = "Error for Create New User.";
+										
+									}
 								?>
-						  
+								<form role="form" method="post" enctype="multipart/form-data">
 								<div class="form-group">
+								   <form role="form" method="post" enctype="multipart/form-data">
 									<label>DNS Name:</label>
 										<input name="txtDNS" class="form-control" placeholder="Enter text" required />
 								  </div>
@@ -152,17 +126,18 @@
 								   
 								
 								
-							  							  
+							  					  
 							</div>
 							  <div class="modal-footer">
 								<a href="dns.php">
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 								</a>
-								<button type="button" class="btn btn-primary" name="btnSave">Save</button>
+								<button type="submit" class="btn btn-primary" name="btnSave">Save</button>
 							  </div>
 							</div>
 						  </div>
 						</div>
+						</form>
                      </div><!-- /.row -->
                    
                     <!-- Table row -->
@@ -224,8 +199,8 @@
                                     
                                     <?php
 									$txtsrch = get('srch-normal');
-									$_slide1 = $db->query("SELECT dnsID, dnsName, DateFrom, DateTo, IsLiveTime, CusName, CusPhone FROM `tblDNS` WHERE dnsName LIKE '%".$txtsrch."%';");
-						
+									//$_slide1 = $db->query("SELECT dnsID, dnsName, DateFrom, DateTo, CusName,IsLiveTime, CusPhone FROM `tblDNS` WHERE dnsName LIKE '%".$txtsrch."%';");
+									$_slide1 = $db->query("call spSelect_DnsNameByName('".$txtsrch."');");
 									$numrow=$db->dbCountRows($_slide1);
 										$i = 1;
 									if($numrow>0)

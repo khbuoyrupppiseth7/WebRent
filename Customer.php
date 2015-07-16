@@ -295,6 +295,8 @@
                                     
                                     
                                     <?php
+									$db->disconnect();
+									$db->connect();
 								//	$txtsrch = get('srch-normal');
 									$_slide1 = $db->query("CALL sp_Customer_Select_Company");
 						

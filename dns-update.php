@@ -20,15 +20,15 @@ $error = "";
 	
 		$tCusName = encrypt_decrypt('encrypt', $txtCusName);
 		
-		$update=$db->query("UPDATE tbldns SET dnsName = '".$txtDNS."',
-								DateFrom = '".$txtFromDate."', 
-								DateTo = '".$Thisyear."',  
-								IsLiveTime = '2100-01-01', 
-								CusName = '".$txtCusName."', 
-								CusPhone = '".$txtPhone."', 
-								CusAddress = '".$txtAddress."', 
-								CusDesc = '".$txtDesc."' 
-							WHERE dnsID = '".$id."'");
+		$update=$db->query("call spUpdate_dns('".$id."',
+											  '".$txtDNS."',
+											  '".$txtFromDate."',
+											  '".$Thisyear."',
+											  '".$txtCusName."',
+											  '".$txtPhone."',
+											  '".$txtAddress."',
+											  '".$txtDesc."');
+											  ");
 			
 			if($update){
 				cRedirect('dns.php');
@@ -45,8 +45,8 @@ $error = "";
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
          <?php  include 'nav.php';
-		 $select0=$db->query("SELECT dnsID, dnsName, DateFrom, DateTo, IsLiveTime, CusName, CusPhone, CusAddress, CusDesc 
-FROM `tbldns` WHERE dnsID = '".$id."' ;");
+		 $select0=$db->query("call spSelect_DnsByID('".$id."');");
+
 	//$select=$db->query("Call spUserAccSeleteForUpdate('".$id."')");
 	$numrow=$db->dbCountRows($select0);
 	if($numrow>0){
