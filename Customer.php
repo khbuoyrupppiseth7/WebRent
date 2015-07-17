@@ -119,7 +119,7 @@
 												?>
 											</select>
 											</div>
-											
+											<form role="form" method="post" enctype="multipart/form-data">
 											<div class="form-group">
 												<label>Member Title</label>
 												<input name="txtmemberTitle" class="form-control" placeholder="Enter text" />
@@ -239,6 +239,7 @@
 						  </div>
 						</div>
 					  </div>
+					  </form>
 					</div><!-- /.row -->
 					   
                     <!-- Table row -->

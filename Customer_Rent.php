@@ -1,7 +1,13 @@
 <?php include 'header.php';
 $searchTemp=get('srch-normal');
 $getdatenotyetpay=get('datanotyetpay');
-
+$CompanyIDTemp=get('CompanyID');
+$getCompanyTemp=get('CompanyName');
+$CategoryNameTemp=get('CategoryName');
+$CategoryIDTemp=get('CatID');
+$ItemNameTemp=get('ItemName');
+$PriceTemp=get('Price');
+$getCustomerTemp=get('');
 
 ?>
 	<head>
@@ -39,15 +45,9 @@ $getdatenotyetpay=get('datanotyetpay');
 							<h4 class="modal-title" id="exampleModalLabel">New Customer Rent</h4>
 							<div class="modal-body">
 									<?php
-
+										$db->disconnect();
+										$db->connect();
 										//$_SESSION['S_CompanyNameTemp'] = get('CompanyName');
-										$CompanyIDTemp=get('CompanyID');
-										$getCompanyTemp=get('CompanyName');
-										$CategoryNameTemp=get('CategoryName');
-										$CategoryIDTemp=get('CatID');
-										$ItemNameTemp=get('ItemName');
-										$PriceTemp=get('Price');
-
 										//==================== Insert New Category ======================
 										if(isset($_POST['btnSave'])){
 												$cboCustomers	=   get('CustomerID');
@@ -108,6 +108,7 @@ $getdatenotyetpay=get('datanotyetpay');
 											<tbody>											
 											  <tr>
 											  <td  class="col-md-2 text-center">
+											  <form role="form" method="post" enctype="multipart/form-data">
 												<div class="dropdown">
 												  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
 													Choose Customer
@@ -214,6 +215,7 @@ $getdatenotyetpay=get('datanotyetpay');
 						  </div>
 						</div>
 						</div>
+						</form>
 					  </div><!-- /.row -->
 					   
                     <!-- Table row -->
@@ -293,6 +295,8 @@ $getdatenotyetpay=get('datanotyetpay');
                                     
                                     
                                     <?php
+									$db->disconnect();
+									$db->connect();
 								//	$txtsrch = get('srch-normal');
 									if($getdatenotyetpay!=""){								
 									$getdatenotyetpays=$getdatenotyetpay."-01";
@@ -416,7 +420,8 @@ $getdatenotyetpay=get('datanotyetpay');
 							<h4 class="modal-title" id="exampleModalLabel">Payment</h4>
 							<div class="modal-body">
 									<?php 
-
+											$db->disconnect();
+											$db->connect();
 										//================ Get Field From Page Category =================
 											$Customer_RentID = get('id');
 											$RentItemID		=	get('RentItemID');
@@ -477,6 +482,7 @@ $getdatenotyetpay=get('datanotyetpay');
 														  return true;
 													   }
 												</script>
+												<form role="form" method="post" enctype="multipart/form-data">
 												<div class="form-group">
 												 <label>Pay Date</label>
 												<!--	<input name="txtPayDate" class="form-control" placeholder="Enter text" required /> -->
@@ -529,6 +535,7 @@ $getdatenotyetpay=get('datanotyetpay');
 							</div>
 						  </div>
 						</div>
+						</form>
                      </div>
    
                 </section>

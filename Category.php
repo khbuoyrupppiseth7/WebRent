@@ -31,15 +31,19 @@
 							<div class="modal-body">
 									<?php 
 									//==================== Insert New Category ======================
+									$db->disconnect();
+									$db->connect();
 									if(isset($_POST['btnSave'])){
-											$cboCategory	=   $_POST['cboCategory'];
+										
+											$CompanyID		=	post('cboCompanyID');
 											$txtCategory	=	post('txtCategory');
 											$txtOrder		=   post('txtOrder');
 											$txtDescrpiton	=	post('txtDescrpiton');
+									
 											
 											$insert=$db->query("CALL sp_Category_Insert (
 																			'".time()."',
-																			'".$cboCategory."',
+																			'".$CompanyID."',
 																			N'".sql_quote($txtCategory)."',
 																			'".$txtOrder."',	
 																			N'".sql_quote($txtDescrpiton)."'
@@ -63,7 +67,7 @@
 											</script>
 											<div class="form-group">
 											<label>Choose Category</label>
-											<select class="form-control" name="cboCategory">   
+											<select class="form-control" name="cboCompanyID">   
 												<?php
 												
 												  $select=$db->query("CALL sp_Company_Select('')");
@@ -74,8 +78,11 @@
 														$CompanyID = $row->CompanyID;
 														$CompanyName = $row->CompanyName;
 															echo'<option value='.$CompanyID.'>'.$CompanyName.'</option>';
+																
+								
 														}
 													}
+													
 												?>
 											</select>
 									</div>

@@ -22,7 +22,7 @@
                         <li class="active">Dashboard</li>
                     </ol>
                 </section>
-
+			
                 <!-- Main content-->			
 					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 					  <div class="modal-dialog" role="document">
@@ -139,23 +139,22 @@
 						</div>
 						</form>
                      </div><!-- /.row -->
-                   
-                    <!-- Table row -->
+               
 				<div class="panel-body">
                    <div class="dataTable_wrapper">
-						
+						<section class="content invoice">
 						<div class="row">
 					
                         <div class="col-xs-12 table-responsive">
 							<table class="table table-bordered">
 								<thead>
 									<tr>
-									<th colspan="7">
-										<div class="col-md-7">
+									<th colspan="12">
+										<div class="col-md-6">
 										<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New DNS</button>
 										</div>
 										
-									<div class="col-md-3"> 
+									<div class="col-md-4"> 
 										 <form class="navbar-form" role="search">
 										  <div class="pull-right" style="margin-top:-8px;">
 											<div class="input-group">

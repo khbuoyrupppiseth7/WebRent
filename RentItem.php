@@ -35,6 +35,8 @@ $CategoryIDTemp=get('CatID');
 							<h4 class="modal-title" id="exampleModalLabel">New Rent</h4>
 							<div class="modal-body">
 									<?php 
+										$db->disconnect();
+										$db->connect();
 										//==================== Insert New Category ======================
 										if(isset($_POST['btnSave'])){
 												$cboCompany		=   get('CompanyID');
@@ -83,8 +85,10 @@ $CategoryIDTemp=get('CatID');
 								
 								<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 									<tbody>		
+	
 									  <tr>		
 										<td  class="col-md-2 text-center">
+										<form role="form" method="post" enctype="multipart/form-data">
 										<div class="dropdown">
 										  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
 											Choose Company
@@ -92,7 +96,8 @@ $CategoryIDTemp=get('CatID');
 										  </button>
 										  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
 											<?php
-											$db->connect();
+												$db->disconnect();
+												$db->connect();
 											  $select=$db->query("call spSelect_CompanyID('".$CompanyIDTemp."');");
 												$rowselect=$db->dbCountRows($select);
 												if($rowselect>0){
@@ -103,7 +108,7 @@ $CategoryIDTemp=get('CatID');
 														href="RentItem-new.php?CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'">'.$CompanyName.'</a></li>';
 													}
 												}
-											$db->disconnect();
+											
 											
 											?>	
 										  </ul>
@@ -119,7 +124,24 @@ $CategoryIDTemp=get('CatID');
 												<span class="caret"></span>
 											  </button>
 											  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
+													<?php
+														$db->disconnect();
+														$db->connect();
 												
+														$select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."' ");
+														//$select=$db->query("call spSelect_CategoryByComID('".$CompanyIDTemp."' );");
+														$rowselect=$db->dbCountRows($select);
+														if($rowselect>0){
+															
+															while($row=$db->fetch($select)){
+															$CategoryID = $row->CategoryID;
+															$CategoryName = $row->CategoryName;
+																echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
+																href="RentItem.php?CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
+															}
+														}
+												
+											?>
 											  </ul>
 											</div>
 										</td>
@@ -156,6 +178,7 @@ $CategoryIDTemp=get('CatID');
 							</div>
 						  </div>
 						</div>
+						</form>
                      </div><!-- /.row -->
                    
 

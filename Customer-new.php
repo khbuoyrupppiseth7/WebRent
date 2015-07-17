@@ -1,5 +1,6 @@
 <?php include 'header.php';
-
+$db->disconnect();
+$db->connect();
 //==================== Insert New Customer ======================
 if(isset($_POST['btnSave'])){
 		$cboCompany	=   $_POST['cboCompany'];
@@ -93,7 +94,8 @@ if(isset($_POST['btnSave'])){
 									<label>Choose Company</label>
 									<select class="form-control" name="cboCompany">   
 										<?php
-										
+											$db->disconnect();
+											$db->connect();
 										  $select=$db->query("CALL sp_Company_Select('')");
 											$rowselect=$db->dbCountRows($select);
 											if($rowselect>0){

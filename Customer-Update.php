@@ -1,5 +1,6 @@
 <?php include 'header.php';
-
+	$db->disconnect();
+	$db->connect();
 //================ Get Field From Page Customer =================
 	$id=get('id');
 	$db->connect();
@@ -150,6 +151,7 @@ if(isset($_POST['btnSave'])){
 									<optgroup label = "Choose One">
 										<?php
 										// echo'<option value='.$BranchID.'>'.$BranchName.'</option>';
+										$db->disconnect();
 										$db->connect();
 										  $select=$db->query("CALL sp_Company_Select('')");
 											$rowselect=$db->dbCountRows($select);

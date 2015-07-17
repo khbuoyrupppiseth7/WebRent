@@ -124,7 +124,9 @@ $searchTemp=get('srch-normal');
 											</tr>
 									   
 										</thead>
+										<!--Modal Edit-->
 										<tbody>
+										
 										<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 										  <div class="modal-dialog" role="document">
 											<div class="modal-content">
@@ -157,7 +159,7 @@ $searchTemp=get('srch-normal');
 																		}
 															}
 														?>
-														
+														<form role="form" method="post" enctype="multipart/form-data">
 															<div class="form-group">
 															<label>Company Name</label>
 															<input name="txtCompanyName" class="form-control"  value="<?php echo $CompanyName; ?>" placeholder="Enter text" required />
@@ -180,6 +182,7 @@ $searchTemp=get('srch-normal');
 												</div>
 											  </div>
 											</div>
+											</form>
 										 </div><!-- /.row -->
 									   
 									<!-- Table row -->
