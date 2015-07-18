@@ -98,7 +98,7 @@ $CategoryIDTemp=get('CatID');
 											<?php
 												$db->disconnect();
 												$db->connect();
-											  $select=$db->query("call spSelect_CompanyID('".$CompanyIDTemp."');");
+												$select=$db->query("call spSelect_CompanyID('".$CompanyIDTemp."');");
 												$rowselect=$db->dbCountRows($select);
 												if($rowselect>0){
 													while($row=$db->fetch($select)){
@@ -109,7 +109,7 @@ $CategoryIDTemp=get('CatID');
 													}
 												}
 											
-											
+												
 											?>	
 										  </ul>
 											</div>	
@@ -137,7 +137,7 @@ $CategoryIDTemp=get('CatID');
 															$CategoryID = $row->CategoryID;
 															$CategoryName = $row->CategoryName;
 																echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
-																href="RentItem.php?CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
+																href="RentItem-new.php?CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
 															}
 														}
 												
@@ -240,6 +240,8 @@ $CategoryIDTemp=get('CatID');
                                     
                                     
                                     <?php
+									$db->disconnect();
+									$db->connect();
 								//	$txtsrch = get('srch-normal');
 								
 									$_slide1 = $db->query("CALL sp_RentItem_Select_Company('".$searchTemp."')");

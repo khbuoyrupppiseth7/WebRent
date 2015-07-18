@@ -1,6 +1,4 @@
 <?php include 'header.php';
-	$db->disconnect();
-	$db->connect();
 //================ Get Field From Page Customer =================
 	$id=get('id');
 	$db->connect();
@@ -15,23 +13,23 @@
 					$firstName	=  $row1->firstName;
 					$lastName	=	$row1->lastName;
 					$nickName	=	$row1->nickName;
-					$idType	=	$row1->idType;
+					$idType		=	$row1->idType;
 					$icpassportNo	=	$row1->icpassportNo;
 					$Nationality	=	$row1->Nationality;
-					$Gender	=	$row1->Gender;
-					$Birthdate	=	$row1->Birthdate;
+					$Gender			=	$row1->Gender;
+					$Birthdate		=	$row1->Birthdate;
 					$MaritalStatus	=	$row1->MaritalStatus;
-					$Address	=	$row1->Address;
-					$ZipCode	=	$row1->ZipCode;
-					$PostalCode	=	$row1->PostalCode;
-					$POBox	=	$row1->POBox;
-					$City	=	$row1->City;
-					$Country	=	$row1->Country;
-					$Tel1	=	$row1->Tel1;
-					$Fax	=	$row1->Fax;
-					$Mobile	=	$row1->Mobile;
-					$eMail	=	$row1->eMail;
-					$autono	=	$row1->autono;
+					$Address		=	$row1->Address;
+					$ZipCode		=	$row1->ZipCode;
+					$PostalCode		=	$row1->PostalCode;
+					$POBox			=	$row1->POBox;
+					$City			=	$row1->City;
+					$Country		=	$row1->Country;
+					$Tel1			=	$row1->Tel1;
+					$Fax			=	$row1->Fax;
+					$Mobile			=	$row1->Mobile;
+					$eMail			=	$row1->eMail;
+					$autono			=	$row1->autono;
 									
 				//}
 			}
@@ -53,8 +51,8 @@
 		$CompanyID1 = $row->CompanyID;
 		$CompanyName1 = $row->CompanyName;
 	}
-	$db->disconnect();
-//==================== Insert New Branch =======================
+	$db->connect();
+	//==================== Insert New Branch =======================
 if(isset($_POST['btnSave'])){
 		$cboCompany		=   $_POST['cboCompany'];
 		$txtmemberTitle	=	post('txtmemberTitle');
@@ -65,7 +63,7 @@ if(isset($_POST['btnSave'])){
 		$txtidType		=	post('txtidType');
 		$txticpassportNo=	post('txticpassportNo');
 		$txtNationality	=	post('txtNationality');
-		$txtGender		=	post('txtGender');
+		$txtGender		=	post('Gender');
 		$txtBirthdate	=	post('txtBirthdate');
 		$txtMaritalStatus	=	post('txtMaritalStatus');
 		$txtAddress		=	post('txtAddress');
@@ -79,8 +77,6 @@ if(isset($_POST['btnSave'])){
 		$txtMobile		=	post('txtMobile');
 		$txteMail		=	post('txteMail');
 		$txtautono		=	post('txtautono');
-	echo "hello".$txtfullName;
-
 		if($UserID=="1"){
 			$update=$db->query("Call sp_Customer_Update(
 					'".$id."',

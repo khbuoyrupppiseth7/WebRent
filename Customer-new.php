@@ -96,7 +96,7 @@ if(isset($_POST['btnSave'])){
 										<?php
 											$db->disconnect();
 											$db->connect();
-										  $select=$db->query("CALL sp_Company_Select('')");
+											$select=$db->query("CALL sp_Company_Select('')");
 											$rowselect=$db->dbCountRows($select);
 											if($rowselect>0){
 												

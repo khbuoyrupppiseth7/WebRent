@@ -28,7 +28,8 @@
 							<h4 class="modal-title" id="exampleModalLabel">New Customer</h4>
 							<div class="modal-body">
 										<?php 
-
+												$db->disconnect();
+												$db->connect();
 											//==================== Insert New Customer ======================
 											if(isset($_POST['btnSave'])){
 													$cboCompany	=   $_POST['cboCompany'];
@@ -101,11 +102,13 @@
 												  }
 											}
 											</script>
+										<form role="form" method="post" enctype="multipart/form-data">
 											<div class="form-group">
 											<label>Choose Company</label>
 											<select class="form-control" name="cboCompany">   
 												<?php
-												
+												 $db->disconnect();
+												 $db->connect();
 												  $select=$db->query("CALL sp_Company_Select('')");
 													$rowselect=$db->dbCountRows($select);
 													if($rowselect>0){
@@ -259,22 +262,25 @@
 													<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New Customer</button>
 													</div>
 													
-													<div class="col-md-6"> 
-													<form class="navbar-form" role="search">
-													  <div class="col-lg-5 pull-right">
-														<div class="input-group">
-														  <div class="input-group-btn">
-														  </div><!-- /btn-group -->
-														  <input type="text" class="form-control" placeholder="Search" name="srch-normal" id="search.php?dnsname=name&srch-term">
-														  <div class="input-group-btn">
-															 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-														  </div><!-- /btn-group -->
-														</div><!-- /input-group -->
-													   </div><!-- /.col-lg-3 -->
-													  </form>
-														</div>
-													</tr>
-													</thead>
+													<div class="col-md-4"> 
+														<form class="navbar-form" role="search">
+															<div class="pull-right" style="margin-top:-8px;">
+															<div class="input-group">
+															<div class="input-group-btn">
+															</div><!-- /btn-group -->
+																<input type="text" class="form-control" placeholder="Search" name="srch-normal" id="search.php?dnsname=name&srch-term">
+															<div class="input-group-btn">
+																<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+															</div><!-- /btn-group -->
+															</div>
+															</div>
+														</form>
+													</div>
+													<div class="col-md-2">
+														<h5 class="pull-right">Date: 2/10/2014</h5>
+													</div>
+												</tr>
+												</thead>
 								<thead>
 
                                     <tr>
@@ -298,8 +304,8 @@
                                     <?php
 									$db->disconnect();
 									$db->connect();
-								//	$txtsrch = get('srch-normal');
-									$_slide1 = $db->query("CALL sp_Customer_Select_Company");
+									$searchTemp=get('srch-normal');
+									$_slide1 = $db->query("call sp_Customer_Select_Company('".$searchTemp."');");
 						
 									$numrow=$db->dbCountRows($_slide1);
 										$i = 1;

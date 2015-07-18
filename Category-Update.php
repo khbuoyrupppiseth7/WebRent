@@ -1,12 +1,14 @@
 <?php include 'header.php';
 
+ $db->connect();
 //================ Get Field From Page Category =================
 	$id=get('id');
 	$Category=get('Category');
 	$OrderNo=get('OrderNo');
 	$Decription=get('Decription');
+	$db->disconnect();
 	$UserID = $_SESSION['UserID'];
-	
+	$db->connect();
 	$select=$db->query("SELECT 
 						C.CompanyID AS CompanyID,
 						CO.CompanyName AS CompanyName
@@ -75,6 +77,8 @@ if(isset($_POST['btnSave'])){
 								<select class="form-control" name="cboCategory" autocomplete="on">
 									<optgroup label = "Choose One">
 										<?php
+										$db->disconnect();
+										$db->connect();
 										// echo'<option value='.$BranchID.'>'.$BranchName.'</option>';
 										
 										  $select=$db->query("CALL sp_Company_Select('')");

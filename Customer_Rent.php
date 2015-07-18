@@ -115,7 +115,23 @@ $getCustomerTemp=get('');
 													<span class="caret"></span>
 												  </button>
 												  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-													
+														<?php
+															$db->disconnect();
+															$db->connect();
+															  $select=$db->query("CALL sp_Customer_Select('')");
+																$rowselect=$db->dbCountRows($select);
+																if($rowselect>0){
+																	while($row=$db->fetch($select)){
+																	$CustomerID = $row->CustomerID;
+																	$fullName = $row->fullName;
+																		echo'<li role="presentation"><a role="mmenuitem" tabindex="-1"
+																		href="#?CustomerID='.$CustomerID.'&CusName='.$fullName.'">'.$fullName.'</a></li>';
+																	}
+																}
+														
+															$getCustomerID=get('CustomerID');
+															$getCustomerTemp=get('CusName');
+													?>
 												  </ul>
 												</div>	
 											  </td>
@@ -131,7 +147,22 @@ $getCustomerTemp=get('');
 													<span class="caret"></span>
 												  </button>
 												  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-													
+															<?php
+																$db->disconnect();
+																$db->connect();
+																  $select=$db->query("CALL sp_Company_Select('')");
+																	$rowselect=$db->dbCountRows($select);
+																	if($rowselect>0){
+																		while($row=$db->fetch($select)){
+																		$CompanyID = $row->CompanyID;
+																		$CompanyName = $row->CompanyName;
+																			echo'<li role="presentation"><a role="mmenuitem" tabindex="-1"
+																			href="#?CustomerID='.$getCustomerID.'&CusName='.$getCustomerTemp.'&CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'">'.$CompanyName.'</a></li>';
+																		}
+																	}
+																
+															
+															?>
 												  </ul>
 												</div>	
 											  </td>
@@ -146,7 +177,24 @@ $getCustomerTemp=get('');
 													<span class="caret"></span>
 												  </button>
 												  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
-													
+														<?php
+															$db->disconnect();
+															$db->connect();
+															
+															  $select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."' ");
+																$rowselect=$db->dbCountRows($select);
+																if($rowselect>0){
+																	
+																	while($row=$db->fetch($select)){
+																	$CategoryID = $row->CategoryID;
+																	$CategoryName = $row->CategoryName;
+																		echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
+																		href="#CustomerID='.$getCustomerID.'&CusName='.$getCustomerTemp.'&CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
+																	}
+																}
+														
+															
+															?>
 												  </ul>
 												</div>
 											</td>
@@ -162,7 +210,25 @@ $getCustomerTemp=get('');
 													<span class="caret"></span>
 												  </button>
 												  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu4">
-													
+														<?php
+															$db->disconnect();
+															$db->connect();
+															
+															   $select1=$db->query("SELECT RentItemID,ItemName,Price FROM tblrentitem WHERE CategoryID='".$CategoryIDTemp."' AND isStatus=1 ");
+																$rowselect1=$db->dbCountRows($select1);
+																if($rowselect1>0){
+																	
+																	while($row=$db->fetch($select1)){
+																	$RentItemID = $row->RentItemID;
+																	$ItemName 	= $row->ItemName;
+																	$Price		=  $row->Price;
+																		echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
+																		href="#?CustomerID='.$getCustomerID.'&CusName='.$getCustomerTemp.'&CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryIDTemp.'&CategoryName='.$CategoryNameTemp.'&RentItemID='.$RentItemID.'&Price='.$Price.'&ItemName='.$ItemName.'">'.$ItemName.'</a></li>';
+																	}
+																}
+															
+														
+														?>
 												  </ul>
 												</div>
 											   </td>
@@ -244,8 +310,8 @@ $getCustomerTemp=get('');
 													 echo 'value="'.$getdatenotyetpay.'"';
 													 }
 													 else{
-													 $datenow=date("Y-m"); echo 'value="'.$datenow.'"'; 
-													 $getdatenotyetpay=date("Y-m");
+													 $datenow=date("Y-m-d"); echo 'value="'.$datenow.'"'; 
+													 $getdatenotyetpay=date("Y-m-d");
 													 }?>/>  
                    
 													 <?php 
@@ -295,8 +361,8 @@ $getCustomerTemp=get('');
                                     
                                     
                                     <?php
-									$db->disconnect();
-									$db->connect();
+										$db->disconnect();
+										$db->connect();
 								//	$txtsrch = get('srch-normal');
 									if($getdatenotyetpay!=""){								
 									$getdatenotyetpays=$getdatenotyetpay."-01";
@@ -420,8 +486,8 @@ $getCustomerTemp=get('');
 							<h4 class="modal-title" id="exampleModalLabel">Payment</h4>
 							<div class="modal-body">
 									<?php 
-											$db->disconnect();
-											$db->connect();
+										$db->disconnect();
+										$db->connect();
 										//================ Get Field From Page Category =================
 											$Customer_RentID = get('id');
 											$RentItemID		=	get('RentItemID');

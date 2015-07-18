@@ -65,6 +65,7 @@
 												  }
 											}
 											</script>
+										<form role="form" method="post" enctype="multipart/form-data">
 											<div class="form-group">
 											<label>Choose Category</label>
 											<select class="form-control" name="cboCompanyID">   
@@ -128,29 +129,24 @@
 											<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New Category</button>
 										</div>
 										
-											<div class="col-md-4"> 
-												<form class="navbar-form" role="search">
-												  <div class="pull-right"style="margin-top:-8px;">
-													<div class="input-group">
-													  <div class="input-group-btn">
-														<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Normal <span class="caret"></span></button>
-														<ul class="dropdown-menu" role="menu">
-														  <li><a href="dns-advance.php">Advance</a></li>
-														  
-														</ul>
-													  </div><!-- /btn-group -->
-													<input type="text" class="form-control" placeholder="Search" name="srch-normal" id="search.php?dnsname=name&srch-term" <?php echo 'value="'.$searchTemp.'"'?>>
-													  <div class="input-group-btn">
-														 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-													  </div><!-- /btn-group -->
-													</div><!-- /input-group -->
-												   </div><!-- /.col-lg-3 -->
-												   </form>
-												 </div><!-- /.row -->
-												 <div class="col-md-2">
-													<h5 class="pull-right">Date: 2/10/2014</h5>
-													</div>
-											</tr>
+										<div class="col-md-4"> 
+											<form class="navbar-form" role="search">
+												<div class="pull-right" style="margin-top:-8px;">
+												<div class="input-group">
+												<div class="input-group-btn">
+											    </div><!-- /btn-group -->
+													<input type="text" class="form-control" placeholder="Search" value="<?php echo $searchTemp;?>" name="srch-normal" id="search.php?dnsname=name&srch-term">
+														<div class="input-group-btn">
+															 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+														</div><!-- /btn-group -->
+												</div><!-- /input-group -->
+												</div><!-- /.col-lg-3 -->
+											</form>
+										</div>
+										<div class="col-md-2">
+											<h5 class="pull-right">Date: 2/10/2014</h5>
+										</div>
+									</tr>
 										   
 												
 								
