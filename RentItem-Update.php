@@ -86,6 +86,7 @@ if(isset($_POST['btnSave'])){
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
 									<?php
+											$db->disconnect();
 											$db->connect();
 											  $select=$db->query("CALL sp_Company_Select('')");
 												$rowselect=$db->dbCountRows($select);
@@ -98,7 +99,7 @@ if(isset($_POST['btnSave'])){
 														&ItemName='.$ItemName.'">'.$CompanyName.'</a></li>';
 													}
 												}
-											$db->disconnect();
+											
 											
 										?>
 									  </ul>
@@ -115,6 +116,7 @@ if(isset($_POST['btnSave'])){
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
 									<?php
+											$db->disconnect();
 											$db->connect();
 											
 											  $select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."' ");
@@ -128,7 +130,7 @@ if(isset($_POST['btnSave'])){
 														href="RentItem-new.php?CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CategoryID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
 													}
 												}
-											$db->disconnect();
+											
 											
 											?>
 								  </ul>

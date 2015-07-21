@@ -3,7 +3,7 @@ include 'header.php';
 $error = "";
 	$id=get('id');
 	//Select User and insert to form
-	$select=$db->query("SELECT UserID,UserName,UserPwd FROM tbluseracc WHERE UserID = '".$id."'");
+	$select=$db->query("call spSelect_UserByID('".$id."');");
 	//$select=$db->query("Call spUserAccSeleteForUpdate('".$id."')");
 	$numrow=$db->dbCountRows($select);
 	if($numrow>0){

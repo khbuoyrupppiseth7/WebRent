@@ -429,11 +429,12 @@ $getCustomerTemp=get('');
 														<td>
 													
 													
-															<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#Modal" data-whatever="@mdo">
+														<a class="iframe" href="Customer-Rent-Payement.php?id='.$id.'&RentItemID='.$RentItemID.'&ItemName='.$ItemName.'&Price='.$Price.'&Decription='.$Decription.'&PayDate='.$PayDate.'&getdatenotyetpay='.$getdatenotyetpay.'">
+															<button class="btn btn-sm btn-warning">
 																<i class="glyphicon glyphicon-usd"></i>
 																Payment
 															</button>
-                                                      
+                                                        </a>
 													  
 														</td>
 												
@@ -478,7 +479,7 @@ $getCustomerTemp=get('');
 				</div>
                 </div>
 				<!--Modal Payment-->
-					<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+					<div class="modal fade bs-example-modal-sm" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 					  <div class="modal-dialog" role="document">
 						<div class="modal-content">
 						  <div class="modal-header">
@@ -552,7 +553,7 @@ $getCustomerTemp=get('');
 												<div class="form-group">
 												 <label>Pay Date</label>
 												<!--	<input name="txtPayDate" class="form-control" placeholder="Enter text" required /> -->
-														<input type="text" name="txtPayDate" class="form-control" value="<?php echo $txtPayDate; ?>" readonly/>
+														<input type="text" id="payDate" name="txtPayDate" class="form-control" value="<?php echo $txtPayDate; ?>" readonly/>
 												</div>
 												<div class="form-group">
 												<label>Real Pay Date</label>
@@ -605,8 +606,42 @@ $getCustomerTemp=get('');
                      </div>
    
                 </section>
-                    
-            </aside><!-- /.right-side -->
+				<script>
+					//  ** show date and time picker
+						
+					$('#RealPayDate').datetimepicker({
+						timepicker: false, //visible time = false
+						format: 'Y-m-d',
+						step: 10
+					});
+					
+					
+				</script>
+				<!-- Event KeyPress -->
+				<script type="text/javascript">
+						$("#myForm input").each(function(){
+							$(this).keyup(function(){
+								var Price = $("#Price").val();
+								var Electric = $("#Electric").val();
+								var Water = $("#Water").val();
+								var Garbage = $("#Garbage").val();
+								var Other = $("#Other").val();
+								Price = $.isNumeric(Price)?Price:0;
+								Electric = $.isNumeric(Electric)?Electric:0;
+								Water = $.isNumeric(Water)?Water:0;
+								Garbage = $.isNumeric(Garbage)?Garbage:0;
+								Other = $.isNumeric(Other)?Other:0;
+								$("#Total").val(parseFloat(Price)+parseFloat(Electric)+parseFloat(Water)+parseFloat(Garbage)+parseFloat(Other));
+							});
+						});
+					</script>
+					<script type="text/javascript">
+					
+					
+					</script>
+		
+		
+           </aside><!-- /.right-side -->
             
             
         </div><!-- ./wrapper -->

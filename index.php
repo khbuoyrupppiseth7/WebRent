@@ -2,6 +2,7 @@
 <?php include 'header.php';?>
 
 <?php
+	$db->disconnect();
 	$db->connect();
 	// Add new product to Produtct Tem
 	if(isset($_POST['btnAddNewPrd'])){
@@ -13,7 +14,7 @@
 		$txtsaleprice	=	post('txtsaleprice');
 		$cboBranch = post('cboBranch');
 		
-		$insert=$db->query("call spInsert_ProItem('".$ip."',
+		$insert=$db->query("call spInsert_Product('".time()."',
 												'".$txtprdname."',
 												'".$ProductCategoryID."',
 												'".$txtcode."',
@@ -207,7 +208,7 @@
 														<td>'.$Qty.'</td>
 														<td class="center">'.$BuyPrice.'</td>
 														<td class="center">'.$SalePrice.'</td> 
-														<td class="center">100</td> 
+														<td class="center">'.$SalePrice*$Qty.'</td> 
 														<td class="center">
 														<a href="clickBuyPrd.php?ProductID='.$ProductID.'
 														&ProductName='.$ProductName.'

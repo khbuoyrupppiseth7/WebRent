@@ -31,7 +31,8 @@ $searchTemp=get('srch-normal');
 							<h4 class="modal-title" id="exampleModalLabel">New Company</h4>
 							<div class="modal-body">
 								<?php
-									//==================== Insert New Company =======================
+									//=================== Insert New Company =======================
+									$db->disconnect();
 									$db->connect();
 									if(isset($_POST['btnSave'])){
 											$txtCompanyName	=	post('txtCompanyName');
@@ -119,10 +120,9 @@ $searchTemp=get('srch-normal');
 											</tr>
 									   
 										</thead>
-										<!--Modal Edit-->
 										<tbody>
-										
-										<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+										<!--Modal Edit-->
+										<div class="modal fade bs-example-modal-sm" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 										  <div class="modal-dialog" role="document">
 											<div class="modal-content">
 											  <div class="modal-header">
@@ -130,39 +130,39 @@ $searchTemp=get('srch-normal');
 												<h4 class="modal-title" id="exampleModalLabel">Edit Company</h4>
 												<div class="modal-body">
 													<?php
-
+															$db->disconnect();
+															$db->connect();
 													//================ Get Field From Page Company =================
-														$id=get('id');
+														$id=get('CompanyID');
 														$CompanyName=get('CompanyName');
-														$Decription=get('Decription');
+														$Decription=get('Description');
 
 													//==================== Insert New Company =======================
-													if(isset($_POST['btnSave'])){
+													if(isset($_POST['btnUpdate'])){
+															$id				=		post('txtCompanyID');
 															$txtCompanyName	=	post('txtCompanyName');
 															$txtDescrpiton	=	post('txtDescrpiton');
-															
 															$update=$db->query("CALL sp_Company_Update(
 																		'".$id."',
 																		N'".sql_quote($txtCompanyName)."',
 																		N'".sql_quote($txtDescrpiton)."'
-																		)			
-															");
+																		);");
 																if($update){
 																				cRedirect('Company.php');
-																				//$error = 'Success';
-																				
 																		}
 															}
 														?>
 														<form role="form" method="post" enctype="multipart/form-data">
 															<div class="form-group">
-															<label>Company Name</label>
-															<input name="txtCompanyName" class="form-control"  value="<?php echo $CompanyName; ?>" placeholder="Enter text" required />
+															<input type="hidden" id="txtcompanyID" name="txtCompanyID" class="form-control"  value="<?php echo $CompanyName; ?>" placeholder="Enter text" required />
 															</div>
-								   
+															<div class="form-group">
+															<label>Company Name</label>
+															<input id="txtcompanyName" name="txtCompanyName" class="form-control"  value="<?php echo $CompanyName; ?>" placeholder="Enter text" required />
+															</div>
 															<div class="form-group">
 															<label>Description</label>
-															<textarea class="form-control" name="txtDescrpiton" id="editor1" rows="3">
+															<textarea " class="form-control" name="txtDescrpiton" id="Descrpiton" rows="3">
 																<?php echo $Decription; ?>
 															</textarea>
 															</div>
@@ -172,16 +172,13 @@ $searchTemp=get('srch-normal');
 													<a href="Company.php">
 													<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 													</a>
-													<button type="submit" class="btn btn-primary" name="btnSave">Save</button>
+													<button type="submit" class="btn btn-primary" name="btnUpdate" >Save</button>
 												  </div>
 												</div>
 											  </div>
 											</div>
 											</form>
-										 </div><!-- /.row -->
-									   
-									<!-- Table row -->
-															
+										 </div>
 										<?php
 										$db->disconnect();
 										$db->connect();
@@ -201,13 +198,9 @@ $searchTemp=get('srch-normal');
 															<td>'.$i++.'</td>
 															<td>'.$CompanyName.'</td>
 															<td>'.$Decription.'</td>
-															<td>
-																<a class="iframe" href="Company-Update.php?id='.$id.'&CompanyName='.$CompanyName.'&Decription='.$Decription.'">
-																<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#Modal" data-whatever="@mdo">
-																	<i class="glyphicon glyphicon-pencil"></i>
-																	Edit
-																</button>
-																<
+															<td class="center" >';
+																echo "<a onclick=\"getElement('".$id."','".$CompanyName."','".$Decription."')\">Edit";
+																echo '</a>
 															</td>
 													</tr>';
 												}	
@@ -218,9 +211,8 @@ $searchTemp=get('srch-normal');
 									   
 									</tbody>
 								</table>
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-
+							</div>
+						</div>
 						<div class="row">
 							<!-- accepted payments column -->
 							
@@ -237,6 +229,18 @@ $searchTemp=get('srch-normal');
 					</div>
 						
                 </section>
+				<script type="text/javascript">
+					var companyName=document.getElementById("txtcompanyName");
+					var companyID=document.getElementById("txtcompanyID");
+					var description=document.getElementById("Descrpiton");
+					function getElement(getcompanyID,getCompanyName,getDescription){
+						$('.bs-example-modal-sm').modal('show');
+							companyID.value=getcompanyID;
+							companyName.value=getCompanyName;
+							description.value=getDescription;
+					}
+				
+				</script>
                     
             </aside><!-- /.right-side -->
             

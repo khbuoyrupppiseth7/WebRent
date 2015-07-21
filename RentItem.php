@@ -26,7 +26,7 @@ $CategoryIDTemp=get('CatID');
                         <li class="active">Dashboard</li>
                     </ol>
                 </section>
-				
+				<!--ADD NewRent-->
 				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 					  <div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -98,17 +98,17 @@ $CategoryIDTemp=get('CatID');
 											<?php
 												$db->disconnect();
 												$db->connect();
-												$select=$db->query("call spSelect_CompanyID('".$CompanyIDTemp."');");
+												$select=$db->query("CALL sp_Company_Select('');");
 												$rowselect=$db->dbCountRows($select);
 												if($rowselect>0){
 													while($row=$db->fetch($select)){
 													$CompanyID = $row->CompanyID;
 													$CompanyName = $row->CompanyName;
 														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1"
-														href="RentItem-new.php?CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'">'.$CompanyName.'</a></li>';
+														href="#?CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'">'.$CompanyName.'</a></li>';
 													}
 												}
-											
+									
 												
 											?>	
 										  </ul>
@@ -137,7 +137,7 @@ $CategoryIDTemp=get('CatID');
 															$CategoryID = $row->CategoryID;
 															$CategoryName = $row->CategoryName;
 																echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
-																href="RentItem-new.php?CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
+																href="#?CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
 															}
 														}
 												
@@ -152,7 +152,7 @@ $CategoryIDTemp=get('CatID');
 									<div class="form-group">
 										<label>Rent Item</label>
 									
-										<input name="txtItem" class="form-control" placeholder="Enter text"  required />
+										<input name="txtItem" class="form-control" placeholder="Enter text" required />
 									</div>
 										
 									<div class="form-group">
@@ -199,7 +199,7 @@ $CategoryIDTemp=get('CatID');
 									<tr>
 									<th colspan="12">
 										<div class="col-md-6">
-										<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New ItemRent</button>
+										<button  style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" ><i class="fa fa-file-o"></i>New ItemRent</button>
 										</div>
 										
 										<div class="col-md-4"> 
