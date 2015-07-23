@@ -1,5 +1,4 @@
 <?php include 'header.php';
-
 //$_SESSION['S_CompanyNameTemp'] = get('CompanyName');
 $CompanyIDTemp=get('CompanyID');
 $getCompanyTemp=get('CompanyName');
@@ -7,7 +6,8 @@ $CategoryNameTemp=get('CategoryName');
 $CategoryIDTemp=get('CatID');
 $ItemNameTemp=get('ItemName');
 $PriceTemp=get('Price');
-
+$db->disconnect();
+$db->connect();
 //==================== Insert New Category ======================
 if(isset($_POST['btnSave'])){
 		$cboCustomers	=   get('CustomerID');
@@ -92,6 +92,7 @@ if(isset($_POST['btnSave'])){
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 									<?php
+											$db->disconnect();
 											$db->connect();
 											  $select=$db->query("CALL sp_Customer_Select('')");
 												$rowselect=$db->dbCountRows($select);
@@ -103,7 +104,7 @@ if(isset($_POST['btnSave'])){
 														href="Customer_Rent-new.php?CustomerID='.$CustomerID.'&CusName='.$fullName.'">'.$fullName.'</a></li>';
 													}
 												}
-											$db->disconnect();
+											//$db->disconnect();
 											$getCustomerID=get('CustomerID');
 											$getCustomerTemp=get('CusName');
 									?>
@@ -122,7 +123,9 @@ if(isset($_POST['btnSave'])){
 									<span class="caret"></span>
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-									<?php
+									<?php	
+											$db->disconnect();
+										
 											$db->connect();
 											  $select=$db->query("CALL sp_Company_Select('')");
 												$rowselect=$db->dbCountRows($select);
@@ -134,8 +137,7 @@ if(isset($_POST['btnSave'])){
 														href="Customer_Rent-new.php?CustomerID='.$getCustomerID.'&CusName='.$getCustomerTemp.'&CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'">'.$CompanyName.'</a></li>';
 													}
 												}
-											$db->disconnect();
-										
+											
 									?>
 								  </ul>
 								</div>	
@@ -152,6 +154,7 @@ if(isset($_POST['btnSave'])){
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
 									<?php
+											$db->disconnect();
 											$db->connect();
 											
 											  $select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."' ");
@@ -165,7 +168,7 @@ if(isset($_POST['btnSave'])){
 														href="Customer_Rent-new.php?CustomerID='.$getCustomerID.'&CusName='.$getCustomerTemp.'&CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
 													}
 												}
-											$db->disconnect();
+											
 											
 											?>
 								  </ul>
@@ -183,10 +186,13 @@ if(isset($_POST['btnSave'])){
 									<span class="caret"></span>
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu4">
+								 
 									<?php
+											
+											$db->disconnect();
 											$db->connect();
 											
-											   $select1=$db->query("SELECT RentItemID,ItemName,Price FROM tblrentitem WHERE CategoryID='".$CategoryIDTemp."' AND isStatus=1 ");
+											   $select1=$db->query("select RentItemID,CategoryID,ItemName,Price FROM tblrentitem WHERE CategoryID='".$CategoryIDTemp."' and isStatus=1 ;");
 												$rowselect1=$db->dbCountRows($select1);
 												if($rowselect1>0){
 													
@@ -195,11 +201,10 @@ if(isset($_POST['btnSave'])){
 													$ItemName 	= $row->ItemName;
 													$Price		=  $row->Price;
 														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
-														href="Customer_Rent-new.php?CustomerID='.$getCustomerID.'&CusName='.$getCustomerTemp.'&CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryIDTemp.'&CategoryName='.$CategoryNameTemp.'&RentItemID='.$RentItemID.'&Price='.$Price.'&ItemName='.$ItemName.'">'.$ItemName.'</a></li>';
+														href="Customer_Rent-new.php?CustomerID='.$getCustomerID.'&Category='.$CategoryIDTemp.'&CusName='.$getCustomerTemp.'&CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryIDTemp.'&CategoryName='.$CategoryNameTemp.'&RentItemID='.$RentItemID.'&Price='.$Price.'&ItemName='.$ItemName.'">'.$ItemName.'</a></li>';
 													}
 												}
-											$db->disconnect();
-										
+											
 											?>
 								  </ul>
 								</div>

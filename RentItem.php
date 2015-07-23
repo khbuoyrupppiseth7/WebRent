@@ -1,6 +1,5 @@
 <?php include 'header.php';
 $searchTemp=get('srch-normal');
-$CompanyIDTemp=get('CompanyID');
 $getCompanyTemp=get('CompanyName');
 $CategoryNameTemp=get('CategoryName');
 $CategoryIDTemp=get('CatID');
@@ -26,7 +25,9 @@ $CategoryIDTemp=get('CatID');
                         <li class="active">Dashboard</li>
                     </ol>
                 </section>
-				<!--ADD NewRent-->
+				
+							
+				<!--modal Add New-->
 				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 					  <div class="modal-dialog" role="document">
 						<div class="modal-content">
@@ -35,12 +36,12 @@ $CategoryIDTemp=get('CatID');
 							<h4 class="modal-title" id="exampleModalLabel">New Rent</h4>
 							<div class="modal-body">
 									<?php 
-										$db->disconnect();
-										$db->connect();
+											$db->disconnect();
+											$db->connect();
 										//==================== Insert New Category ======================
 										if(isset($_POST['btnSave'])){
-												$cboCompany		=   get('CompanyID');
-												$cboCategory	=   get('CatID');
+												$cboCompany		=   post('cboCompany');
+												$cboCategory	=   post('cboCetegory');
 												$txtItem		=	post('txtItem');
 												$txtPrice		=   post('txtPrice');
 												$txtStatus		= 	post('Status');
@@ -58,9 +59,8 @@ $CategoryIDTemp=get('CatID');
 																				");
 											
 															if($insert){
-																	cRedirect('RentItem.php');
-																	//$error = 'Success';
-																	
+																		cRedirect('RentItem.php');
+																
 															}		
 												}
 								?>
@@ -81,78 +81,76 @@ $CategoryIDTemp=get('CatID');
 
 										  return true;
 									   }
+								$('.myLi').click(function getCompanyName(){
+								
+								document.getElementById('txtcompanyName').value=$(this).value;
+							});
+		
 								</script>
 								
 								<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 									<tbody>		
-	
 									  <tr>		
 										<td  class="col-md-2 text-center">
-										<form role="form" method="post" enctype="multipart/form-data">
-										<div class="dropdown">
-										  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
-											Choose Company
-											<span class="caret"></span>
-										  </button>
-										  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+										 <form role="form" method="post" enctype="multipart/form-data">
+										
+										  <select onchange="GetValueCompany()" id="CompanyName" name="cboCompany" style="height:35px; width:150px; background-color:	#F8F8FF	;">
+											<option >Choose Company</option>
 											<?php
-												$db->disconnect();
-												$db->connect();
-												$select=$db->query("CALL sp_Company_Select('');");
+											$db->disconnect();
+											$db->connect();
+											  $select=$db->query("SELECT CompanyID,CompanyName from tblcompany; ");
 												$rowselect=$db->dbCountRows($select);
 												if($rowselect>0){
 													while($row=$db->fetch($select)){
 													$CompanyID = $row->CompanyID;
 													$CompanyName = $row->CompanyName;
-														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1"
-														href="#?CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'">'.$CompanyName.'</a></li>';
+														echo'<option   value='.$CompanyID.'>'.$CompanyName.'</a></option>';
 													}
 												}
-									
-												
+										
+											
 											?>	
-										  </ul>
-											</div>	
+										  </select>
+											
 										  </td>
-										<td class="col-md-10 text-center"> <input type="text" class="form-control" <?php echo 'value="'.$getCompanyTemp.'"'; ?> readonly></td>
+										<td class="col-md-10 text-center"> <input type="text" id="txtcompanyName" class="form-control" readonly></td>
 									  </tr>							  
 									 <tr>
 										<td  class="col-md-2 text-center">
-											<div class="dropdown">
-											  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-expanded="true">
-												Choose Category
-												<span class="caret"></span>
-											  </button>
-											  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
+											  <select onchange="GetValueCategory()" name="cboCetegory" id="Category" style="height:35px; width:150px; background-color:	#F8F8FF	;">
+													<option>Choose Category</option>
 													<?php
+														
 														$db->disconnect();
 														$db->connect();
-												
-														$select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."' ");
-														//$select=$db->query("call spSelect_CategoryByComID('".$CompanyIDTemp."' );");
-														$rowselect=$db->dbCountRows($select);
-														if($rowselect>0){
-															
-															while($row=$db->fetch($select)){
-															$CategoryID = $row->CategoryID;
-															$CategoryName = $row->CategoryName;
-																echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
-																href="#?CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
+														$CompanyIDTemp="<script language=javascript>document.write('GetCompanyID()')</script>";
+														//echo '<script>alert($CompanyIDTemp);</script>';
+														  $select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."'; ");
+															$rowselect=$db->dbCountRows($select);
+															if($rowselect>0){
+																
+																while($row=$db->fetch($select)){
+																$CategoryID = $row->CategoryID;
+																$CategoryName = $row->CategoryName;
+																	echo'<option value='.$CategoryName.'>'.$CategoryName.'</a></option>';
+																}
 															}
-														}
-												
-											?>
-											  </ul>
+														
+														
+													?>
+											  </select>
 											</div>
 										</td>
-										<td class="col-md-10 text-center"> <input type="text" class="form-control" <?php echo 'value="'.$CategoryNameTemp.'"'; ?> readonly></td>
+										<td class="col-md-10 text-center"> <input type="text" name="Category" id="txtCategory" class="form-control" readonly></td>
 									 </tr>
 									</tbody>
 								</table>	
+									
 									<div class="form-group">
 										<label>Rent Item</label>
 									
-										<input name="txtItem" class="form-control" placeholder="Enter text" required />
+										<input name="txtItem" class="form-control" placeholder="Enter text"  required />
 									</div>
 										
 									<div class="form-group">
@@ -199,7 +197,7 @@ $CategoryIDTemp=get('CatID');
 									<tr>
 									<th colspan="12">
 										<div class="col-md-6">
-										<button  style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" ><i class="fa fa-file-o"></i>New ItemRent</button>
+										<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New ItemRent</button>
 										</div>
 										
 										<div class="col-md-4"> 
@@ -293,13 +291,30 @@ $CategoryIDTemp=get('CatID');
                                    
                                 </tbody>
                             </table>
+							
                         </div><!-- /.col -->
                     </div><!-- /.row -->
 
                     <div class="row">
                       
                   </div>
-                    
+                  <script type="text/javascript">
+				  	function GetValueCompany(){
+						var id=document.getElementById("CompanyName").value;
+				
+						document.getElementById('txtcompanyName').value=id;
+						}
+					function GetValueCategory(){
+						var CategoryName=document.getElementById("Category").value;
+						document.getElementById('txtCategory').value=CategoryName;
+						
+					}
+					function GetCompanyID(){
+						var id=document.getElementById("CompanyName").value;
+						return id;
+					}
+					
+				  </script>
                     
                 </section>
                     

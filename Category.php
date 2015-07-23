@@ -68,7 +68,7 @@
 											</script>
 										<form role="form" method="post" enctype="multipart/form-data">
 											<div class="form-group">
-											<label>Choose Category</label>
+											<label>Choose Company</label>
 											<select class="form-control" name="cboCompanyID">   
 												<?php
 												
@@ -149,8 +149,9 @@
 									}
 
 								//==================== Insert New Branch =======================
-								if(isset($_POST['btnSave'])){
-										$cboCategory	=   $_POST['cboCategory'];
+								if(isset($_POST['btnUpdate'])){
+										$id             =   post('Category');
+										$CompanyID	=   $_POST['txtCompany'];
 										$txtCategory	=	post('txtCategory');
 										$txtOrderNo		=   post('txtOrder');
 										$txtDescrpiton	=	post('txtDescrpiton');
@@ -158,15 +159,15 @@
 										if($UserID=="1"){
 											$update=$db->query("CALL sp_Category_Update(
 													'".$id."',
-													'".$cboCategory."',
+													'".$CompanyID."',
 													N'".sql_quote($txtCategory)."',
 													'".$txtOrderNo."',
 													N'".sql_quote($txtDescrpiton)."'
-													)			
+													);			
 										");
 											if($update){
-															cRedirect('Category.php');
-														
+														cRedirect('Category.php');
+														//echo '<script>alert("'.	$CompanyID.'");</script>';
 															
 													}
 										}
@@ -181,13 +182,9 @@
 										}
 										</script>
 							<form role="form" method="post" enctype="multipart/form-data">
-								<div class="form-group">
-									<input type="text" name="txtCategory" id="categoryId" class="form-control"  value="<?php echo $Category; ?>" placeholder="Enter text" required />
-								</div>
 								
 								<div class="form-group">
-								<label>Choose Company</label>
-								<select class="form-control" name="cboCategory" autocomplete="on" id="cboCompany">
+								<input  type="hidden" class="form-control" name="cboCategory" autocomplete="on"  id="cboCompany" >
 										<?php
 										$db->disconnect();
 										$db->connect();	
@@ -199,15 +196,19 @@
 												
 												$CompanyID = $row->CompanyID;
 												$CompanyName = $row->CompanyName;
-													echo'<option value='.$CompanyID.'>'.$CompanyName.'</option>';
+													
 												}
-												//============= don't display value in option ================
-												echo'<option value='.$CompanyID1.' selected="true" style="display:none;" selected>'.$CompanyName1.'</option>';
+												
 											}										
 										?>
-									</select>
-												
 									</div>
+									<div class="form-group">
+									<input type="hidden" name="txtCompany" id="companyId" class="form-control"  value="<?php echo $CompanyID; ?>" placeholder="Enter text" required />
+									</div>
+									<div class="form-group">
+										<input type="hidden" name="Category" id="categoryId" class="form-control"  value="<?php echo $Category; ?>" placeholder="Enter text" required />
+									</div>
+								
 								  
 									<div class="form-group">
 										<label>Category Name</label>
@@ -233,7 +234,7 @@
 						<a href="Category.php">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 						</a>
-						<button type="submit" class="btn btn-primary" name="btnSave">Save</button>
+						<button type="submit" class="btn btn-primary" name="btnUpdate">Save</button>
 					</div>
 				</div>
 				</div>
@@ -301,6 +302,7 @@
 									{
 										while($row=$db->fetch($_slide1)){
 												$id=$row->CategoryID;
+												$CompanyID=$row->CompanyID;
 												$CompanyName=$row->CompanyName;
 												$Category = $row->CategoryName;
 												$OrderNo=$row->OrderNo;
@@ -313,7 +315,7 @@
 														<td>'.$OrderNo.'</td>
 														<td>'.$Decription.'</td>
 														<td class="center" >';
-														echo "<a onclick=\"GetField('".$id."','".$CompanyName."','".$Category."','".$OrderNo."','".$Decription."')\">Edit";
+														echo "<a onclick=\"GetField('".$CompanyID."','".$id."','".$CompanyName."','".$Category."','".$OrderNo."','".$Decription."')\">Edit";
 														echo '</a>
 														</td>
 													</tr>';
@@ -348,19 +350,24 @@
                     
                 </section>
 				<script type="text/javascript">
+					var CompanyID=document.getElementById("companyId");
 					var CategoryID=document.getElementById("categoryId");
-					var CompanyName=document.getElementById("cboCompany").value;
+					var CompanyName=document.getElementById("cboCompany");
 					var CategoryName=document.getElementById("CategotyName");
 					var Order=document.getElementById("Order");
 					var Discription=document.getElementById("Description" );
-					function GetField(getCategoryId,getCompanyName,getCategory,getOrder,getDiscription){
+					function GetField(getCompanyId,getCategoryId,getCompanyName,getCategory,getOrder,getDiscription){
 							$('.bs-example-modal-sm').modal('show');
+								CompanyID.value=getCompanyId;
 								CategoryID.value=getCategoryId;
 								CompanyName.value = getCompanyName;
 								CategoryName.value = getCategory;
 								Order.value = getOrder;
 								Discription.value=getDiscription;
+							
 					}
+				
+		
 				</script>
                     
             </aside><!-- /.right-side -->
