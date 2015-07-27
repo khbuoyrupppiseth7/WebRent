@@ -21,7 +21,7 @@ $getdatepayTo=get('dateyetpayto');
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Customer Rent Detail
+                        Customer History
                     </h1>
                     
                 </section>
@@ -81,12 +81,7 @@ $getdatepayTo=get('dateyetpayto');
 													 $getdatepayTo=date("Y-m");
 													 }?>/>  
 													 
-													
-													 <?php 
-														$tomorrow = strtotime($getdatenotyetpay);
-														echo "Month is ".date("m", $tomorrow);
-
-													 ?>
+					
 													 </form>
 													  <div class="input-group">
 													 <div class="input-group-btn">
@@ -124,13 +119,14 @@ $getdatepayTo=get('dateyetpayto');
                                     
                                     
                                     <?php
-									
+										$db->disconnect();
+										$db->connect();
 									$TotalAll="";
 								//	$txtsrch = get('srch-normal');
 									if($getdatenotyetpay!="" && $getdatepayTo!=""){								
 									$getdatenotyetpays=$getdatenotyetpay."-01";
 									$getdatepayTos=$getdatepayTo."-01";
-									$_slide1 = $db->query("CALL sp_Customer_Rent_Payment_Detail('".$searchTemp."','".$getdatenotyetpays."','".$getdatepayTos."')");
+									$_slide1 = $db->query("CALL sp_Customer_Rent_Payment_Detail('".$searchTemp."','".$getdatenotyetpay."','".$getdatepayTos."')");
 									}
 									else{
 									$datenows=$datenow."-01";
@@ -171,8 +167,8 @@ $getdatepayTo=get('dateyetpayto');
 														<td>'.$Other.'$</td>
 														<td>'.$TotalPay.'$</td>
 														<td>
-														<a class="iframe" href="Customer-Rent-Payement.php?id='.$id.'&RentItemID='.$RentItemID.'&ItemName='.$ItemName.'&Price='.$Price.'&PayDate='.$PayDate.'&getdatenotyetpay='.$getdatenotyetpay.'">
-															<button class="btn btn-sm btn-danger">
+														<a class="iframe" onclick=\'return confirm("Do you want to delete?");\' href="Customer_Delect.php?id='.$id.'&Customer_Name='.$CusName.'">
+															<button class="btn btn-sm btn-danger" name="btnDelete" type="submit">
 																<i class="glyphicon glyphicon-remove"></i>
 																Delete
 															</button>

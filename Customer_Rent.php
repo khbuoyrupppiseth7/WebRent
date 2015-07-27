@@ -145,7 +145,7 @@ $getCustomerTemp=get('');
 												$RentDate = $row->RentDate;
 												$NewRentDate= date('d-M-Y',strtotime($RentDate));
 												$OldPayDate = $row->PayDate;
-												$PayDate= date('d',strtotime($OldPayDate));
+												$PayDate= date('d-m-Y',strtotime($OldPayDate));
 												$Price=$row->Price;
 												$isLeave = $row->isLeave;
 												if($isLeave==1){
@@ -158,6 +158,7 @@ $getCustomerTemp=get('');
 												$Decription = $row->Desciption;	
 												
 												$_SESSION['Customer_RentID'] = $row->Customer_RentID;
+												$CustomerRentID=$_SESSION['Customer_RentID'];
 												$_SESSION['_RentItemID'] = $row->RentItemID;
 												$_SESSION['RentDate'] = $RentDate;
 												$_SESSION['PayDate'] = $OldPayDate;
@@ -194,10 +195,11 @@ $getCustomerTemp=get('');
 														</td>
 												
 														<td>
-														<a class="iframe" href="Customer_Rent-Update.php?RentItemID='.$RentItemID.'
+														<a class="iframe" href="Customer_Rent-Update.php?CustomerRent_ID='.$CustomerRentID.'&RentItemID='.$RentItemID.'
 														&ItemName='.$ItemName.'&CustomerID='.$CustomerID.'&CusName='.$CusName.'
 														&CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'&CategoryID='.$CategoryID.'
-														&CategoryName='.$CategoryName.'&Leaves='.$Leaves.'
+														&CategoryName='.$CategoryName.'&RentDate='.$RentDate .'&PayDate='.$PayDate .'
+														&Leaves='.$Leaves.'
 														&Price='.$Price.'&LeaveDate='.$LeaveDate.'&Decription='.$Decription.'">
 															<button class="btn btn-sm btn-primary">
 																<i class="glyphicon glyphicon-pencil"></i>

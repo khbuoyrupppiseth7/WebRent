@@ -13,19 +13,26 @@ $getPrice=get('Price');
 	$getCompanyTemp	=	get('CompanyName');
 	$CategoryIDTemp	=	get('CategoryID');
 	$CategoryNameTemp=	get('CategoryName');
-	
 	$UserID = $_SESSION['UserID'];
 	$StatusGet=get('Status');
-	
+	$RentDate = get('RentDate');
+	$PayDate= get('PayDate');
+	$LeaveDate=get('LeaveDate');
+	$Leave=get('Leaves');
+	$CustomerRentID=get('CustomerRent_ID');
+    $_SESSION['Customer_RentID']=$CustomerRentID;
 	$Customer_RentID = $_SESSION['Customer_RentID'];
 	$S_RentIDOLD = $_SESSION['_RentItemID'];
-	$S_RentDate = $_SESSION['RentDate'];
-	$S_PayDate = $_SESSION['PayDate'];
+	$_SESSION['RentDate']=$RentDate;
 	$S_Price = $_SESSION['Price'];
-	$S_Leaves = $_SESSION['Leaves'];
-	$S_LeaveDate = $_SESSION['LeaveDate'];
+    $_SESSION['Leaves']=$Leave;
+    $_SESSION['LeaveDate']=$LeaveDate;
 	$S_Description = $_SESSION['Desciption'];
-	
+	$rentdate=$_SESSION['RentDate'];
+	$_SESSION['PayDate']=$PayDate;
+	$paydate=$_SESSION['PayDate'];
+	$leavesdate=$_SESSION['LeaveDate'];
+	$leaves=$Leave;
 
 //==================== Insert New Branch =======================
 if(isset($_POST['btnSave'])){
@@ -33,9 +40,9 @@ if(isset($_POST['btnSave'])){
 		$cboCompany		=   get('CompanyID');
 		$cboRentItem	=   get('RentItemID');
 		$txtRentDate	=	post('txtRentDate');
-		$txtPayDate		=   post('txtPayDate');
+		$txtPayDate		=   post('PayDate');
 		$txtPrice		=   post('txtPrice');
-		$Leave			=   post('Leave');
+		$Leave			=   post('LEAVES');
 		$txtLeaveDate	=   post('txtLeaveDate');
 		$txtDescrpiton	=	post('txtDescrpiton');
 			
@@ -59,11 +66,8 @@ if(isset($_POST['btnSave'])){
 		
 		
 			if($update){
-				if($RentItemIDOld==$S_RentIDOLD){
-				//echo "OLD RentIT= ".$S_RentIDOLD;
-				//$db->query("Update tblrentitem SET isStatus=1 where RentItemID='".$S_RentIDOLD."' ");
-				}
-				else{
+				if($RentItemIDOld!=$S_RentIDOLD)
+				{
 				//echo "wrong ".$cboRentItem;
 				$db->query("call spUpdate_rentitemStu1('".$S_RentIDOLD."'); ");
 				$db->query("call spUpdate_rentitem('".$cboRentItem."' );");
@@ -121,6 +125,7 @@ if(isset($_POST['btnSave'])){
 
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 									<?php
+											$db->disconnect();
 											$db->connect();
 											  $select=$db->query("CALL sp_Customer_Select('')");
 												$rowselect=$db->dbCountRows($select);
@@ -135,7 +140,7 @@ if(isset($_POST['btnSave'])){
 													}
 													
 												}
-											$db->disconnect();
+										
 											$getCustomerID=get('CustomerID');
 											$getCustomerTemp=get('CusName');
 											
@@ -157,6 +162,7 @@ if(isset($_POST['btnSave'])){
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
 									<?php
+											$db->disconnect();
 											$db->connect();
 											  $select=$db->query("CALL sp_Company_Select('')");
 												$rowselect=$db->dbCountRows($select);
@@ -171,7 +177,7 @@ if(isset($_POST['btnSave'])){
 													}
 		
 												}
-											$db->disconnect();
+											
 										
 									?>
 								  </ul>
@@ -189,6 +195,7 @@ if(isset($_POST['btnSave'])){
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
 									<?php
+											$db->disconnect();
 											$db->connect();
 											
 											  $select=$db->query("call spCategory_Select('".$CompanyIDTemp."'); ");
@@ -205,7 +212,7 @@ if(isset($_POST['btnSave'])){
 														&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
 													}
 												}
-											$db->disconnect();
+											
 											
 											?>
 								  </ul>
@@ -224,6 +231,7 @@ if(isset($_POST['btnSave'])){
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu4">
 									<?php
+											$db->disconnect();
 											$db->connect();
 											
 											   $select1=$db->query("CALL spSelect_RentitemStu1('".$CategoryIDTemp."');");
@@ -241,7 +249,7 @@ if(isset($_POST['btnSave'])){
 														&Price='.$Price.'&ItemName='.$ItemName.'">'.$ItemName.'</a></li>';
 													}
 												}
-											$db->disconnect();
+											
 										
 											?>
 								  </ul>
@@ -255,13 +263,12 @@ if(isset($_POST['btnSave'])){
 							<div class="form-group">
                                 <label>Rent Date</label>
 							
-								<input type="text" id="RentDate" name="txtRentDate" class="form-control" <?php echo 'value="'.$S_RentDate.'"'; ?>"/> 
+								<input type="text" id="RentDate" name="txtRentDate" class="form-control" <?php echo 'value="'.$rentdate.'"'; ?>"/> 
                             </div>
-							
 							<div class="form-group">
                                 <label>Pay Date</label>
 							<!--	<input name="txtPayDate" class="form-control" placeholder="Enter text" required /> -->
-									<input type="text" id="PayDate" name="txtPayDate" class="form-control" value="<?php echo $S_PayDate; ?>"/>
+									<input type="text" id="PayDate" name="PayDate" class="form-control" <?php echo 'value="'.$paydate.'"'; ?>"/>
                             </div>
 							
 							<div class="form-group">
@@ -273,18 +280,18 @@ if(isset($_POST['btnSave'])){
 								echo 'value="'.$getPrice.'"';
 								?> required readonly/>
                             </div>
-							 
+							
 							<div class="form-group">
                                 <label>Leave</label><br/>
 							<!--	<input name="txtisLeave" class="form-control" placeholder="Enter text" required /> -->
-								<input type="radio" name="Leave" value="0" <?php if($S_Leaves=="No") echo 'checked' ?> class="form-control">No
-								<input type="radio" name="Leave" value="1" <?php if($S_Leaves=="Yes") echo 'checked' ?> class="form-control">Yes
+								<input type="radio" name="LEAVES" value="0" <?php if($leaves=="No") echo 'checked' ?> class="form-control">No
+								<input type="radio" name="LEAVES" value="1" <?php if($leaves=="Yes") echo 'checked' ?> class="form-control">Yes
                             </div>
-							
+					
 							<div class="form-group">
                                 <label>Leave Date</label>
 							<!--	<input name="txtLeaveDate" class="form-control" placeholder="Enter text" required /> -->
-								<input type="text" id="LeaveDate" name="txtLeaveDate" class="form-control" value="<?php echo $S_LeaveDate; ?>"/>
+								<input type="text" id="LeaveDate" name="txtLeaveDate" class="form-control" value="<?php echo $leavesdate; ?>"/>
                             </div>
 							       
 							<div class="form-group">

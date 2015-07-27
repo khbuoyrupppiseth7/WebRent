@@ -199,8 +199,10 @@ $searchTemp=get('srch-normal');
 															<td>'.$CompanyName.'</td>
 															<td>'.$Decription.'</td>
 															<td class="center" >';
+															
 																echo "<a onclick=\"getElement('".$id."','".$CompanyName."','".$Decription."')\">Edit";
 																echo '</a>
+															
 															</td>
 													</tr>';
 												}	

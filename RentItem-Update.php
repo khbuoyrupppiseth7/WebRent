@@ -140,6 +140,7 @@ if(isset($_POST['btnSave'])){
 							</tr>
 						</tbody>
 					</table>	
+							<?php 	$ItemName=get('ItemName');?>
 							<div class="form-group">
                                 <label>Rent Item</label>
 								<input name="txtItem" class="form-control" value="<?php echo $ItemName; ?>" placeholder="Enter text"  required />

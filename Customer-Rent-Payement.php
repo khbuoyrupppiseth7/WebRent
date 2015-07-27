@@ -10,7 +10,7 @@
 	$txtPayDate = $PayYearMonth."-".$PayDay;
 //==================== Insert New Branch =======================
 if(isset($_POST['btnSave'])){
-		$txtPayDate		=	post('txtPayDate');
+		$txtPayDate	   =	post('txtPayDate');
 		$txtRealPayDate =   post('txtRealPayDate');
 		$txtPrice 		=	post('txtPrice');
 		$txtElectric 	=	post('txtElectric');
@@ -36,6 +36,7 @@ if(isset($_POST['btnSave'])){
 		");
 			if($update){
 				cRedirect('Customer_Rent.php');	
+				$db->query(" UPDATE tblcustomer_rent SET isPaid=0  WHERE Customer_RentID='".$Customer_RentID."'");
 					}
 		}
 }
@@ -80,14 +81,14 @@ if(isset($_POST['btnSave'])){
 						    <div class="form-group">
                              <label>Pay Date</label>
 							<!--	<input name="txtPayDate" class="form-control" placeholder="Enter text" required /> -->
-									<input type="text" name="txtPayDate" class="form-control" value="<?php echo $txtPayDate; ?>" readonly/>
+									<input type="text" name="txtPayDate" class="form-control" value="<?php echo $txtPayDate	; ?>" readonly/>
                             </div>
 							<div class="form-group">
 							<label>Real Pay Date</label>
 							<!--	<input name="txtPayDate" class="form-control" placeholder="Enter text" required /> -->
 									<input type="text" id="RealPayDate" name="txtRealPayDate" class="form-control" <?php $datenow=date("Y-m-d"); echo 'value="'.$datenow.'"'; ?>/>
                             </div>
-													
+								<?php $Price=get('Price');	?>					
 							<div class="form-group">
                                 <label>Price</label>
 								<input name="txtPrice" id="Price" class="form-control" value="<?php echo $Price; ?>" required readonly />
