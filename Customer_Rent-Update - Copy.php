@@ -109,21 +109,15 @@ if(isset($_POST['btnSave'])){
 		</script>
 	</head>
     <body class="skin-blue">
-        <!-- header logo: style can be found in header.less -->
-         <?php include 'nav.php';?>
-        
-            <!-- Left side column. contains the logo and sidebar -->
-            <?php include 'menu.php';?>
-
-            <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                <div class="row">
+                <div class="row" style="margin:0 auto;>
                    <div class="col-xs-8">
 						 <form role="form" method="post" enctype="multipart/form-data">   
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-							<tbody>											
+							<tbody>		
+							  <tr><h4>Edit Customer Rent</h4></tr>
 							  <tr>
 							  <td  class="col-md-2 text-center">
 								<div class="dropdown">
@@ -233,7 +227,7 @@ if(isset($_POST['btnSave'])){
 						
 							  <tr>
 							  <td  class="col-md-2 text-left">
-								<div class="dropdown">
+								<div class="dropdown" style=" margin-left:45px;">
 								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-expanded="true">
 									Choose Item
 									<span class="caret"></span>
@@ -276,11 +270,10 @@ if(isset($_POST['btnSave'])){
                             </div>
 							<div class="form-group">
                                 <label>Pay Date</label>
-							<!--	<input name="txtPayDate" class="form-control" placeholder="Enter text" required /> -->
-									<input type="text" value="" id="datetimepicker" name="txtpaydate" class="form-control" <?php echo 'value="'.$paydate.'"'; ?>/>
+							
 									<input type="text" id="PayDate" name="txtpaydate" class="form-control" <?php echo 'value="'.$paydate.'"'; ?>"/>
                             </div>
-							<input type="text" id="txtPayD" name="txtPayDateTime" class="form-control" <?php echo 'value="'.$paydate.'"'; ?>"/>
+						
 							<div class="form-group">
                                 <label>Price</label>
 								<input name="txtPrice" class="form-control" placeholder="Enter text" <?php 
@@ -306,14 +299,14 @@ if(isset($_POST['btnSave'])){
 							       
 							<div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" name="txtDescrpiton" id="editor1" rows="3" value="<?php echo $S_Description; ?>"></textarea>
+                                <textarea class="form-control" name="txtDescrpiton" id="editor1" rows="2" value="<?php echo $S_Description; ?>"></textarea>
                             </div>
 			
                             <div class="modal-footer">
                             <a href="RentItem.php">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
                             </a>
-                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
+                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();' />
                           </div>
                       </form>
                      </div>

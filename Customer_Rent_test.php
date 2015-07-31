@@ -118,7 +118,7 @@ $getCustomerTemp=get('');
 								//	$txtsrch = get('srch-normal');
 									if($getdatenotyetpay!=""){								
 									$getdatenotyetpays=$getdatenotyetpay."-01";
-									$_slide1 = $db->query("call sp_Customer_Rent_Select_Company('".$searchTemp."','".$getdatenotyetpays."')");
+									$_slide1 = $db->query("CALL sp_Customer_Rent_Select_Company('".$searchTemp."','".$getdatenotyetpays."')");
 									}
 									else{
 									$datenows=$datenow."-01";
@@ -182,7 +182,7 @@ $getCustomerTemp=get('');
 														<td>
 													
 													
-														<a class="iframe_meduim" href="Customer-Rent-Payement.php?id='.$id.'&RentItemID='.$RentItemID.'&ItemName='.$ItemName.'&Price='.$Price.'&Decription='.$Decription.'&PayDate='.$PayDate.'&getdatenotyetpay='.$getdatenotyetpay.'">
+														<a class="iframe" href="Customer-Rent-Payement.php?id='.$id.'&RentItemID='.$RentItemID.'&ItemName='.$ItemName.'&Price='.$Price.'&Decription='.$Decription.'&PayDate='.$PayDate.'&getdatenotyetpay='.$getdatenotyetpay.'">
 															<button class="btn btn-sm btn-warning">
 																<i class="glyphicon glyphicon-usd"></i>
 																Payment
@@ -192,7 +192,7 @@ $getCustomerTemp=get('');
 														</td>
 												
 														<td>
-														<a class="iframe_meduim" href="Customer_Rent-Update.php?CustomerRent_ID='.$CustomerRentID.'&RentItemID='.$RentItemID.'
+														<a class="iframe" href="Customer_Rent-Update.php?CustomerRent_ID='.$CustomerRentID.'&RentItemID='.$RentItemID.'
 														&ItemName='.$ItemName.'&CustomerID='.$CustomerID.'&CusName='.$CusName.'
 														&CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'&CategoryID='.$CategoryID.'
 														&CategoryName='.$CategoryName.'&RentDate='.$RentDate .'&PayDate='.$PayDate .'
@@ -235,21 +235,7 @@ $getCustomerTemp=get('');
 				
    
                 </section>
-				<script>
-					//  ** show date and time picker
-						
-					$('#RealPayDate').datetimepicker({
-						timepicker: false, //visible time = false
-						format: 'Y-m-d',
-						step: 10
-					});
-					
-					
-				</script>
-				<!-- Event KeyPress -->
-				
-					</script>
-		
+			
 		
            </aside><!-- /.right-side -->
             
@@ -259,20 +245,4 @@ $getCustomerTemp=get('');
         <!-- add new calendar event modal -->
 		</body>
 	
-		<script>
-
-			//  ** show date and time picker
-			 $('#btnDate').datetimepicker({
-				
-				timepicker: false, //visible time = false
-				format: 'Y-m',
-				step: 10
-			
-			});
-			$('#btnDate').click({
-			
-			});
-			
-		</script>
-
 <?php include 'footer.php';?>

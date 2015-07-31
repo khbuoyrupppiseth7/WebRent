@@ -5,7 +5,7 @@ $CategoryNameTemp=get('CategoryName');
 $CategoryIDTemp=get('CatID');
 ?>
 
-    <body class="skin-blue">
+      <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
          <?php include 'nav.php';?>
         
@@ -25,166 +25,7 @@ $CategoryIDTemp=get('CatID');
                         <li class="active">Dashboard</li>
                     </ol>
                 </section>
-				
-							
-				<!--modal Add New-->
-				<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-					  <div class="modal-dialog" role="document">
-						<div class="modal-content">
-						  <div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="exampleModalLabel">New Rent</h4>
-							<div class="modal-body">
-									<?php 
-											$db->disconnect();
-											$db->connect();
-										//==================== Insert New Category ======================
-										if(isset($_POST['btnSave'])){
-												$cboCompany		=   post('cboCompany');
-												$cboCategory	=   post('cboCetegory');
-												$txtItem		=	post('txtItem');
-												$txtPrice		=   post('txtPrice');
-												$txtStatus		= 	post('Status');
-												$txtDescrpiton	=	post('txtDescrpiton');
-												
-												$insert=$db->query("CALL sp_RentItem_Insert (
-																				'".time()."',
-																				'".$cboCompany."',
-																				N'".sql_quote($txtItem)."',
-																				'".$cboCategory."',
-																				".$txtPrice.",	
-																				".$txtStatus.",
-																				N'".sql_quote($txtDescrpiton)."'
-																				);
-																				");
-											
-															if($insert){
-																		cRedirect('RentItem.php');
-																
-															}		
-												}
-								?>
-								<script language="javascript">
-								function checkInput(ob) {
-								  var invalidChars = /[^0-9]/gi
-								  if(invalidChars.test(ob.value)) {
-											ob.value = ob.value.replace(invalidChars,"");
-									  }
-								}
-
-								function isNumberKey(evt)
-									   {
-										  var charCode = (evt.which) ? evt.which : evt.keyCode;
-										  if (charCode != 46 && charCode > 31 
-											&& (charCode < 48 || charCode > 57))
-											 return false;
-
-										  return true;
-									   }
-								$('.myLi').click(function getCompanyName(){
-								
-								document.getElementById('txtcompanyName').value=$(this).value;
-							});
-		
-								</script>
-								
-								<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-									<tbody>		
-									  <tr>		
-										<td  class="col-md-2 text-center">
-										 <form role="form" method="post" enctype="multipart/form-data">
-										
-										  <select onchange="GetValueCompany()" id="CompanyName" name="cboCompany" style="height:35px; width:150px; background-color:	#F8F8FF	;">
-											<option >Choose Company</option>
-											<?php
-											$db->disconnect();
-											$db->connect();
-											  $select=$db->query("SELECT CompanyID,CompanyName from tblcompany; ");
-												$rowselect=$db->dbCountRows($select);
-												if($rowselect>0){
-													while($row=$db->fetch($select)){
-													$CompanyID = $row->CompanyID;
-													$CompanyName = $row->CompanyName;
-														echo'<option   value='.$CompanyID.'>'.$CompanyName.'</a></option>';
-													}
-												}
-										
-											
-											?>	
-										  </select>
-											
-										  </td>
-										<td class="col-md-10 text-center"> <input type="text" id="txtcompanyName" class="form-control" readonly></td>
-									  </tr>							  
-									 <tr>
-										<td  class="col-md-2 text-center">
-											  <select onchange="GetValueCategory()" name="cboCetegory" id="Category" style="height:35px; width:150px; background-color:	#F8F8FF	;">
-													<option>Choose Category</option>
-													<?php
-														
-														$db->disconnect();
-														$db->connect();
-														$CompanyIDTemp="<script language=javascript>document.write('GetCompanyID()')</script>";
-														//echo '<script>alert($CompanyIDTemp);</script>';
-														  $select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."'; ");
-															$rowselect=$db->dbCountRows($select);
-															if($rowselect>0){
-																
-																while($row=$db->fetch($select)){
-																$CategoryID = $row->CategoryID;
-																$CategoryName = $row->CategoryName;
-																	echo'<option value='.$CategoryName.'>'.$CategoryName.'</a></option>';
-																}
-															}
-														
-														
-													?>
-											  </select>
-											</div>
-										</td>
-										<td class="col-md-10 text-center"> <input type="text" name="Category" id="txtCategory" class="form-control" readonly></td>
-									 </tr>
-									</tbody>
-								</table>	
-									
-									<div class="form-group">
-										<label>Rent Item</label>
-									
-										<input name="txtItem" class="form-control" placeholder="Enter text"  required />
-									</div>
-										
-									<div class="form-group">
-										<label>Price</label>
-									
-										<input name="txtPrice" class="form-control" placeholder="Enter Number" onkeypress="return isNumberKey(event)"  required />
-									</div>
-									
-									<div class="form-group">
-										<label>Status</label><br/>
-									<!--	<input name="txtisLeave" class="form-control" placeholder="Enter text" required /> -->
-										<input type="radio" name="Status" value="1" checked class="form-control">Free
-										<input type="radio" name="Status" value="0"  class="form-control">Busy
-										
-									</div>
-							</div>
-							<div class="modal-footer">
-								<a href="RentItem.php">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-								</a>
-								<input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
-							  </div>
-							</div>
-						  </div>
-						</div>
-						</form>
-                     </div><!-- /.row -->
-                   
-
-                <!-- Main content -->
-				
-                    <!-- Table row -->
-                
-                  <section class="content invoice">
+			    <section class="content invoice">
                     <!-- title row -->
                     <div class="panel-body">
                    <div class="dataTable_wrapper">
@@ -197,7 +38,10 @@ $CategoryIDTemp=get('CatID');
 									<tr>
 									<th colspan="12">
 										<div class="col-md-6">
-										<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New ItemRent</button>
+										<a class='iframe' href="RentItem-new.php">
+											<button style="margin-left:-20px;"type="button" class="btn btn-primary"><i class="fa fa-file-o"></i>New ItemRent</button>
+										</a>
+										
 										</div>
 										
 										<div class="col-md-4"> 

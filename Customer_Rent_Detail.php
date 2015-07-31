@@ -51,13 +51,8 @@ $getdatepayTo=get('dateyetpayto');
                                     <tr>
                                         
 											<th colspan="12">
-											<div class="col-md-2"  style="margin-left:-20px;">
-												<a href="Customer_Rent-new.php">
-													<button class="btn btn-primary" data-toggle="modal" data-target="#NewFloor"><i class="fa fa-file-o"></i> Rent</button>
-												</a>
-													
-											</div>
-                                           <div class="col-md-10"> 
+											
+                                           <div class="col-md-12"> 
 													<form class="form-inline">
                                                      <div class=" pull-right" >
                                                     

@@ -58,24 +58,20 @@ if(isset($_POST['btnSave'])){
 		</script>
 		
 	</head>
-    <body class="skin-blue">
-        <!-- header logo: style can be found in header.less -->
-         <?php include 'nav.php';?>
-        
-            <!-- Left side column. contains the logo and sidebar -->
-            <?php include 'menu.php';?>
-
-            <!-- Right side column. Contains the navbar and content of the page -->
-            <aside class="right-side">
+    <body class="skin-blue" >
+	<!-- Right side column. Contains the navbar and content of the page -->
+            <aside class="right-side" >
                 <!-- Content Header (Page header) -->
-                <section class="content-header">
-                <div class="row">
-                   <div class="col-xs-8">
-                    <form role="form" method="post" enctype="multipart/form-data">
+                <section class="content-header" style="margin: 0 auto; >
+                <div class="row"  style="margin: 0 auto; >
+                   <div class="col-xs-8"  >
+                    <form role="form" method="post" enctype="multipart/form-data" >
 						
-						<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-							<tbody>		
-							  <tr>		
+						<table  style="margin: 0 auto;" class="table table-striped table-bordered table-hover" id="dataTables-example">
+							<tbody>								
+							  <tr> <h3>Add New RentItem<h3></tr>
+							  <tr>	
+								
 								<td  class="col-md-2 text-center">
 								<div class="dropdown">
 								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
@@ -162,9 +158,9 @@ if(isset($_POST['btnSave'])){
 										
                             <div class="modal-footer">
                             <a href="RentItem.php">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
                             </a>
-                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
+                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();'/>
                           </div>
                       </form>
                      </div>

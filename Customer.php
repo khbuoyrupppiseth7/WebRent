@@ -2,6 +2,9 @@
 
 ?>
 
+	
+		
+
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
          <?php include 'nav.php';?>
@@ -335,7 +338,7 @@
 														<td>'.$Tel1.'</td>
 														<td>'.$Mobile.'</td>
 														<td>
-														<a class="iframe" href="Customer-Update.php?id='.$id.'&fullName='.$fullName.'&Nationality='.$Nationality.'
+														<a class="iframelong"  href="Customer-Update.php?id='.$id.'&fullName='.$fullName.'&Nationality='.$Nationality.'
 														&Gender='.$Gender.'&Birthdate='.$Birthdate.'&Address='.$Address.'&City='.$City.'&Tel1='.$Tel1.'&Mobile='.$Mobile.'">
 															<button class="btn btn-sm btn-primary">
 																<i class="glyphicon glyphicon-pencil"></i>

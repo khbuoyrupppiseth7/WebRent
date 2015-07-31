@@ -47,7 +47,7 @@
 										<li><a href="RentItem.php"><i class="fa fa-angle-double-right"></i> Rent Item</a></li>
 										<li><a href="Customer.php"><i class="fa fa-angle-double-right"></i> Customer</a></li>
 										<li><a href="Customer_Rent.php"><i class="fa fa-angle-double-right"></i> Customer Rent</a></li>
-										<li><a href="Customer_Rent_Detail.php"><i class="fa fa-angle-double-right"></i> Customer Rent Detail</a></li>
+										<li><a href="Customer_Rent_Detail.php"><i class="fa fa-angle-double-right"></i> Customer History</a></li>
 									</ul>
                         </li>';
 						}

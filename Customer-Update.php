@@ -1,4 +1,5 @@
 <?php include 'header.php';
+
 //================ Get Field From Page Customer =================
 	$id=get('id');
 	$db->connect();
@@ -125,22 +126,19 @@ if(isset($_POST['btnSave'])){
 			  }
 		}
 		</script>
+	
+		
 	</head>
-    <body class="skin-blue">
-        <!-- header logo: style can be found in header.less -->
-         <?php include 'nav.php';?>
-        
-            <!-- Left side column. contains the logo and sidebar -->
-            <?php include 'menu.php';?>
-
-            <!-- Right side column. Contains the navbar and content of the page -->
+    <body class="skin-blue" style="margin:0 auto;" >
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                <div class="row">
+                <div class="row" style="margin 0 auto;>
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data">
-                          
+							
+							<label><h3>Edit Customer</h3></label>
+							
 							<div class="form-group">
 								<label>Choose Company</label>
 								<select class="form-control" name="cboCompany" autocomplete="on">
@@ -168,43 +166,43 @@ if(isset($_POST['btnSave'])){
 								</select>
 										
 							</div>
-						  
-							<div class="form-group">
+						
+							<div class="form-group"  >
                                 <label>Member Title</label>
-								<input name="txtmemberTitle" class="form-control"  value="<?php echo $memberTitle; ?>" placeholder="Enter text" />
+								<input  name="txtmemberTitle" class="form-control"  value="<?php echo $memberTitle; ?>" placeholder="Enter text" />
                             </div>
 							
 							<div class="form-group">
                                 <label>First Name</label>
-								<input name="txtfirstName" class="form-control" value="<?php echo $firstName; ?>"  placeholder="Enter text"  />
+								<input  name="txtfirstName" class="form-control" value="<?php echo $firstName; ?>"  placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>Last Name</label>
-								<input name="txtlastName" class="form-control" value="<?php echo $lastName; ?>" placeholder="Enter text"  />
+								<input  name="txtlastName" class="form-control" value="<?php echo $lastName; ?>" placeholder="Enter text"  />
                             </div>
 														
 							<div class="form-group">
                                 <label>Nick Name</label>
-								<input name="txttnickName" class="form-control" value="<?php echo $nickName; ?>" placeholder="Enter text" />
+								<input  name="txttnickName" class="form-control" value="<?php echo $nickName; ?>" placeholder="Enter text" />
                             </div>
 							
 							<div class="form-group">
                                 <label>ID Type</label>
-								<input name="txtidType" class="form-control" value="<?php echo $idType; ?>" placeholder="Enter text"  />
+								<input  name="txtidType" class="form-control" value="<?php echo $idType; ?>" placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>ICPassportNo</label>
-								<input name="txticpassportNo" class="form-control" value="<?php echo $icpassportNo; ?>" placeholder="Enter text"  />
+								<input  name="txticpassportNo" class="form-control" value="<?php echo $icpassportNo; ?>" placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>Nationality</label>
-								<input name="txtNationality" class="form-control" value="<?php echo $Nationality; ?>" placeholder="Enter text"  />
+								<input  name="txtNationality" class="form-control" value="<?php echo $Nationality; ?>" placeholder="Enter text"  />
                             </div>
 							
-							<div class="form-group">
+							<div class="fullcolorbox" class="form-group">
                                 <label>Gender</label>
 								<select class="form-control" name="Gender">   
 								<option value="M">M</option>
@@ -218,77 +216,74 @@ if(isset($_POST['btnSave'])){
 							
 							<div class="form-group">
                                 <label>Birth Date</label>
-								<input id="Birthdate" name="txtBirthdate" class="form-control" value="<?php echo $Birthdate; ?>" placeholder="Enter text"  />
+								<input  id="Birthdate" name="txtBirthdate" class="form-control" value="<?php echo $Birthdate; ?>" placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>MaritalStatus</label>
-								<input name="txtMaritalStatus" class="form-control" value="<?php echo $MaritalStatus; ?>" placeholder="Enter text"  />
+								<input  name="txtMaritalStatus" class="form-control" value="<?php echo $MaritalStatus; ?>" placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>Address</label>
-								<input name="txtAddress" class="form-control" value="<?php echo $Address; ?>" placeholder="Enter text"  />
+								<input  name="txtAddress" class="form-control" value="<?php echo $Address; ?>" placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>ZipCode</label>
-								<input name="txtZipCode" class="form-control" value="<?php echo $ZipCode; ?>" placeholder="Enter text"  />
+								<input  name="txtZipCode" class="form-control" value="<?php echo $ZipCode; ?>" placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>PostalCode</label>
-								<input name="txtPostalCode" class="form-control" value="<?php echo $PostalCode; ?>" placeholder="Enter text"  />
+								<input  name="txtPostalCode" class="form-control" value="<?php echo $PostalCode; ?>" placeholder="Enter text"  />
                             </div>
 							<div class="form-group">
                                 <label>POBox</label>
-								<input name="txtPOBox" class="form-control" value="<?php echo $POBox; ?>" placeholder="Enter text"  />
+								<input  name="txtPOBox" class="form-control" value="<?php echo $POBox; ?>" placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>City</label>
-								<input name="txtCity" class="form-control" value="<?php echo $City; ?>" placeholder="Enter text"  />
+								<input  name="txtCity" class="form-control" value="<?php echo $City; ?>" placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>Country</label>
-								<input name="txtCountry" class="form-control" value="<?php echo $Country; ?>" placeholder="Enter text"  />
+								<input  name="txtCountry" class="form-control" value="<?php echo $Country; ?>" placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>Tel1</label>
-								<input name="txtTel1" class="form-control" value="<?php echo $Tel1; ?>" placeholder="Enter Number" onkeyup="checkInput(this)"  />
+								<input  name="txtTel1" class="form-control" value="<?php echo $Tel1; ?>" placeholder="Enter Number" onkeyup="checkInput(this)"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>Fax</label>
-								<input name="txtFax" class="form-control" value="<?php echo $Fax; ?>" placeholder="Enter text"  />
+								<input  name="txtFax" class="form-control" value="<?php echo $Fax; ?>" placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>Mobile</label>
-								<input name="txtMobile" class="form-control" value="<?php echo $Mobile; ?>" placeholder="Enter Number" onkeyup="checkInput(this)"  />
+								<input  name="txtMobile" class="form-control" value="<?php echo $Mobile; ?>" placeholder="Enter Number" onkeyup="checkInput(this)"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>E-Mail</label>
-								<input name="txteMail" class="form-control" value="<?php echo $eMail; ?>" placeholder="Enter text"  />
+								<input  name="txteMail" class="form-control" value="<?php echo $eMail; ?>" placeholder="Enter text"  />
                             </div>
 							
 							<div class="form-group">
                                 <label>AutoNo</label>
-								<input name="txtautono" class="form-control" value="<?php echo $autono; ?>" placeholder="Enter text"  />
+								<input  name="txtautono" class="form-control" value="<?php echo $autono; ?>" placeholder="Enter text"  />
                             </div>		
 										
-                            <div class="modal-footer">
+                            <input type="submit" style="float:right;" name="btnSave" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();' />
                             <a href="Customer.php">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" style="float:right;" class="btn btn-default" data-dismiss="modal" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
                             </a>
-                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
-                          </div>
-                      </form>
-                     </div>
-                    </div>
+                           
+                         
                 </section>
 
                 <!-- Main content -->

@@ -42,8 +42,53 @@
         <link href="css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
         <!-- Theme style -->
         <link href="css/AdminLTE.css" rel="stylesheet" type="text/css" />
-		
-       
+		<link rel="stylesheet" href="http://www.formmail-maker.com/var/demo/jquery-popup-form/colorbox.css" />
+        <script src="js/jquery1.10.js"></script>
+        <script src="js/inputonlynumber.js" type="text/javascript" ></script>
+		<script src="js/jquery.colorbox.js"></script>
+		<script>
+			$(document).ready(function(){
+				//Examples of how to assign the Colorbox event to elements
+				
+				$(".iframe").colorbox({iframe:true, width:"40%",scrolling: false, height:"70%", onClosed:function(){ location.reload(true); }});
+				$(".iframe_meduim").colorbox({iframe:true, width:"45%",scrolling: false, height:"100%", onClosed:function(){ location.reload(true); }});
+				$(".aboutus").colorbox({iframe:true, width:"85%", height:"80%", onClosed:function(){ location.reload(true); }});
+				$(".iframelong").colorbox({iframe:true, width:"45%",scrolling: false, height:"200%", onClosed:function(){ location.reload(true); }});
+				//$(".iframe").colorbox({iframe:true, width:"70%", height:"80%", onClosed:function(){ location.reload(true); }});
+				<!-- Form Change Password of User -->
+				
+				$(".changepwd").colorbox({iframe:true, width:"80%", height:"57%"});
+				//Example of preserving a JavaScript event for inline calls.
+				$("#click").click(function(){ 
+					$('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			// Make ColorBox responsive
+			jQuery.colorbox.settings.maxWidth  = '95%';
+			jQuery.colorbox.settings.maxHeight = '200%';
+
+			// ColorBox resize function
+			var resizeTimer;
+			function resizeColorBox()
+			{
+				if (resizeTimer) clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(function() {
+						if (jQuery('#cboxOverlay').is(':visible')) {
+								jQuery.colorbox.load(true);
+						}
+				}, 300);
+			}
+
+			// Resize ColorBox when resizing window or changing mobile device orientation
+			jQuery(window).resize(resizeColorBox);
+			window.addEventListener("orientationchange", resizeColorBox, false);
+		</script>
+        
+        
+      
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>

@@ -16,7 +16,7 @@ $getPrice=get('Price');
 	$UserID = $_SESSION['UserID'];
 	$StatusGet=get('Status');
 	$RentDate = get('RentDate');
-	$PayDate= get('PayDate');
+	$paydate= get('PayDate');
 	$leavesdate=get('LeaveDate');
 	$leaves=get('Leaves');
 	$CustomerRentID=get('CustomerRent_ID');
@@ -27,10 +27,10 @@ $getPrice=get('Price');
 	$S_Price = $_SESSION['Price'];
 	$S_Description = $_SESSION['Desciption'];
 	$rentdate=$_SESSION['RentDate'];
-	$_SESSION['PayDate']=$PayDate;
-	$paydate=$_SESSION['PayDate'];
 	
 	
+	
+
 //==================== Insert New Branch =======================
 if(isset($_POST['btnSave'])){
 		$cboCustomers	=   get('CustomerID');
@@ -39,7 +39,7 @@ if(isset($_POST['btnSave'])){
 		$txtRentDate	=	post('txtRentDate');
 		$txtPayDate		=   post('txtpaydate');
 		$txtPrice		=   post('txtPrice');
-		$Leave			=   post('txtLeave');
+		$Leave			=   post('LEAVES');
 		$txtLeaveDate	=   post('txtLeaveDate');
 		$txtDescrpiton	=	post('txtDescrpiton');
 			
@@ -75,7 +75,7 @@ if(isset($_POST['btnSave'])){
 		}
 }
 ?>
-	<head>
+<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 		<link rel="stylesheet" type="text/css" href="./css/jquery.datetimepicker.css"/>
 		<script language="javascript">
@@ -94,18 +94,6 @@ if(isset($_POST['btnSave'])){
 					 return false;
 				  return true;
 			   }
-		function GetPayDate(){
-			var Paydate=document.getElementById("PayDate");
-				document.getElementById("txtPayD").value=Paydate;
-		}
-		$('#datetimepicker').datetimepicker({
-			dayOfWeekStart : 1,
-			lang:'en',
-			disabledDates:['1986/01/08','1986/01/09','1986/01/10'],
-			startDate:	'1986/01/05'
-			});
-			$('#datetimepicker').datetimepicker({value:'2015/04/15 05:03',step:10});
-
 		</script>
 	</head>
     <body class="skin-blue">
@@ -277,10 +265,9 @@ if(isset($_POST['btnSave'])){
 							<div class="form-group">
                                 <label>Pay Date</label>
 							<!--	<input name="txtPayDate" class="form-control" placeholder="Enter text" required /> -->
-									<input type="text" value="" id="datetimepicker" name="txtpaydate" class="form-control" <?php echo 'value="'.$paydate.'"'; ?>/>
 									<input type="text" id="PayDate" name="txtpaydate" class="form-control" <?php echo 'value="'.$paydate.'"'; ?>"/>
                             </div>
-							<input type="text" id="txtPayD" name="txtPayDateTime" class="form-control" <?php echo 'value="'.$paydate.'"'; ?>"/>
+							
 							<div class="form-group">
                                 <label>Price</label>
 								<input name="txtPrice" class="form-control" placeholder="Enter text" <?php 
@@ -294,8 +281,8 @@ if(isset($_POST['btnSave'])){
 							<div class="form-group">
                                 <label>Leave</label><br/>
 							<!--	<input name="txtisLeave" class="form-control" placeholder="Enter text" required /> -->
-								<input type="radio" name="txtLeave" value="0" <?php if($leaves=="No") echo 'checked' ?> class="form-control">No
-								<input type="radio" name="txtLeave" value="1" <?php if($leaves=="Yes") echo 'checked' ?> class="form-control">Yes
+								<input type="radio" name="LEAVES" value="0" <?php if($leaves=="No") echo 'checked' ?> class="form-control">No
+								<input type="radio" name="LEAVES" value="1" <?php if($leaves=="Yes") echo 'checked' ?> class="form-control">Yes
                             </div>
 					
 							<div class="form-group">

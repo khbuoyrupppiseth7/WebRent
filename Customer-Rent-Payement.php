@@ -20,7 +20,7 @@ if(isset($_POST['btnSave'])){
 		$txtTotal 		=	post('txtTotal');	 
 			
 		if($UserID=="1"){
-			$update=$db->query("CALL sp_Customer_Rent_Payment_Insert(
+			$payment=$db->query("CALL sp_Customer_Rent_Payment_Insert(
 					'".$Customer_RentID."',
 					'".$UserID."',
 					'".$RentItemID."',
@@ -34,9 +34,10 @@ if(isset($_POST['btnSave'])){
 					".$txtTotal."
 					)			
 		");
-			if($update){
+			if($payment){
 				cRedirect('Customer_Rent.php');	
 				$db->query(" UPDATE tblcustomer_rent SET isPaid=0  WHERE Customer_RentID='".$Customer_RentID."'");
+				$db->query(" Update tblrentitem set isStatus=1 where RentItemID='".$RentItemID."'");
 					}
 		}
 }
@@ -64,20 +65,14 @@ if(isset($_POST['btnSave'])){
 		</script>
 	</head>
     <body class="skin-blue">
-        <!-- header logo: style can be found in header.less -->
-         <?php include 'nav.php';?>
-        
-            <!-- Left side column. contains the logo and sidebar -->
-            <?php include 'menu.php';?>
-
-            <!-- Right side column. Contains the navbar and content of the page -->
+       
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                <div class="row">
+                <div class="row" style="margin: 0 auto;>
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data" id="myForm">
-                     						  
+                     		  <label><h3>Payment</h3></label>				  
 						    <div class="form-group">
                              <label>Pay Date</label>
 							<!--	<input name="txtPayDate" class="form-control" placeholder="Enter text" required /> -->
@@ -124,9 +119,9 @@ if(isset($_POST['btnSave'])){
 				
                             <div class="modal-footer">
                             <a href="RentItem.php">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
                             </a>
-                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
+                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();'/>
                           </div>
                       </form>
                      </div>
