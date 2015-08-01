@@ -182,8 +182,7 @@ $searchTemp=get('srch-normal');
 										<?php
 										$db->disconnect();
 										$db->connect();
-								
-
+			
 										$_slide1 = $db->query("CALL sp_Company_Select('".$searchTemp."')");
 										$numrow=$db->dbCountRows($_slide1);
 											$i = 1;
@@ -199,11 +198,11 @@ $searchTemp=get('srch-normal');
 															<td>'.$CompanyName.'</td>
 															<td>'.$Decription.'</td>
 															<td class="center" >';
-															
 																echo "<a onclick=\"getElement('".$id."','".$CompanyName."','".$Decription."')\">Edit";
 																echo '</a>
-															
+																
 															</td>
+												
 													</tr>';
 												}	
 											}

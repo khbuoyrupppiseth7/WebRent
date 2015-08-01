@@ -17,7 +17,10 @@
         <!-- AdminLTE for demo purposes -->
         <script src=" js/AdminLTE/demo.js" type="text/javascript"></script>
         <!-- Page script -->
+		
         <script type="text/javascript">
+		
+		
             $(function() {
                 //Datemask dd/mm/yyyy
                 $("#datemask").inputmask("yyyy/mm/dd", {"placeholder": "yyyy/mm/dd"});

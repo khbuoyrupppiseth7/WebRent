@@ -46,14 +46,15 @@
         <script src="js/jquery1.10.js"></script>
         <script src="js/inputonlynumber.js" type="text/javascript" ></script>
 		<script src="js/jquery.colorbox.js"></script>
+		
 		<script>
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements
 				
-				$(".iframe").colorbox({iframe:true, width:"40%",scrolling: false, height:"70%", onClosed:function(){ location.reload(true); }});
-				$(".iframe_meduim").colorbox({iframe:true, width:"45%",scrolling: false, height:"100%", onClosed:function(){ location.reload(true); }});
+				$(".iframe").colorbox({iframe:true, width:"600px",scrolling: false, height:"700px", onClosed:function(){ location.reload(true); }});
+				$(".iframe_meduim").colorbox({iframe:true, width:"550px",scrolling: false, height:"900px", onClosed:function(){ location.reload(true); }});
 				$(".aboutus").colorbox({iframe:true, width:"85%", height:"80%", onClosed:function(){ location.reload(true); }});
-				$(".iframelong").colorbox({iframe:true, width:"45%",scrolling: false, height:"200%", onClosed:function(){ location.reload(true); }});
+				$(".iframelong").colorbox({iframe:true, width:"550px",scrolling: false, height:"1800px", onClosed:function(){ location.reload(true); }});
 				//$(".iframe").colorbox({iframe:true, width:"70%", height:"80%", onClosed:function(){ location.reload(true); }});
 				<!-- Form Change Password of User -->
 				
@@ -68,7 +69,7 @@
 		<script type="text/javascript">
 			// Make ColorBox responsive
 			jQuery.colorbox.settings.maxWidth  = '95%';
-			jQuery.colorbox.settings.maxHeight = '200%';
+			jQuery.colorbox.settings.maxHeight = '2000px';
 
 			// ColorBox resize function
 			var resizeTimer;

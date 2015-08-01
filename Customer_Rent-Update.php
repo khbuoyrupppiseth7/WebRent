@@ -9,35 +9,35 @@ $getPrice=get('Price');
 	$ItemNameTemp	=	get('ItemName');
 	$getCustomerID	=	get('CustomerID');
 	$getCustomerTemp=	get('CusName');
-	$CompanyIDTemp	=	get('CompanyID');
-	$getCompanyTemp	=	get('CompanyName');
-	$CategoryIDTemp	=	get('CategoryID');
-	$CategoryNameTemp=	get('CategoryName');
+	
 	$UserID = $_SESSION['UserID'];
 	$StatusGet=get('Status');
 	$RentDate = get('RentDate');
+	$_SESSION['RentDate']=$RentDate;
+	$rentdate=$_SESSION['RentDate'];
 	$PayDate= get('PayDate');
+	$_SESSION['PayDate']=$PayDate;
+	$paydate=$_SESSION['PayDate'];
 	$leavesdate=get('LeaveDate');
 	$leaves=get('Leaves');
 	$CustomerRentID=get('CustomerRent_ID');
     $_SESSION['Customer_RentID']=$CustomerRentID;
 	$Customer_RentID = $_SESSION['Customer_RentID'];
 	$S_RentIDOLD = $_SESSION['_RentItemID'];
-	$_SESSION['RentDate']=$RentDate;
 	$S_Price = $_SESSION['Price'];
 	$S_Description = $_SESSION['Desciption'];
-	$rentdate=$_SESSION['RentDate'];
-	$_SESSION['PayDate']=$PayDate;
-	$paydate=$_SESSION['PayDate'];
+	
+	
+
 	
 	
 //==================== Insert New Branch =======================
-if(isset($_POST['btnSave'])){
+if(isset($_POST['btnUpdate'])){
 		$cboCustomers	=   get('CustomerID');
 		$cboCompany		=   get('CompanyID');
 		$cboRentItem	=   get('RentItemID');
 		$txtRentDate	=	post('txtRentDate');
-		$txtPayDate		=   post('txtpaydate');
+		$txtPayDate		=   post('txtPayDate');
 		$txtPrice		=   post('txtPrice');
 		$Leave			=   post('txtLeave');
 		$txtLeaveDate	=   post('txtLeaveDate');
@@ -58,7 +58,7 @@ if(isset($_POST['btnSave'])){
 					".$Leave.",
 					'".$txtLeaveDate."',
 					N'".sql_quote($txtDescrpiton)."'
-					)			
+					)	;		
 		"); 
 		
 		
@@ -93,10 +93,6 @@ if(isset($_POST['btnSave'])){
 					&& (charCode < 48 || charCode > 57))
 					 return false;
 				  return true;
-			   }
-		function GetPayDate(){
-			var Paydate=document.getElementById("PayDate");
-				document.getElementById("txtPayD").value=Paydate;
 		}
 		$('#datetimepicker').datetimepicker({
 			dayOfWeekStart : 1,
@@ -109,21 +105,15 @@ if(isset($_POST['btnSave'])){
 		</script>
 	</head>
     <body class="skin-blue">
-        <!-- header logo: style can be found in header.less -->
-         <?php include 'nav.php';?>
-        
-            <!-- Left side column. contains the logo and sidebar -->
-            <?php include 'menu.php';?>
-
-            <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                <div class="row">
+                <div class="row" style="margin:0 auto;>
                    <div class="col-xs-8">
 						 <form role="form" method="post" enctype="multipart/form-data">   
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
-							<tbody>											
+							<tbody>		
+							  <tr><h4>Edit Customer Rent</h4></tr>
 							  <tr>
 							  <td  class="col-md-2 text-center">
 								<div class="dropdown">
@@ -233,7 +223,7 @@ if(isset($_POST['btnSave'])){
 						
 							  <tr>
 							  <td  class="col-md-2 text-left">
-								<div class="dropdown">
+								<div class="dropdown" style=" margin-left:38px;">
 								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-expanded="true">
 									Choose Item
 									<span class="caret"></span>
@@ -272,15 +262,13 @@ if(isset($_POST['btnSave'])){
 							<div class="form-group">
                                 <label>Rent Date</label>
 							
-								<input type="text" id="RentDate" name="txtRentDate" class="form-control" <?php echo 'value="'.$rentdate.'"'; ?>"/> 
+								<input type="text" id="RentDate" name="txtRentDate" class="form-control" <?php echo 'value="'.$rentdate.'"'; ?>/> 
                             </div>
 							<div class="form-group">
                                 <label>Pay Date</label>
-							<!--	<input name="txtPayDate" class="form-control" placeholder="Enter text" required /> -->
-									<input type="text" value="" id="datetimepicker" name="txtpaydate" class="form-control" <?php echo 'value="'.$paydate.'"'; ?>/>
-									<input type="text" id="PayDate" name="txtpaydate" class="form-control" <?php echo 'value="'.$paydate.'"'; ?>"/>
+									<input type="text" id="PayDate" name="txtPayDate" class="form-control" <?php echo 'value="'.$paydate.'"'; ?>/> 
                             </div>
-							<input type="text" id="txtPayD" name="txtPayDateTime" class="form-control" <?php echo 'value="'.$paydate.'"'; ?>"/>
+							
 							<div class="form-group">
                                 <label>Price</label>
 								<input name="txtPrice" class="form-control" placeholder="Enter text" <?php 
@@ -306,15 +294,10 @@ if(isset($_POST['btnSave'])){
 							       
 							<div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" name="txtDescrpiton" id="editor1" rows="3" value="<?php echo $S_Description; ?>"></textarea>
+                                <textarea class="form-control" name="txtDescrpiton" id="editor1" rows="2" value="<?php echo $S_Description; ?>"></textarea>
                             </div>
-			
-                            <div class="modal-footer">
-                            <a href="RentItem.php">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </a>
-                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
-                          </div>
+							<input type="submit" name="btnUpdate" style="float:right;" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();' />
+                            <button type="button" class="btn btn-default" style="float:right;" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
                       </form>
                      </div>
                     </div>

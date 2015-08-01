@@ -175,7 +175,7 @@ if(isset($_POST['btnSave'])){
 						
 							  <tr>
 							  <td  class="col-md-2 text-left">
-								<div class="dropdown" style=" margin-left:45px;">
+								<div class="dropdown" style=" margin-left:35px;">
 								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown" aria-expanded="true">
 									Choose Item
 									<span class="caret"></span>
@@ -243,11 +243,10 @@ if(isset($_POST['btnSave'])){
                                 <textarea class="form-control" name="txtDescrpiton" id="editor1" rows="3"></textarea>
                             </div>
 										
-                       
-                            <a href="Customer_Rent.php">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
-                            </a>
-                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();' />
+							<input type="submit" name="btnSave" style="float:right;" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();' />
+                            
+                            <button type="button" class="btn btn-default" style="float:right;"onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
+                            
                          
                       </form>
                      </div>

@@ -10,8 +10,34 @@ $PriceTemp=get('Price');
 $getCustomerTemp=get('');
 
 ?>
-	
-    <body class="skin-blue">
+<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+		<link rel="stylesheet" type="text/css" href="./css/jquery.datetimepicker.css"/>
+		<script>
+
+					//  ** show date and time picker
+					 $('#btnDate').datetimepicker({
+						
+						timepicker: false, //visible time = false
+						format: 'Y-m',
+						step: 10
+					
+					});
+					$('#btnDate').click({
+					
+					});
+					
+					//  ** show date and time picker
+						
+					$('#RealPayDate').datetimepicker({
+						timepicker: false, //visible time = false
+						format: 'Y-m-d',
+						step: 10
+					});
+					
+		</script>
+</head>
+	<body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
          <?php include 'nav.php';?>
         
@@ -62,8 +88,8 @@ $getCustomerTemp=get('');
 													 echo 'value="'.$getdatenotyetpay.'"';
 													 }
 													 else{
-													 $datenow=date("Y-m-d"); echo 'value="'.$datenow.'"'; 
-													 $getdatenotyetpay=date("Y-m-d");
+													 $datenow=date("Y-m"); echo 'value="'.$datenow.'"'; 
+													 $getdatenotyetpay=date("Y-m");
 													 }?>/>  
                    
 													 <?php 
@@ -235,44 +261,17 @@ $getCustomerTemp=get('');
 				
    
                 </section>
-				<script>
-					//  ** show date and time picker
-						
-					$('#RealPayDate').datetimepicker({
-						timepicker: false, //visible time = false
-						format: 'Y-m-d',
-						step: 10
-					});
-					
-					
-				</script>
-				<!-- Event KeyPress -->
 				
-					</script>
-		
-		
-           </aside><!-- /.right-side -->
+		</aside><!-- /.right-side -->
             
             
         </div><!-- ./wrapper -->
 
         <!-- add new calendar event modal -->
 		</body>
-	
-		<script>
-
-			//  ** show date and time picker
-			 $('#btnDate').datetimepicker({
-				
-				timepicker: false, //visible time = false
-				format: 'Y-m',
-				step: 10
-			
-			});
-			$('#btnDate').click({
-			
-			});
-			
-		</script>
+		
+		
+		
+		
 
 <?php include 'footer.php';?>

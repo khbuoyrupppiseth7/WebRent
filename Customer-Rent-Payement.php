@@ -116,13 +116,10 @@ if(isset($_POST['btnSave'])){
 								
 								required readonly />
                             </div>
-				
-                            <div class="modal-footer">
-                            <a href="RentItem.php">
-                            <button type="button" class="btn btn-default" data-dismiss="modal" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
-                            </a>
-                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();'/>
-                          </div>
+							<input type="submit" name="btnSave" style="float:right;"  class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();'/>
+                            <button type="button" class="btn btn-default" style="float:right;" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
+                            
+                         
                       </form>
                      </div>
                     </div>
