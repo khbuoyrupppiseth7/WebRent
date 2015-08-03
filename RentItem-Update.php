@@ -40,6 +40,9 @@ if(isset($_POST['btnSave'])){
 }
 ?>
 	<head>
+	<?php
+		$RentNameTemp=post('txtItem');
+	?>
 <script type="text/javascript">
 		<script language="javascript">
 		function checkInput(ob) {
@@ -58,6 +61,9 @@ if(isset($_POST['btnSave'])){
 
 				  return true;
 			   }
+		function GetValueRentItem(){
+			
+		}
 		</script>
 	</head>
     <body class="skin-blue">
@@ -93,9 +99,10 @@ if(isset($_POST['btnSave'])){
 														&ItemName='.$ItemName.'">'.$CompanyName.'</a></li>';
 													}
 												}
-											
+											  
 											
 										?>
+										 
 									  </ul>
 									</div>	
 								  </td>
@@ -124,7 +131,7 @@ if(isset($_POST['btnSave'])){
 														href="RentItem-new.php?CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CategoryID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
 													}
 												}
-											
+											echo'<script type="text/javascript"> document.getElementById("RentName").value="<?php echo $ItemName; ?>";</script>';
 											
 											?>
 								  </ul>
@@ -137,7 +144,7 @@ if(isset($_POST['btnSave'])){
 							<?php 	$ItemName=get('ItemName');?>
 							<div class="form-group">
                                 <label>Rent Item</label>
-								<input name="txtItem" class="form-control" value="<?php echo $ItemName; ?>" placeholder="Enter text"  required />
+								<input name="txtItem" id="RentName" class="form-control" value="<?php echo $ItemName; ?>" placeholder="Enter text"  required />
                             </div>
 							
 							<div class="form-group">

@@ -19,7 +19,7 @@ $getCustomerTemp=get('');
 					 $('#btnDate').datetimepicker({
 						
 						timepicker: false, //visible time = false
-						format: 'Y-m',
+						format: 'Y-m-d',
 						step: 10
 					
 					});
@@ -89,7 +89,7 @@ $getCustomerTemp=get('');
 													 }
 													 else{
 													 $datenow=date("Y-m"); echo 'value="'.$datenow.'"'; 
-													 $getdatenotyetpay=date("Y-m");
+													 $getdatenotyetpay=date("Y-m-d");
 													 }?>/>  
                    
 													 <?php 
@@ -171,10 +171,10 @@ $getCustomerTemp=get('');
 												$PayDate= date('d-m-Y',strtotime($OldPayDate));
 												$Price=$row->Price;
 												$isLeave = $row->isLeave;
-												if($isLeave==1){
+												if($isLeave==0){
 												$Leaves="No";
 												}
-												else{
+												else if($isLeave==1){
 												$Leaves="Yes";
 												}
 												$LeaveDate = $row->LeaveDate;
@@ -208,7 +208,7 @@ $getCustomerTemp=get('');
 														<td>
 													
 													
-														<a class="iframe_meduim" href="Customer-Rent-Payement.php?id='.$id.'&RentItemID='.$RentItemID.'&ItemName='.$ItemName.'&Price='.$Price.'&Decription='.$Decription.'&PayDate='.$PayDate.'&getdatenotyetpay='.$getdatenotyetpay.'">
+														<a class="iframe_meduim" href="Customer-Rent-Payement.php?id='.$id.'&RentItemID='.$RentItemID.'&ItemName='.$ItemName.'&Price='.$Price.'&Decription='.$Decription.'&PayDate='.$OldPayDate.'&getdatenotyetpay='.$getdatenotyetpay.'">
 															<button class="btn btn-sm btn-warning">
 																<i class="glyphicon glyphicon-usd"></i>
 																Payment
@@ -221,9 +221,8 @@ $getCustomerTemp=get('');
 														<a class="iframe_meduim" href="Customer_Rent-Update.php?CustomerRent_ID='.$CustomerRentID.'&RentItemID='.$RentItemID.'
 														&ItemName='.$ItemName.'&CustomerID='.$CustomerID.'&CusName='.$CusName.'
 														&CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'&CategoryID='.$CategoryID.'
-														&CategoryName='.$CategoryName.'&RentDate='.$RentDate .'&PayDate='.$PayDate .'
-														&Leaves='.$Leaves.'
-														&Price='.$Price.'&LeaveDate='.$LeaveDate.'&Decription='.$Decription.'">
+														&CategoryName='.$CategoryName.'&RentDate='.$RentDate .'&PayDate='.$OldPayDate .'
+														&Leaves='.$isLeave.'&Price='.$Price.'&LeaveDate='.$LeaveDate.'&Decription='.$Decription.'">
 															<button class="btn btn-sm btn-primary">
 																<i class="glyphicon glyphicon-pencil"></i>
 																Edit

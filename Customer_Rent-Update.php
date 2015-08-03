@@ -19,13 +19,15 @@ $getPrice=get('Price');
 	$_SESSION['PayDate']=$PayDate;
 	$paydate=$_SESSION['PayDate'];
 	$leavesdate=get('LeaveDate');
-	$leaves=get('Leaves');
+	$S_Leaves = $_SESSION['Leaves'];
 	$CustomerRentID=get('CustomerRent_ID');
     $_SESSION['Customer_RentID']=$CustomerRentID;
 	$Customer_RentID = $_SESSION['Customer_RentID'];
 	$S_RentIDOLD = $_SESSION['_RentItemID'];
 	$S_Price = $_SESSION['Price'];
-	$S_Description = $_SESSION['Desciption'];
+	$Description=get('Decription');
+	$_SESSION['Decription']=$Description;
+	$S_Description = $_SESSION['Decription'];
 	
 	
 
@@ -282,8 +284,8 @@ if(isset($_POST['btnUpdate'])){
 							<div class="form-group">
                                 <label>Leave</label><br/>
 							<!--	<input name="txtisLeave" class="form-control" placeholder="Enter text" required /> -->
-								<input type="radio" name="txtLeave" value="0" <?php if($leaves=="No") echo 'checked' ?> class="form-control">No
-								<input type="radio" name="txtLeave" value="1" <?php if($leaves=="Yes") echo 'checked' ?> class="form-control">Yes
+								<input type="radio" name="txtLeave" value="0" <?php if(	$S_Leaves==0) echo 'checked="checked"' ?> class="form-control">No
+								<input type="radio" name="txtLeave" value="1" <?php if(	$S_Leaves==1) echo 'checked="checked"' ?> class="form-control">Yes
                             </div>
 					
 							<div class="form-group">
@@ -294,7 +296,9 @@ if(isset($_POST['btnUpdate'])){
 							       
 							<div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" name="txtDescrpiton" id="editor1" rows="2" value="<?php echo $S_Description; ?>"></textarea>
+                                <textarea class="form-control" name="txtDescrpiton" id="editor1" rows="2" >
+									<?php echo $S_Description; ?>
+								</textarea>
                             </div>
 							<input type="submit" name="btnUpdate" style="float:right;" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();' />
                             <button type="button" class="btn btn-default" style="float:right;" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>

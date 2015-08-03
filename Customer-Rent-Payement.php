@@ -7,10 +7,10 @@
 	$UserID = $_SESSION['UserID'];
 	$PayYearMonth = get('getdatenotyetpay');
 	$PayDay  	=   get('PayDate');
-	$txtPayDate = $PayYearMonth."-".$PayDay;
+	$txtPayDate = $PayYearMonth."/".$PayDay;
 //==================== Insert New Branch =======================
 if(isset($_POST['btnSave'])){
-		$txtPayDate	   =	post('txtPayDate');
+
 		$txtRealPayDate =   post('txtRealPayDate');
 		$txtPrice 		=	post('txtPrice');
 		$txtElectric 	=	post('txtElectric');
@@ -24,7 +24,7 @@ if(isset($_POST['btnSave'])){
 					'".$Customer_RentID."',
 					'".$UserID."',
 					'".$RentItemID."',
-					'".$txtPayDate."',
+					'".$PayDay."',
 					'".$txtRealPayDate."',
 					".$txtPrice.",
 					".$txtElectric.",
