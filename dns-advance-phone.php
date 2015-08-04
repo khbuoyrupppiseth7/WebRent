@@ -108,7 +108,7 @@
 											
 											echo '<tr>
 												<td>'.$i++.'</td>
-												<td><a href="dns-update.php?id='.$dnsID.'">'.$dnsName.'</a></td>
+												<td><a class="iframe" href="dns-update.php?id='.$dnsID.'">'.$dnsName.'</a></td>
 												<td>'.$CusName.'</td>
 												<td>'.$CusPhone.'</td>
 												<td>'.$DateFrom.'</td>

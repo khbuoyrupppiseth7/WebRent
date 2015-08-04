@@ -43,10 +43,10 @@
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                    <h1>
+                    <h3>
                        
-                        <small>Control panel</small>
-                    </h1>
+                        Control panel
+                    </h3>
                     <ol class="breadcrumb">
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li class="active">Dashboard</li>
@@ -60,18 +60,18 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
-                                            <th colspan="7">
+                                            <th colspan="12">
                                                 <div class="row">
-                                                    
+                                                    <!--	
                                                     <div class="col-md-3">
-                                                      	<button type="button" class="glyphicon glyphicon-plus btn btn-primary"  data-toggle="modal" data-target="#NewUser"></button>
+                                                     <button type="button" class="glyphicon glyphicon-plus btn btn-primary"  data-toggle="modal" data-target="#NewUser"></button>
                                                         <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                                                             Choose branch
                                                             <span class="caret"></span>
                                                           </button>
                                                           <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                                            
-                                                            <?php
+                                                           <?php
 																$db->disconnect();
 																$db->connect();
                                                                 $select=$db->query("call spSelectBranch_Name();");
@@ -86,9 +86,9 @@
                                                            ?>
                                                             
                                                           </ul>
-                                                    </div>
-                                                    
-                                                    <div class="col-md-6 pull-center">
+														
+													 </div>-->
+                                                    <div class="col-md-9 pull-left">
                                                       	
                                                             <button type="button" class="btn btn-default" aria-label="Left Align">
   <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"> 

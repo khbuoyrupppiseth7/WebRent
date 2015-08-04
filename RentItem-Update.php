@@ -95,8 +95,8 @@ if(isset($_POST['btnSave'])){
 													$CompanyID = $row->CompanyID;
 													$CompanyName = $row->CompanyName;
 														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1"
-														href="RentItem-new.php?CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'
-														&ItemName='.$ItemName.'">'.$CompanyName.'</a></li>';
+														href="RentItem-Update.php?CompanyID='.$CompanyID.'&id='.$id.'&CompanyName='.$CompanyName.'
+														&Price='.$Price.'&Decription='.$Decription.'&ItemName='.$ItemName.'">'.$CompanyName.'</a></li>';
 													}
 												}
 											  
@@ -128,10 +128,10 @@ if(isset($_POST['btnSave'])){
 													$CategoryID = $row->CategoryID;
 													$CategoryName = $row->CategoryName;
 														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
-														href="RentItem-new.php?CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CategoryID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
+														href="RentItem-Update.php?CompanyID='.$CompanyIDTemp.'&id='.$id.'&Price='.$Price.'&ItemName='.$ItemName.'&Decription='.$Decription.'&CompanyName='.$getCompanyTemp.'&CategoryID='.$CategoryID.'&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
 													}
 												}
-											echo'<script type="text/javascript"> document.getElementById("RentName").value="<?php echo $ItemName; ?>";</script>';
+											
 											
 											?>
 								  </ul>
@@ -140,7 +140,9 @@ if(isset($_POST['btnSave'])){
 							  <td class="col-md-10 text-center"> <input type="text" class="form-control" <?php echo 'value="'.$CategoryNameTemp.'"'; ?> readonly></td>
 							</tr>
 						</tbody>
-					</table>	
+					</table>
+							<input type="hidden" name="txtCateID" id="CateID" class="form-control" value="<?php echo $CategoryIDTemp; ?>"/>
+							<input type="hidden" name="txtItemID" id="RentID" class="form-control" value="<?php echo $id; ?>"/>
 							<?php 	$ItemName=get('ItemName');?>
 							<div class="form-group">
                                 <label>Rent Item</label>

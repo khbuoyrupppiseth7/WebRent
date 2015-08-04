@@ -1,5 +1,6 @@
 <?php include 'header.php';
-
+$db->disconnect();
+$db->connect();
 
 
 $selectuser=$db->query("call spSelect_UserID('".$_SESSION['UserID']."');");
@@ -30,17 +31,13 @@ if(isset($_POST['btnSave'])){
 		}
 		else
 		{
-			$update=$db->query("UPDATE tblusers SET
-									UserName='".$txtUser."',
-									Password = '".$encrypt_password."'
-								WHERE UserID = '".$_SESSION['UserID']."'
-								");
+			$update=$db->query("call spUpdateUserPwd('".$_SESSION['UserID']."','".$txtUser."','".$encrypt_password."');");
 				
 				if($update){
 
-
+					echo "<script type='text/javascript'>alert('Password Change Successful');</script>";
 					$GLOBALS['msg'] = "Success full";
-					cRedirect('index.php');
+					cRedirect('Customer_Rent.php');
 				}
 				else 
 				{
@@ -52,20 +49,14 @@ if(isset($_POST['btnSave'])){
 ?>
 
     <body class="skin-blue">
-        <!-- header logo: style can be found in header.less -->
-         <?php include 'nav.php';?>
-        
-            <!-- Left side column. contains the logo and sidebar -->
-            <?php include 'menu.php';?>
-
-            <!-- Right side column. Contains the navbar and content of the page -->
+       
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                <div class="row">
+                <div class="row" style="margin:0 auto;>
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data">
-                          
+							
 							<strong>Your Name</strong>
 							<div class="input-group">
 							  <span class="input-group-addon"><span class="fa fa-user fa-fw"></span></span>
@@ -79,11 +70,9 @@ if(isset($_POST['btnSave'])){
 							  <input type="password" class="form-control" name="txtold" maxlength="25" placeholder="Old Password" >
 							  <input type="password" class="form-control"  name="txtNewPass"  maxlength="25" placeholder="New Passowrd" >
 							</div>
-                            <div class="modal-footer">
-                            <a href="#">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </a>
-                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
+                          
+                            <button type="button" class="btn btn-default" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
+                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();'/>
                           </div>
                       </form>
                      </div>

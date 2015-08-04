@@ -136,10 +136,11 @@ if(isset($_POST['btnUpdate'])){
 													$fullName = $row->fullName;
 														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1"
 														
-														href="Customer_Rent-Update.php?CustomerID='.$CustomerID.'
-														&CusName='.$fullName.'">'.$fullName.'</a></li>';
+														href="Customer_Rent-Update.php?CustomerRent_ID='.$CustomerRentID.'&CustomerID='.$CustomerID.'
+														&CategoryID='.$CategoryIDTemp.'&CompanyID='.$CompanyIDTemp.'&CompanyName='.$getCompanyTemp.'&CategoryName='.$CategoryNameTemp.'
+														&RentItemID='.$RentItemIDOld.'&ItemName='.$ItemNameTemp.'&RentDate='.$RentDate.'&PayDate='.$PayDate.'
+														&Leaves='.$S_Leaves.'&Decription='.$S_Description.'&CusName='.$fullName.'">'.$fullName.'</a></li>';
 													}
-													
 												}
 										
 											$getCustomerID=get('CustomerID');
@@ -172,9 +173,11 @@ if(isset($_POST['btnUpdate'])){
 													$CompanyID = $row->CompanyID;
 													$CompanyName = $row->CompanyName;
 														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1"
-														href="Customer_Rent-Update.php?CustomerID='.$getCustomerID.'
+														href="Customer_Rent-Update.php?CustomerRent_ID='.$CustomerRentID.'&CustomerID='.$getCustomerID.'
 														&CusName='.$getCustomerTemp.'&CompanyID='.$CompanyID.'
-														&CompanyName='.$CompanyName.'">'.$CompanyName.'</a></li>';
+														&CategoryID='.$CategoryIDTemp.'&CompanyName='.$CompanyName.'&RentItemID='.$RentItemIDOld.'
+														&ItemName='.$ItemNameTemp.'&RentDate='.$RentDate.'&PayDate='.$PayDate.'
+														&Leaves='.$S_Leaves.'&Decription='.$S_Description.'&CusName='.$fullName.'">'.$CompanyName.'</a></li>';
 													}
 		
 												}
@@ -207,9 +210,11 @@ if(isset($_POST['btnUpdate'])){
 													$CategoryID = $row->CategoryID;
 													$CategoryName = $row->CategoryName;
 														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
-														href="Customer_Rent-Update.php?CustomerID='.$getCustomerID.'
+														href="Customer_Rent-Update.php?CustomerRent_ID='.$CustomerRentID.'&CustomerID='.$getCustomerID.'
 														&CusName='.$getCustomerTemp.'&CompanyID='.$CompanyIDTemp.'
-														&CompanyName='.$getCompanyTemp.'&CategoryID='.$CategoryID.'
+														&CategoryID='.$CategoryIDTemp.'&CompanyName='.$getCompanyTemp.'&CategoryID='.$CategoryID.'
+														&Decription='.$S_Description.'&RentItemID='.$RentItemIDOld.'&RentDate='.$RentDate.'&PayDate='.$PayDate.'
+														&Leaves='.$S_Leaves.'&Decription='.$S_Description.'&CusName='.$fullName.'
 														&CategoryName='.$CategoryName.'">'.$CategoryName.'</a></li>';
 													}
 												}
@@ -243,11 +248,13 @@ if(isset($_POST['btnUpdate'])){
 													$ItemName 	= $row->ItemName;
 													$Price		=  $row->Price;
 														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
-														href="Customer_Rent-Update.php?CustomerID='.$getCustomerID.'
+														href="Customer_Rent-Update.php?CustomerRent_ID='.$CustomerRentID.'&CustomerID='.$getCustomerID.'
 														&CusName='.$getCustomerTemp.'&CompanyID='.$CompanyIDTemp.'
-														&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryIDTemp.'
+														&CategoryID='.$CategoryIDTemp.'&CompanyName='.$getCompanyTemp.'&CatID='.$CategoryIDTemp.'
 														&CategoryName='.$CategoryNameTemp.'&RentItemID='.$RentItemID.'
-														&Price='.$Price.'&ItemName='.$ItemName.'">'.$ItemName.'</a></li>';
+														&Price='.$Price.'&RentDate='.$RentDate.'&PayDate='.$PayDate.'
+														&Leaves='.$S_Leaves.'&Decription='.$S_Description.'
+														&ItemName='.$ItemName.'">'.$ItemName.'</a></li>';
 													}
 												}
 											
@@ -260,7 +267,10 @@ if(isset($_POST['btnUpdate'])){
 							   </tr>
 							</tbody>
 							</table>
-												
+							<input type="hidden" id="CateID" name="txtCateID" class="form-control" <?php echo 'value="'.$CategoryIDTemp.'"'; ?>/> 					
+							<input type="hidden" id="ComID" name="txtComID" class="form-control" <?php echo 'value="'.$CompanyIDTemp.'"'; ?>/> 					
+							<input type="hidden" id="RentItemID" name="txtRentItemID" class="form-control" <?php echo 'value="'.$RentItemIDOld .'"'; ?>/> 					
+							<input type="hidden" id="CusRentID" name="txtCusRentID" class="form-control" <?php echo 'value="'.$CustomerRentID.'"'; ?>/> 					
 							<div class="form-group">
                                 <label>Rent Date</label>
 							

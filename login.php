@@ -31,7 +31,7 @@ if(isset($_POST['btnsave'])){
 		
 		$_SESSION['startDate'] = date("Y-m-d H:i:s");
 		
-		cRedirect('index.php');
+		cRedirect('Customer_Rent.php');
 		
 	}
 	else

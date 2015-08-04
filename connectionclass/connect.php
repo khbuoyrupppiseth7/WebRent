@@ -7,7 +7,7 @@ class MyConnection
 		private $mylink;
 		private $sql;
 		private $result;
-		private $password = '';
+		private $password = '123';
 		
 			    
     function connect()

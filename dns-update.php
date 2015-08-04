@@ -44,7 +44,7 @@ $error = "";
 
     <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
-         <?php  include 'nav.php';
+         <?php  
 		 $select0=$db->query("call spSelect_DnsByID('".$id."');");
 
 	//$select=$db->query("Call spUserAccSeleteForUpdate('".$id."')");
@@ -62,15 +62,11 @@ $error = "";
 		$CusDesc = $row->CusDesc;
 	}
 		 ?>
-        
-            <!-- Left side column. contains the logo and sidebar -->
-            <?php include 'menu.php';?>
-
             <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side">
           <!-- Content Header (Page header) -->
                 <section class="content-header">
-                <div class="row">
+                <div class="row" style="margin:0 auto;>
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data">
                           <div class="form-group">
@@ -127,9 +123,9 @@ $error = "";
                            
                             <div class="modal-footer">
                             <a href="dns.php">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
                             </a>
-                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
+                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();'/>
                           </div>
                       </form>
                      </div>
