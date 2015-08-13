@@ -14,7 +14,7 @@ $searchTemp=get('srch-normal');
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Compay
+                        Company
                         <small>Company panel</small>
                     </h1>
                     <ol class="breadcrumb">
@@ -28,7 +28,7 @@ $searchTemp=get('srch-normal');
 						<div class="modal-content">
 						  <div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="exampleModalLabel">New Company</h4>
+							<h4 class="modal-title" id="exampleModalLabel">New</h4>
 							<div class="modal-body">
 								<?php
 									//=================== Insert New Company =======================
@@ -86,12 +86,13 @@ $searchTemp=get('srch-normal');
 							<table class="table table-bordered">
 											<thead>
 												<tr>
-												<th colspan="7">
-													<div class="col-md-6">
-													<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New Company</button>
+												<th colspan="12">
+												<div class="row">	
+													<div class="col-md-3 pull-left">
+													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New</button>
 													</div>
 													
-													<div class="col-md-4"> 
+													<div class="col-md-4 pull-right"> 
 														<form class="navbar-form" role="search">
 															<div class="pull-right" style="margin-top:-8px;">
 															<div class="input-group">
@@ -105,11 +106,10 @@ $searchTemp=get('srch-normal');
 															</div>
 														</form>
 													</div>
-													<div class="col-md-2">
-															<h5 class="pull-right">Date: 2/10/2014</h5>
-													</div>
+													
 													</tr>
 													</thead>
+												</div>
 										<thead>
 									
 											<tr>

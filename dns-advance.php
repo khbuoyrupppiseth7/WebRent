@@ -26,19 +26,22 @@
                 <!-- Main content --> 
                    <div class="panel-body">
                    <div class="dataTable_wrapper">
-						
+		
 						<div class="row">
 					
                         <div class="col-xs-12 table-responsive">
 						<table class="table table-bordered">
 							<thead>
 									<tr>
-									<th colspan="7">
-										<div class="col-md-5">
+									<th colspan="12">
+										<div class="col-md-2 pull-left">
 										<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New DNS</button>
 										</div>
+											<div class="col-md-2 pull-right">
+										<h5 class="pull-right">Date: 2/10/2014</h5>
+										</div>
 										
-									<div class="col-md-5"> 
+										<div class="col-md-7 pull-right"> 
 										 <form class="navbar-form" role="search">
 										  <div class=" pull-right" style="margin-top:-8px;">
 											<div class="input-group">
@@ -64,12 +67,6 @@
 										 </div><!-- /.row -->
 									   
 										<!-- Table row -->
-									<div class="col-md-2">
-										<h5 class="pull-right">Date: 2/10/2014</h5>
-										</div>
-
-										
-									
 									</tr>
 								</thead>
                                 <thead>
@@ -89,6 +86,8 @@
                                     
                                     
                                     <?php
+									 $db->disconnect();
+									 $db->connect();
 									$txtsrch = get('srch-advance');
 									$_slide1 = $db->query("SELECT dnsID, dnsName, DateFrom, DateTo, IsLiveTime, CusName, CusPhone 
 									FROM `tblDNS` 

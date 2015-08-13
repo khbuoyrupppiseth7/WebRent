@@ -261,11 +261,13 @@
 									<thead>
 												<tr>
 												<th colspan="12">
-													<div class="col-md-6">
-													<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New Customer</button>
+													<div class="col-md-6 pull-left">
+													<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New</button>
 													</div>
-													
-													<div class="col-md-4"> 
+													<div class="col-md-2 pull-right">
+														<h5 class="pull-right">Date: 2/10/2014</h5>
+													</div>
+													<div class="col-md-4 pull-right"> 
 														<form class="navbar-form" role="search">
 															<div class="pull-right" style="margin-top:-8px;">
 															<div class="input-group">
@@ -279,9 +281,7 @@
 															</div>
 														</form>
 													</div>
-													<div class="col-md-2">
-														<h5 class="pull-right">Date: 2/10/2014</h5>
-													</div>
+													
 												</tr>
 												</thead>
 								<thead>

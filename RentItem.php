@@ -37,9 +37,9 @@ $CategoryIDTemp=get('CatID');
 								<thead>
 									<tr>
 									<th colspan="12">
-										<div class="col-md-6">
+										<div class="col-md-8">
 										<a class='iframe' href="RentItem-new.php">
-											<button style="margin-left:-20px;"type="button" class="btn btn-primary"><i class="fa fa-file-o"></i>New ItemRent</button>
+											<button style="margin-left:-20px;"type="button" class="btn btn-primary"><i class="fa fa-file-o"></i>New</button>
 										</a>
 										
 										</div>
@@ -57,10 +57,7 @@ $CategoryIDTemp=get('CatID');
 										   </div><!-- /.col-lg-3 -->
 										  </form>
 										</div>
-									<div class="col-md-2">
-										<h5 class="pull-right">Date: 2/10/2014</h5>
-										</div>
-
+									
 										
 									
 									</tr>

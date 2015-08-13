@@ -93,6 +93,8 @@
                                     
                                     
                                     <?php
+									 $db->disconnect();
+									 $db->connect();
 									$txtsrch = get('srch-advance');
 									$_slide1 = $db->query("SELECT dnsID, dnsName, DateFrom, DateTo, IsLiveTime, CusName, CusPhone 
 									FROM `tblDNS` 

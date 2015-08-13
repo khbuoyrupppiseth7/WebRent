@@ -228,8 +228,8 @@ if(isset($_POST['btnSave'])){
 							<div class="form-group">
                                 <label>Leave</label><br/>
 							<!--	<input name="txtisLeave" class="form-control" placeholder="Enter text" required /> -->
-								<input type="radio" name="Leave" value="0"  class="form-control">Yes
-								<input type="radio" name="Leave" value="1" checked  class="form-control">No
+								<input type="radio" name="Leave" value="1"  class="form-control">Yes
+								<input type="radio" name="Leave" value="0" checked  class="form-control">No
                             </div>
 							
 							<div class="form-group">

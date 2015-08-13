@@ -150,11 +150,13 @@
 								<thead>
 									<tr>
 									<th colspan="12">
-										<div class="col-md-6">
+										<div class="col-md-2 pull-left">
 										<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New DNS</button>
 										</div>
-										
-									<div class="col-md-4"> 
+										<div class="col-md-2 pull-right ">
+										<h5 class="pull-right">Date: 2/10/2014</h5>
+										</div>
+										<div class="col-md-7 pull-right"> 
 										 <form class="navbar-form" role="search">
 										  <div class="pull-right" style="margin-top:-8px;">
 											<div class="input-group">
@@ -173,11 +175,6 @@
 										   </div><!-- /.col-lg-3 -->										   
 										   </form>
 										</div>
-									<div class="col-md-2">
-										<h5 class="pull-right">Date: 2/10/2014</h5>
-										</div>
-
-										
 									
 									</tr>
 								</thead>
@@ -197,6 +194,8 @@
                                     
                                     
                                     <?php
+									$db->disconnect();
+									$db->connect();
 									$txtsrch = get('srch-normal');
 									//$_slide1 = $db->query("SELECT dnsID, dnsName, DateFrom, DateTo, CusName,IsLiveTime, CusPhone FROM `tblDNS` WHERE dnsName LIKE '%".$txtsrch."%';");
 									$_slide1 = $db->query("call spSelect_DnsNameByName('".$txtsrch."');");

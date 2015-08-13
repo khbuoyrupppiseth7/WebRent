@@ -1,5 +1,6 @@
 <?php include 'header.php';
-
+$Search=get('srch-normal');
+$CompanyID=get('CompanyID');
 ?>
 
     <body class="skin-blue">
@@ -14,7 +15,7 @@
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h1>
-                        Dashboard
+                     User
                         <small>Control panel</small>
                     </h1>
                     <ol class="breadcrumb">
@@ -22,123 +23,235 @@
                         <li class="active">Dashboard</li>
                     </ol>
                 </section>
+					<!--ADD New-->
+					
+					<?php 
 
+						//==================== Insert New User =======================
+						$db->disconnect();
+						$db->connect();
+						if(isset($_POST['btnSave'])){
+								//$cboBranch		=   $_POST['cboBranch'];
+								$txtUserName	=	post('txtUserName');
+								$txtPassword    =	post('txtPassword');
+								$txtLevel		=	post('txtLevel');
+								$txtDescription	=	post('txtDescription');
+								$txtStatus	    =	post('txtStatus');		
+								$encrypted_pass = 	encrypt_decrypt('encrypt', $txtPassword);
+								$CompanyID		=   post('cboCompanyID');
+								$insert=$db->query("CALL sp_Insert_UserAccount(
+										'".time()."',
+										N'".sql_quote($txtUserName)."',
+										N'".sql_quote($encrypted_pass)."',
+										'".sql_quote($txtLevel)."',
+										N'".sql_quote($txtDescription)."',
+										'".sql_quote($txtStatus)."'	,
+										'".$CompanyID."'	
+										)");
+									
+									if($insert){
+										cRedirect('userAccount.php');
+									}
+							}
+					?>
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+					  <div class="modal-dialog" role="document">
+						<div class="modal-content">
+						  <div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="exampleModalLabel">New User</h4>
+							<div class="modal-body">
+								 <form role="form" method="post" enctype="multipart/form-data">
+										<div class="form-group">
+											<label>Choose Company</label>
+											<select class="form-control" name="cboCompanyID">   
+												<?php
+													$db->disconnect();
+													$db->connect();
+												    $select=$db->query("CALL sp_CompanySelectEdit('".$CompanyID."')");
+													$rowselect=$db->dbCountRows($select);
+													if($rowselect>0){
+														
+														while($row=$db->fetch($select)){
+														$CompanyID = $row->CompanyID;
+														$CompanyName = $row->CompanyName;
+															echo'<option value='.$CompanyID.'>'.$CompanyName.'</option>';
+																
+								
+														}
+													}
+													
+												?>
+											</select>
+									   </div>
+										
+										<div class="form-group">
+                                            <label>User Name</label>
+                                            <input type="text"  class="form-control" name="txtUserName" placeholder="UserName" required/>
+										</div>
+										<div class="form-group">
+                                            <label>Password</label>
+                                            <input  name="txtPassword" type="password" class="form-control" placeholder="Password" required/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Level</label>
+                                            <input name="txtLevel" required class="form-control" placeholder="Enter text" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control" name="txtDescription" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <input name="txtStatus" required class="form-control" placeholder="Enter text" />
+                                        </div>
+							</div>
+							<div class="modal-footer">
+							 <a href="userAccount.php">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </a>
+                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
+							</div>
+						  </div>
+						</div>
+						</div>
+						</form>
+						</div>
+				<!--Edit User-->
+				<div class="modal fade bs-example-modal-sm" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+					<div class="modal-dialog" role="document">
+					<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<h4 class="modal-title" id="exampleModalLabel">Edit Category</h4>
+					<div class="modal-body">
+					
+					</div>
+					<div class="modal-footer">
+						<a href="Category.php">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</a>
+						<button type="submit" class="btn btn-primary" name="btnUpdate">Save</button>
+					</div>
+				</div>
+				</div>
+				</div>
+					</form>
+				</div><!-- /.row -->
                 <!-- Main content -->
                 
                   <section class="content invoice">
-                    <!-- title row -->
+					<div class="panel-body">
+					<div class="dataTable_wrapper">
                     <div class="row">
-                        <div class="col-xs-12">
-                            <h2 class="page-header">
-                                <i class="fa fa-globe"></i> 
-                                
-                                <small class="pull-right">Date: 2/10/2014</small>
-                            </h2>
-                        </div><!-- /.col -->
-                    </div>
-                    <div class="row">
-                    <a href="userAccount-new.php">
-					<button class="btn btn-primary" data-toggle="modal" data-target="#NewFloor"><i class="fa fa-file-o"></i> New DNS</button>
-                    </a>
-                    
-                    <form class="navbar-form" role="search">
-                      <div class="col-lg-3 pull-right">
-                        <div class="input-group">
-                          <div class="input-group-btn">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Normal <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu">
-                              <li><a href="dns-advance.php">Advance</a></li>
-                              
-                            </ul>
-                          </div><!-- /btn-group -->
-                          <input type="text" class="form-control" placeholder="Search" name="srch-normal" id="search.php?dnsname=name&srch-term">
-                          <div class="input-group-btn">
-                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-                          </div><!-- /btn-group -->
-                        </div><!-- /input-group -->
-                       </div><!-- /.col-lg-3 -->
-                       </form>
-                     </div><!-- /.row -->
-                   
-                    <!-- Table row -->
-                    <div class="row">
-                        <div class="col-xs-12 table-responsive">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>User Name</th>
-                                        <th>Level</th>
-                                        <th>Status</th>
-										<th>Description</th>
-										<th>Action</th>
-                                    </tr>
-                                   
-                                </thead>
-                                <tbody>
-                                    
-                                    
-                                    <?php
-								//	$txtsrch = get('srch-normal');
-									$_slide1 = $db->query("CALL sp_UserAccount_Select('')");
-						
-									$numrow=$db->dbCountRows($_slide1);
-										$i = 1;
-									if($numrow>0)
-									{
-										while($row=$db->fetch($_slide1)){
-												$id=$row->UserID;
-												$Type = $row->Level;
-												if($Type == 1)
-													$Level = "Admin";
-												else if($Type == 2)
-													$Level = "Manager";
-												else 
-													$Level = "User";
-												$status=$row->Status;
-												
-												if($status==1)
-													$status="Active";
-												else
-													$status="Suspend";
-												
-												$userName= $row->UserName;
-												
-												echo '<tr class="gradeA">
-														<td>'.$i++.'</td>
-														
-														<td>'.$userName.'</td>
-														
-														<td>'.$Level.'</td>
-														
-														
-														<td><span class="ticket ticket-success">'.$status.'</span></td>
-														<td>'.$row->Decription.'</td>
-											
-														<td>
-														
+						<div class="col-xs-12 table-responsive">
+						  <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                              <th colspan="12">
+								 <div class="col-md-8" style="margin-left:-20px;">
+									
+									<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-file-o"></i> New</button>
+									
+								 </div>
+								<div class="col-md-4"> 
+											<form class="navbar-form" role="search">
+												<div class="pull-right" style="margin-top:-8px;">
+												<div class="input-group">
+												<div class="input-group-btn">
+											    </div><!-- /btn-group -->
+													<input type="text" class="form-control" placeholder="Search" name="srch-normal" id="search.php?dnsname=name&srch-term">
+														<div class="input-group-btn">
+															 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+														</div><!-- /btn-group -->
+												</div><!-- /input-group -->
+												</div><!-- /.col-lg-4 -->
+											</form>
+
+										</div>
+                                   </th>
+                                 </tr> 
+                            </thead>
+							<thead>
+										<tr>
+											<th>No</th>
+											<th>User Name</th>
+											<th>Level</th>
+											<th>Status</th>
+											<th>Description</th>
+											<th>Action</th>
+										</tr>
+									   
+									</thead>
+									<tbody>
+										
+										
+										<?php
+										$db->disconnect();
+										$db->connect();
+									//	$txtsrch = get('srch-normal');
+										$_slide1 = $db->query("CALL sp_UserAccount_Select('".$Search."')");
+							
+										$numrow=$db->dbCountRows($_slide1);
+											$i = 1;
+										if($numrow>0)
+										{ 
+											while($row=$db->fetch($_slide1)){
+													$id=$row->UserID;
+													$Type = $row->Level;
+													$Decription=$row->Decription;
+													$CompanyID=$row->CompanyID;
+													if($Type == 1)
+														$Level = "Admin";
+													else if($Type == 2)
+														$Level = "Manager";
+													else 
+														$Level = "User";
+													$status=$row->Status;
+													
+													if($status==1)
+														$status="Active";
+													else
+														$status="Suspend";
+													
+													$userName= $row->UserName;
+													
+													echo '<tr class="gradeA">
+															<td>'.$i++.'</td>
 															
-															<a class="iframe" href="userAccount-Update.php?id='.$id.'">
-															<button class="btn btn-sm btn-primary">
-																<i class="glyphicon glyphicon-pencil"></i>
-																Edit
-															</button>
-                                                    		</a>
+															<td>'.$userName.'</td>
 															
-														</td>
-														</tr>';
-												}
+															<td>'.$Level.'</td>
+															
+															
+															<td><span class="ticket ticket-success">'.$status.'</span></td>
+															<td>'.$Decription.'</td>
 												
-									}
-									else 
-										echo'<tr><td  colspan="7"><font color =Red>No Record Found.</font></td></tr>';
-								
-                                ?>
-                                   
-                                </tbody>
-                            </table>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
+															<td>
+															
+																
+																<a  href="userAccount-Update.php?id='.$id.'&CompanyID='.$CompanyID.'&UserName='.$userName.'
+																	&Level='.$Type.'&Status='.$status.'&Decription='.$Decription.'">
+																<button class="btn btn-sm btn-primary">
+																	<i class="glyphicon glyphicon-pencil"></i>
+																	Edit
+																</button>
+																</a>
+																
+															</td>
+															</tr>';
+													}
+													
+										}
+										else 
+											echo'<tr><td  colspan="7"><font color =Red>No Record Found.</font></td></tr>';
+									
+									?>
+									   
+									</tbody>
+								</table>
+							</div><!-- /.col -->
+						</div><!-- /.row -->
 
                     <div class="row">
                         <!-- accepted payments column -->
@@ -151,10 +264,9 @@
                            
                         </div>
                     </div>
-                    
-                    
-                    
-                </section>
+                   </div>
+                  </div>
+            </section>
                     
             </aside><!-- /.right-side -->
             

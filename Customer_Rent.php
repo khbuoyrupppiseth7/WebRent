@@ -8,6 +8,7 @@ $CategoryIDTemp=get('CatID');
 $ItemNameTemp=get('ItemName');
 $PriceTemp=get('Price');
 $getCustomerTemp=get('');
+$CustomerRent_ID=get('Customer_RentID');
 
 ?>
 <head>
@@ -23,9 +24,7 @@ $getCustomerTemp=get('');
 						step: 10
 					
 					});
-					$('#btnDate').click({
-					
-					});
+
 					
 					//  ** show date and time picker
 						
@@ -59,7 +58,7 @@ $getCustomerTemp=get('');
                 </section>
 
                 <!-- Main content -->
-				
+			
                   <section class="content invoice">
 				   <div class="panel-body">
                    <div class="dataTable_wrapper">
@@ -71,16 +70,18 @@ $getCustomerTemp=get('');
                                     <tr>
                                         
 											<th colspan="12">
-												<div style="margin-left:-20px;"class="col-md-6">
+												<div class="col-md-5 pull-left" style="margin-left:-20px;">
 														
 														<a class="iframe_meduim" href="Customer_Rent-new.php">
-															<button class="btn btn-primary" ><i class="fa fa-file-o"></i> Rent</button>
+															<button class="btn btn-primary" ><i class="fa fa-file-o"></i>New</button>
 														</a>
 														<!--<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-file-o"></i> Rent</button>-->
+														<input type="hidden" name="txtCus_RentID" id="Cus_RentID" value='<?php echo $CustomerRent_ID; ?>'/>
+													
 												</div>
-												<div class="col-md-4" style="margin-left:-20px;"> 
+												<div class="col-md-3 pull-left" > 
                                                      <form class="form-inline">
-                                                     <div class="col-md-13 pull-right">
+                                                     <div class="col-md-12 pull-right">
                                                     
                                                      <div class="form-group" >
                                                      <input type="text" id="btnDate" name="datanotyetpay" class="form-control col-md-1" <?php 
@@ -89,7 +90,7 @@ $getCustomerTemp=get('');
 													 }
 													 else{
 													 $datenow=date("Y-m"); echo 'value="'.$datenow.'"'; 
-													 $getdatenotyetpay=date("Y-m-d");
+													 $getdatenotyetpay=date("Y-m");
 													 }?>/>  
                    
 													 <?php 
@@ -100,7 +101,7 @@ $getCustomerTemp=get('');
 													 </div>
 													 </div>
 													 </div>
-													 <div class="col-md-2" style="margin-left:-10px;">
+													 <div class="col-md-3 pull-left" >
                                                      <div class="input-group">
                                                       
                                                     <div class="input-group-btn" >
@@ -136,19 +137,17 @@ $getCustomerTemp=get('');
                                    
                                 </thead>
                                 <tbody>
-                                    
-                                    
                                     <?php
 										$db->disconnect();
 										$db->connect();
-								//	$txtsrch = get('srch-normal');
+								
 									if($getdatenotyetpay!=""){								
 									$getdatenotyetpays=$getdatenotyetpay."-01";
-									$_slide1 = $db->query("call sp_Customer_Rent_Select_Company('".$searchTemp."','".$getdatenotyetpays."')");
+									$_slide1 = $db->query("call sp_Customer_Rent_Select_Company('".$searchTemp."','".$getdatenotyetpays."','".$CustomerRent_ID."');");
 									}
 									else{
 									$datenows=$datenow."-01";
-									$_slide1 = $db->query("CALL sp_Customer_Rent_Select_Company('".$searchTemp."','".$datenows."')");
+									$_slide1 = $db->query("CALL sp_Customer_Rent_Select_Company('".$searchTemp."','".$datenows."','".$CustomerRent_ID."');");
 									}
 									$numrow=$db->dbCountRows($_slide1);
 										$i = 1;

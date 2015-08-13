@@ -1,18 +1,20 @@
 <?php include 'header.php';
 
 //==================== Insert New User =======================
+$db->disconnect();
+$db->connect();
 if(isset($_POST['btnSave'])){
-		$cboBranch		=   $_POST['cboBranch'];
+		//$cboBranch		=   $_POST['cboBranch'];
 		$txtUserName	=	post('txtUserName');
 		$txtPassword    =	post('txtPassword');
 		$txtLevel		=	post('txtLevel');
 		$txtDescription	=	post('txtDescription');
 		$txtStatus	    =	post('txtStatus');		
 		$encrypted_pass = 	encrypt_decrypt('encrypt', $txtPassword);
-		
+			$pass = 	encrypt_decrypt('decrypt', 'a09sNXhtNExpZ1MwZkJSY0wwVGxiQT0');
+			echo $pass;
 		$insert=$db->query("CALL sp_Insert_UserAccount(
 				'".time()."',
-				'".$cboBranch."',
 				N'".sql_quote($txtUserName)."',
 				N'".sql_quote($encrypted_pass)."',
 				'".sql_quote($txtLevel)."',
@@ -41,26 +43,7 @@ if(isset($_POST['btnSave'])){
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data">
                           
-								<div class="form-group">
-										<label>Choose Branch</label>
-										<select class="form-control" name="cboBranch">
-										   
-										<?php
-										
-										  $select=$db->query("CALL sp_Branch_Select('')");
-											$rowselect=$db->dbCountRows($select);
-											if($rowselect>0){
-												
-												while($row=$db->fetch($select)){
-												$BranchID = $row->BranchID;
-												$BranchName = $row->BranchName;
-													echo'<option value='.$BranchID.'>'.$BranchName.'</option>';
-												}
-											}
-
-										?>
-										</select>
-								</div>
+								
 										<div class="form-group">
                                             <label>User Name</label>
                                             <input name="txtUserName" class="form-control" placeholder="User Name" />
@@ -81,13 +64,10 @@ if(isset($_POST['btnSave'])){
                                             <label>Status</label>
                                             <input name="txtStatus" required class="form-control" placeholder="Enter text" />
                                         </div>
-
-                            <div class="modal-footer">
                             <a href="userAccount.php">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                             </a>
                             <input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
-                          </div>
                       </form>
                      </div>
                     </div>

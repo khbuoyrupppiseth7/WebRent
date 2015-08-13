@@ -242,19 +242,19 @@
 					</form>
 				</div><!-- /.row -->
 				 <section class="content invoice">
-                   <div class="panel-body">
+                   <div class="panel-body" >
                    <div class="dataTable_wrapper">
                     <div class="row">
                        <div class="col-xs-12 table-responsive">
 							<table class="table table-bordered">
 								<thead>
 									<tr>
-									<th colspan="7">
-										<div class="col-md-6">
-											<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New Category</button>
+									<th colspan="12">
+										<div class="col-md-7 pull-left">
+											<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New</button>
 										</div>
 										
-										<div class="col-md-4"> 
+										<div class="col-md-5"> 
 											<form class="navbar-form" role="search">
 												<div class="pull-right" style="margin-top:-8px;">
 												<div class="input-group">
@@ -267,10 +267,9 @@
 												</div><!-- /input-group -->
 												</div><!-- /.col-lg-3 -->
 											</form>
+
 										</div>
-										<div class="col-md-2">
-											<h5 class="pull-right">Date: 2/10/2014</h5>
-										</div>
+										
 									</tr>
 										   
 												
@@ -315,7 +314,7 @@
 														<td>'.$OrderNo.'</td>
 														<td>'.$Decription.'</td>
 														<td class="center" >';
-														echo "<a onclick=\"GetField('".$CompanyID."','".$id."','".$CompanyName."','".$Category."','".$OrderNo."','".$Decription."')\">Edit";
+														echo "<a  >Edit";
 														echo '</a>
 														</td>
 													</tr>';

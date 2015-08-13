@@ -25,7 +25,6 @@ if(isset($_POST['btnsave'])){
 		$UserID=$row->UserID;
 		$UserLevel=$row->UserLevel;
 		$_SESSION['UserID']= $UserID;
-		
 		$_SESSION['user']=$txtusername;
 		$_SESSION['Level']=$UserLevel;
 		
@@ -39,6 +38,7 @@ if(isset($_POST['btnsave'])){
 		$error="<center><strong style='color:red;'><blink>Incorrect Username or Password !</blink></strong></center>";
 	}
 }
+	$db->disconnect();
 ?>
 <!DOCTYPE html>
 <html>
@@ -73,7 +73,7 @@ if(isset($_POST['btnsave'])){
     <body >
 
         <div class="form-box" id="login-box">
-            <div class="header">Sign In</div>
+            <div class=" btn btn-primary btn-block btn-lg" style="height:60px;">Sign In</div>
             <form role="form" method="post">
                 <div class="body bg-gray">
                     <div class="form-group">
@@ -86,7 +86,7 @@ if(isset($_POST['btnsave'])){
                         <input type="checkbox" name="remember_me"/> Remember me <?php echo $error; ?>
                     </div>
                     <div class="form-group">
-                                    <input class="btn btn-lg btn-success btn-block" placeholder="Password" name="btnsave" type="submit" value="Login">
+                                    <input class="btn btn-primary btn-block btn-lg" placeholder="Password" name="btnsave" type="submit" value="Login">
                      </div>
                     
                 </div>

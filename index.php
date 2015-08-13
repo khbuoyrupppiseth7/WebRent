@@ -32,7 +32,7 @@
 	
 ?>
 
-    <body class="skin-blue">
+   <body class="skin-blue">
         <!-- header logo: style can be found in header.less -->
          <?php include 'nav.php';?>
         
@@ -40,7 +40,7 @@
             <?php include 'menu.php';?>
 
             <!-- Right side column. Contains the navbar and content of the page -->
-            <aside class="right-side">
+           <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
                     <h3>
@@ -54,10 +54,11 @@
                 </section>
 
                 <!-- Main content -->
-               
-                 <div class="panel-body">
-                            <div class="dataTable_wrapper">
-                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+               <section class="content invoice">
+				   <div class="panel-body">
+                   <div class="dataTable_wrapper">
+                            <div class="col-xs-12 table-responsive">
+							  <table class="table table-bordered">
                                     <thead>
                                         <tr>
                                             <th colspan="12">
@@ -243,8 +244,10 @@
                             </div>
                             <!-- /.table-responsive -->
                       </div>
+					 </div>
                         <!-- /.panel-body -->
                         <!-- New User -->
+					</select>
                <div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog">                    
                   <div class="modal-content">

@@ -54,7 +54,7 @@ $getdatepayTo=get('dateyetpayto');
 											
                                            <div class="col-md-12"> 
 													<form class="form-inline">
-                                                     <div class=" pull-right" >
+                                                     <div class=" col-md-9 pull-right" >
                                                     
                                                      <div class="form-group">
 												
@@ -77,8 +77,8 @@ $getdatepayTo=get('dateyetpayto');
 													 }?>/>  
 													 
 					
-													 </form>
-													  <div class="input-group">
+													
+													 <div class="col-md-3 pull-right input-group">
 													 <div class="input-group-btn">
 													 <input type="text" class="form-control" placeholder="Search" name="srch-normal" id="search.php?dnsname=name&srch-term" <?php echo 'value="'.$searchTemp.'"'?>/>
                                                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
@@ -86,7 +86,7 @@ $getdatepayTo=get('dateyetpayto');
                                                     </div>
                                                     </div>
 											</div>
-											
+											 </form>
                                             </th>
 										
                                        

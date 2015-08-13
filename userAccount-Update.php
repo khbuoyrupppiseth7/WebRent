@@ -2,7 +2,13 @@
 
 //================ Get Field From Page User =================
 	$id=get('id');
-	$select=$db->query(" call spInnerjoin_User_Branch('".$id."');");
+	$UserName=get('UserName');
+	$Level=get('Level');
+	$Status=get('Status');
+	$Decription=get('Decription');
+	$db->disconnect();
+	$db->connect();
+	/*$select=$db->query(" call spInnerjoin_User_Branch('".$id."');");
 
 	$numrow=$db->dbCountRows($select);
 	if($numrow>0){
@@ -13,17 +19,18 @@
 		$Level = $row->Level;
 		$UserDesc =  $row->Decription;
 		$UserStatusUpdate = $row->Status;
-	}
+	}*/
 //==================== Insert New User =======================
 if(isset($_POST['btnSave'])){
-		$cboBranch		=   $_POST['cboBranch'];
+		//$cboBranch		=   $_POST['cboBranch'];
+		$txtCompanyID   =	post('cboCompanyID');
 		$txtUserName	=	post('txtUserName');
 		$txtLevel		=	post('txtLevel');
 		$txtDescription	=	post('txtDescription');
 		$txtStatus	    =	post('txtStatus');	
 		
 		$update=$db->query("CALL sp_UserAccount_Update('".$id."',
-							'".$cboBranch."',
+							N'".sql_quote($txtCompanyID)."',
 							N'".sql_quote($txtUserName)."',
 							'".sql_quote($txtLevel)."',
 							N'".sql_quote($txtDescription)."',
@@ -51,7 +58,7 @@ if(isset($_POST['btnSave'])){
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data">
                           
-									<div class="form-group">
+									<!--<div class="form-group">
 										<label>Choose Branch</label>
 										<select class="form-control" name="cboBranch" autocomplete="on">
 										   <optgroup label = "Choose One">
@@ -76,7 +83,28 @@ if(isset($_POST['btnSave'])){
 										</select>
 										
 										</div>
-									 
+										-->
+										<div class="form-group">
+											<label>Choose Company</label>
+											<select class="form-control" name="cboCompanyID">   
+												<?php
+												$db->disconnect();
+												$db->connect();
+												  $select=$db->query("CALL sp_Company_Select('')");
+													$rowselect=$db->dbCountRows($select);
+													if($rowselect>0){
+														
+														while($row=$db->fetch($select)){
+														$CompanyID = $row->CompanyID;
+														$CompanyName = $row->CompanyName;
+															echo'<option value='.$CompanyID.'>'.$CompanyName.'</option>';
+																
+								
+														}
+													}
+													
+												?>
+											</select>
 										<div class="form-group">
                                             <label>User Name</label>
                                             <input name="txtUserName" class="form-control" value="<?php echo $UserName; ?>" placeholder="User Name" />
@@ -84,17 +112,17 @@ if(isset($_POST['btnSave'])){
                                       
                                         <div class="form-group">
                                             <label>Level</label>
-                                            <input name="txtLevel" required class="form-control" value="<?php echo $Level; ?>" placeholder="Enter text" />
+                                            <input name="txtLevel" required class="form-control" value="<?php echo 	$Level; ?>" placeholder="Enter text" />
                                         </div>
                                         <div class="form-group">
                                             <label>Description</label>
                                             <textarea class="form-control" name="txtDescription"  rows="3">
-											<?php  echo $UserDesc; ?>
+											<?php  echo $Decription; ?>
 											</textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Status</label>
-                                            <input name="txtStatus" required class="form-control" value="<?php echo $UserStatusUpdate; ?>"  placeholder="Enter text" />
+                                            <input name="txtStatus" required class="form-control" value="<?php echo $Status; ?>"  placeholder="Enter text" />
                                         </div>
                                    
                             <div class="modal-footer">

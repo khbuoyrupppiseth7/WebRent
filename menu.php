@@ -24,19 +24,9 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu">
-						
-                        <li class="active">
-                            <a href="index.php">
-                                <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="dns.php">
-                                <i class="fa fa-th"></i> <span>DNS Mgt<?php echo $_SESSION['Level'];?></span>
-                            </a>
-                        </li>
 							
 						<?php
+		
 						if($_SESSION['Level']=='1'){
 						echo'<li class="treeview">
                             <a href="#"><i class="fa fa-gear fa-fw"></i> <span>Setting</span>
@@ -61,8 +51,10 @@
 								<i class="fa fa-angle-left pull-right"></i>
                             </a>
 									<ul class="treeview-menu">
+										<li><a href="userAccount.php"><i class="fa fa-angle-double-right"></i>User</a></li>
 										<li><a class="iframe_Changepwd" href="UserChangePassword.php"><i class="fa fa-angle-double-right"></i> Change Password</a></li>
 										<li><a href="logout.php"><i class="fa fa-angle-double-right"></i> Logout</a></li>
+									
 									</ul>
 						</li>
                         
