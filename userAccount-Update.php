@@ -6,6 +6,7 @@
 	$Level=get('Level');
 	$Status=get('Status');
 	$Decription=get('Decription');
+	$ComID=get('CompanyID');
 	$db->disconnect();
 	$db->connect();
 	/*$select=$db->query(" call spInnerjoin_User_Branch('".$id."');");
@@ -42,19 +43,31 @@ if(isset($_POST['btnSave'])){
 		}
 	}
 ?>
+<?php
+	$db->disconnect();
+	$db->connect();
+	$select=$db->query("SELECT 
+						U.CompanyID AS CompanyID,
+						CO.CompanyName AS CompanyName
+						FROM tblusers as U
+						INNER JOIN tblcompany as CO ON U.CompanyID=CO.CompanyID
+						WHERE U.CompanyID= '".$ComID."'");
+
+	$numrow=$db->dbCountRows($select);
+	if($numrow>0){
+		$row=$db->fetch($select);
+		$CompanyID1 = $row->CompanyID;
+		$CompanyName1 = $row->CompanyName;
+	}
+
+
+?>
 
     <body class="skin-blue">
-        <!-- header logo: style can be found in header.less -->
-         <?php include 'nav.php';?>
-        
-            <!-- Left side column. contains the logo and sidebar -->
-            <?php include 'menu.php';?>
-
-            <!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
                 <section class="content-header">
-                <div class="row">
+                <div class="row" style="margin: 0 auto;>
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data">
                           
@@ -84,9 +97,11 @@ if(isset($_POST['btnSave'])){
 										
 										</div>
 										-->
+										<label><h3>Edit User</h3></label>
 										<div class="form-group">
+											
 											<label>Choose Company</label>
-											<select class="form-control" name="cboCompanyID">   
+											<select class="form-control" name="cboCompanyID"> 
 												<?php
 												$db->disconnect();
 												$db->connect();
@@ -98,9 +113,8 @@ if(isset($_POST['btnSave'])){
 														$CompanyID = $row->CompanyID;
 														$CompanyName = $row->CompanyName;
 															echo'<option value='.$CompanyID.'>'.$CompanyName.'</option>';
-																
-								
 														}
+														echo'<option value='.$CompanyID1.' selected="true" style="display:none;" selected>'.$CompanyName1.'</option>';
 													}
 													
 												?>
@@ -117,7 +131,7 @@ if(isset($_POST['btnSave'])){
                                         <div class="form-group">
                                             <label>Description</label>
                                             <textarea class="form-control" name="txtDescription"  rows="3">
-											<?php  echo $Decription; ?>
+											<?php  echo $Decription ?>
 											</textarea>
                                         </div>
                                         <div class="form-group">
@@ -127,9 +141,9 @@ if(isset($_POST['btnSave'])){
                                    
                             <div class="modal-footer">
                             <a href="userAccount.php">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>
                             </a>
-                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
+                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" onClick='parent.jQuery.fn.colorbox.close();'/>
                           </div>
                       </form>
                      </div>

@@ -11,25 +11,26 @@ if(isset($_POST['btnsave'])){
 
 	$txtusername = $_POST['txtusername'];
 	$password = $_POST['txtpassword'];
-	
+	//$ComId	  = $_POST['cboCompanyID'];
 	$encrypted_txt = encrypt_decrypt('encrypt', $password);
 	
-	$select=$db->query("CALL spUserAccSelete('".$txtusername."','".$encrypted_txt."');");
+	$select=$db->query("CALL spUserAccSelete('".$txtusername."','".$encrypted_txt."','');");
 		
 	$numrow=$db->dbCountRows($select);
 	
 	if($numrow>0)
 	{
 		
-		$row=$db->fetch($select);
+		while($row=$db->fetch($select)){
 		$UserID=$row->UserID;
 		$UserLevel=$row->UserLevel;
+		$CompanyID=$row->CompanyID;
 		$_SESSION['UserID']= $UserID;
 		$_SESSION['user']=$txtusername;
 		$_SESSION['Level']=$UserLevel;
-		
+		$_SESSION['CompanyID']=$CompanyID;
 		$_SESSION['startDate'] = date("Y-m-d H:i:s");
-		
+		}
 		cRedirect('Customer_Rent.php');
 		
 	}
@@ -81,13 +82,16 @@ if(isset($_POST['btnsave'])){
                     </div>
                     <div class="form-group">
                         <input name="txtpassword" type="password" class="form-control" placeholder="Password"/>
-                    </div>          
+                    </div>     
                     <div class="form-group"> 
                         <input type="checkbox" name="remember_me"/> Remember me <?php echo $error; ?>
                     </div>
+					
                     <div class="form-group">
-                                    <input class="btn btn-primary btn-block btn-lg" placeholder="Password" name="btnsave" type="submit" value="Login">
-                     </div>
+						<a href="">
+                           <input class="btn btn-primary btn-block btn-lg" placeholder="Password" name="btnsave" type="submit" value="Login">
+						</a>
+					 </div>
                     
                 </div>
                 

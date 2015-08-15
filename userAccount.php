@@ -198,6 +198,7 @@ $CompanyID=get('CompanyID');
 										{ 
 											while($row=$db->fetch($_slide1)){
 													$id=$row->UserID;
+													$Status=$row->Status;
 													$Type = $row->Level;
 													$Decription=$row->Decription;
 													$CompanyID=$row->CompanyID;
@@ -207,8 +208,8 @@ $CompanyID=get('CompanyID');
 														$Level = "Manager";
 													else 
 														$Level = "User";
-													$status=$row->Status;
 													
+													$status=$row->Status;
 													if($status==1)
 														$status="Active";
 													else
@@ -230,8 +231,8 @@ $CompanyID=get('CompanyID');
 															<td>
 															
 																
-																<a  href="userAccount-Update.php?id='.$id.'&CompanyID='.$CompanyID.'&UserName='.$userName.'
-																	&Level='.$Type.'&Status='.$status.'&Decription='.$Decription.'">
+																<a  class="iframe" href="userAccount-Update.php?id='.$id.'&UserName='.$userName.'
+																	&Level='.$Type.'&Status='.$Status.'&Decription='.$Decription.'&CompanyID='.$CompanyID.'">
 																<button class="btn btn-sm btn-primary">
 																	<i class="glyphicon glyphicon-pencil"></i>
 																	Edit

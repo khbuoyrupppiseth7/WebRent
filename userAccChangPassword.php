@@ -2,6 +2,8 @@
 include 'header.php';
 	$msg = "";
 	$id=get('id');
+	$db->disconnect();
+	$db->connect();
 	//Select User and insert to form
 	$select=$db->query("call spSelect_UserByID('".$id."');");
 	//$select=$db->query("Call spUserAccSeleteForUpdate('".$id."')");
