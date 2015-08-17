@@ -11,8 +11,7 @@ if(isset($_POST['btnSave'])){
 		$txtDescription	=	post('txtDescription');
 		$txtStatus	    =	post('txtStatus');		
 		$encrypted_pass = 	encrypt_decrypt('encrypt', $txtPassword);
-			$pass = 	encrypt_decrypt('decrypt', 'a09sNXhtNExpZ1MwZkJSY0wwVGxiQT0');
-			echo $pass;
+			
 		$insert=$db->query("CALL sp_Insert_UserAccount(
 				'".time()."',
 				N'".sql_quote($txtUserName)."',

@@ -9,7 +9,7 @@ $ItemNameTemp=get('ItemName');
 $PriceTemp=get('Price');
 $getCustomerTemp=get('');
 $CustomerRent_ID=get('Customer_RentID');
-
+$CompanyIdUser=get('ComID');
 ?>
 <head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
@@ -143,11 +143,11 @@ $CustomerRent_ID=get('Customer_RentID');
 								
 									if($getdatenotyetpay!=""){								
 									$getdatenotyetpays=$getdatenotyetpay."-01";
-									$_slide1 = $db->query("call sp_Customer_Rent_Select_Company('".$searchTemp."','".$getdatenotyetpays."','".$CustomerRent_ID."');");
+									$_slide1 = $db->query("call sp_Customer_Rent_Select_Company('".$searchTemp."','".$getdatenotyetpays."','".$CustomerRent_ID."','".$getComIDUser."');");
 									}
 									else{
 									$datenows=$datenow."-01";
-									$_slide1 = $db->query("CALL sp_Customer_Rent_Select_Company('".$searchTemp."','".$datenows."','".$CustomerRent_ID."');");
+									$_slide1 = $db->query("CALL sp_Customer_Rent_Select_Company('".$searchTemp."','".$datenows."','".$CustomerRent_ID."','".$getComIDUser."');");
 									}
 									$numrow=$db->dbCountRows($_slide1);
 										$i = 1;

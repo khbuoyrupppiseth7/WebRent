@@ -10,9 +10,13 @@ $CategoryIDTemp=get('CategoryID');
 	$Decription=get('Decription');
 	$UserID = $_SESSION['UserID'];
 	$StatusGet=get('Status');
-
+$db->disconnect();
+$db->connect();
 //==================== Insert New Branch =======================
 if(isset($_POST['btnSave'])){
+		if($_SESSION['Level']!='1')
+		$cboCompany		=	$getComIDUser;
+		else
 		$cboCompany		=  get('CompanyID');
 		$cboCategory	=  get('CategoryID');
 		$txtItemName	=  post('txtItem');
@@ -77,16 +81,17 @@ if(isset($_POST['btnSave'])){
 							<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 							<tbody>	
 							<tr><h3>Edit RentItem</h3></tr>						
-							  <tr>		
-								<td  class="col-md-2 text-center">
-								<div class="dropdown">
-								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
+							   <?php 
+							  if($_SESSION['Level']=='1'){
+							   echo'<tr>';	
+								echo'<td  class="col-md-2 text-center">';
+								echo'<div class="dropdown">';
+								 echo '<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
 									Choose Company
 									<span class="caret"></span>
-								  </button>
-								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-									<?php
-											$db->disconnect();
+								  </button>';
+								  echo '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">';
+									
 											$db->connect();
 											  $select=$db->query("CALL sp_Company_Select('')");
 												$rowselect=$db->dbCountRows($select);
@@ -95,19 +100,20 @@ if(isset($_POST['btnSave'])){
 													$CompanyID = $row->CompanyID;
 													$CompanyName = $row->CompanyName;
 														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1"
-														href="RentItem-Update.php?CompanyID='.$CompanyID.'&id='.$id.'&CompanyName='.$CompanyName.'
-														&Price='.$Price.'&Decription='.$Decription.'&ItemName='.$ItemName.'">'.$CompanyName.'</a></li>';
+														href="RentItem-new.php?CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'">'.$CompanyName.'</a></li>';
 													}
 												}
-											  
+											$db->disconnect();
 											
-										?>
-										 
-									  </ul>
-									</div>	
-								  </td>
+										
+									  echo'</ul>';
+									
+									 
+									echo'</div>';	
+								    echo'</td>';
+								   ?>
 								<td class="col-md-10 text-center"> <input type="text" class="form-control" <?php echo 'value="'.$getCompanyTemp.'"'; ?> readonly></td>
-							  </tr>							  
+							  <?php echo '</tr>';	}?>							  
 							<tr>
 							  <td  class="col-md-2 text-center">
 								<div class="dropdown">
@@ -117,7 +123,7 @@ if(isset($_POST['btnSave'])){
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
 									<?php
-											$db->disconnect();
+										
 											$db->connect();
 											
 											  $select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."' ");
@@ -141,8 +147,8 @@ if(isset($_POST['btnSave'])){
 							</tr>
 						</tbody>
 					</table>
-							<input type="hidden" name="txtCateID" id="CateID" class="form-control" value="<?php echo $CategoryIDTemp; ?>"/>
-							<input type="hidden" name="txtItemID" id="RentID" class="form-control" value="<?php echo $id; ?>"/>
+							<input type="text" name="txtCateID" id="CateID" class="form-control" value="<?php echo $CategoryIDTemp; ?>"/>
+							<input type="text" name="txtItemID" id="RentID" class="form-control" value="<?php echo $id; ?>"/>
 							<?php 	$ItemName=get('ItemName');?>
 							<div class="form-group">
                                 <label>Rent Item</label>

@@ -1,5 +1,5 @@
 <?php include 'header.php';
-
+$searchTemp=get('srch-normal');
 ?>
 
 	
@@ -33,8 +33,11 @@
 										<?php 
 												$db->disconnect();
 												$db->connect();
+												$cboCompany=$getComIDUser;
 											//==================== Insert New Customer ======================
 											if(isset($_POST['btnSave'])){
+													
+													if($_SESSION['Level']=='1')
 													$cboCompany	=   $_POST['cboCompany'];
 													$txtmemberTitle	=	post('txtmemberTitle');
 													$txtfirstName	=   post('txtfirstName');
@@ -54,7 +57,7 @@
 													$txtCity	=	post('txtCity');
 													$txtCountry	=	post('txtCountry');
 													$txtTel1	=	post('txtTel1');
-													$txtFax	=	post('txtFax');
+													$txtFax  	=	post('txtFax');
 													$txtMobile	=	post('txtMobile');
 													$txteMail	=	post('txteMail');
 													$txtautono	=	post('txtautono');
@@ -106,10 +109,13 @@
 											}
 											</script>
 										<form role="form" method="post" enctype="multipart/form-data">
-											<div class="form-group">
-											<label>Choose Company</label>
-											<select class="form-control" name="cboCompany">   
-												<?php
+											<?php 
+											if($_SESSION['Level']=='1'){
+											echo'<div class="form-group">';
+												
+											echo '<label>Choose Company</label>';
+											echo'<select class="form-control" name="cboCompany">'; 
+												
 												 $db->disconnect();
 												 $db->connect();
 												  $select=$db->query("CALL sp_Company_Select('')");
@@ -122,9 +128,11 @@
 															echo'<option value='.$CompanyID.'>'.$CompanyName.'</option>';
 														}
 													}
-												?>
-											</select>
-											</div>
+												
+											echo'</select>';
+											
+											echo '</div>';}
+											?>
 											<form role="form" method="post" enctype="multipart/form-data">
 											<div class="form-group">
 												<label>Member Title</label>
@@ -264,9 +272,7 @@
 													<div class="col-md-6 pull-left">
 													<button style="margin-left:-20px;"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New</button>
 													</div>
-													<div class="col-md-2 pull-right">
-														<h5 class="pull-right">Date: 2/10/2014</h5>
-													</div>
+													
 													<div class="col-md-4 pull-right"> 
 														<form class="navbar-form" role="search">
 															<div class="pull-right" style="margin-top:-8px;">
@@ -307,8 +313,8 @@
                                     <?php
 									$db->disconnect();
 									$db->connect();
-									$searchTemp=get('srch-normal');
-									$_slide1 = $db->query("call sp_Customer_Select_Company('".$searchTemp."');");
+									
+									$_slide1 = $db->query("call sp_Customer_Select_Company('".$searchTemp."','".$getComIDUser."')");
 						
 									$numrow=$db->dbCountRows($_slide1);
 										$i = 1;

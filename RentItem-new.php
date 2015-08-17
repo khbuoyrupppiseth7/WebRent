@@ -5,7 +5,11 @@ $getCompanyTemp=get('CompanyName');
 $CategoryNameTemp=get('CategoryName');
 $CategoryIDTemp=get('CatID');
 //==================== Insert New Category ======================
+
 if(isset($_POST['btnSave'])){
+		if($_SESSION['Level']!='1' )
+		$cboCompany=$getComIDUser;
+		else
 		$cboCompany		=   get('CompanyID');
 		$cboCategory	=   get('CatID');
 		$txtItem		=	post('txtItem');
@@ -70,16 +74,17 @@ if(isset($_POST['btnSave'])){
 						<table  style="margin: 0 auto;" class="table table-striped table-bordered table-hover" id="dataTables-example">
 							<tbody>								
 							  <tr> <h3>Add New RentItem<h3></tr>
-							  <tr>	
-								
-								<td  class="col-md-2 text-center">
-								<div class="dropdown">
-								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
+							  <?php 
+							  if($_SESSION['Level']=='1'){
+							   echo'<tr>';	
+								echo'<td  class="col-md-2 text-center">';
+								echo'<div class="dropdown">';
+								 echo '<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
 									Choose Company
 									<span class="caret"></span>
-								  </button>
-								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
-									<?php
+								  </button>';
+								  echo '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">';
+									
 											$db->connect();
 											  $select=$db->query("CALL sp_Company_Select('')");
 												$rowselect=$db->dbCountRows($select);
@@ -93,12 +98,16 @@ if(isset($_POST['btnSave'])){
 												}
 											$db->disconnect();
 											
-										?>
-									  </ul>
-									</div>	
-								  </td>
+										
+									  echo'</ul>';
+									
+									 
+									echo'</div>';	
+								    echo'</td>';
+								   ?>
 								<td class="col-md-10 text-center"> <input type="text" class="form-control" <?php echo 'value="'.$getCompanyTemp.'"'; ?> readonly></td>
-							  </tr>							  
+							  <?php echo '</tr>';	}?>	
+							   
 							<tr>
 							  <td  class="col-md-2 text-center">
 								<div class="dropdown">
@@ -109,9 +118,11 @@ if(isset($_POST['btnSave'])){
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
 									<?php
 											$db->connect();
-											
-											  $select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."' ");
-												$rowselect=$db->dbCountRows($select);
+											if($_SESSION['Level']=='1')
+											    $select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."' ");
+											else 
+												$select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$getComIDUser."' ");	
+											$rowselect=$db->dbCountRows($select);
 												if($rowselect>0){
 													
 													while($row=$db->fetch($select)){

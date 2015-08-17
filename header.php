@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(!$_SESSION['user']){
+	if($_SESSION['checksession'] !='2015'){
 	//if(!$_SESSION['user'] || $_SESSION['ComID'] != 1){
 		header('location:login.php');
 	}
@@ -16,6 +16,9 @@
 	//$ip=$_SERVER['REMOTE_ADDR'];
 	$ip= '192.168.1.1';
 	$sarchprd = get('sarchprd');
+	//$CompanyIdUser=get('ComID');
+	//$_SESSION['CompanyID']=$CompanyIdUser;
+	$getComIDUser=$_SESSION['CompanyID'];
 	
 ?>
 

@@ -30,21 +30,22 @@
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<h4 class="modal-title" id="exampleModalLabel">New Category</h4>
 							<div class="modal-body">
-									<?php 
+							<?php 
 									//==================== Insert New Category ======================
 									$db->disconnect();
 									$db->connect();
+									$ComId=$getComIDUser;
+									if($_SESSION['Level']=='1')
+									$ComId=post('cboCompanyID');
 									if(isset($_POST['btnSave'])){
-										
-											$CompanyID		=	post('cboCompanyID');
+										    //$CompanyID      =post('cboCompanyID');
 											$txtCategory	=	post('txtCategory');
 											$txtOrder		=   post('txtOrder');
 											$txtDescrpiton	=	post('txtDescrpiton');
-									
-											
+										
 											$insert=$db->query("CALL sp_Category_Insert (
 																			'".time()."',
-																			'".$CompanyID."',
+																			'".$ComId."',
 																			N'".sql_quote($txtCategory)."',
 																			'".$txtOrder."',	
 																			N'".sql_quote($txtDescrpiton)."'
@@ -67,11 +68,14 @@
 											}
 											</script>
 										<form role="form" method="post" enctype="multipart/form-data">
+											
 											<div class="form-group">
-											<label>Choose Company</label>
-											<select class="form-control" name="cboCompanyID">   
-												<?php
-												
+											<?php
+												if($_SESSION['Level']=='1'){
+												echo '<label>Choose Company</label>';
+												echo '<select class="form-control" name="cboCompanyID"> ';  
+													
+													
 												  $select=$db->query("CALL sp_Company_Select('')");
 													$rowselect=$db->dbCountRows($select);
 													if($rowselect>0){
@@ -84,10 +88,12 @@
 								
 														}
 													}
-													
-												?>
-											</select>
-									</div>
+												
+												echo '</select>';
+											}
+										?>
+										</div>
+									
 									<form role="form" method="post" enctype="multipart/form-data">
 									<div class="form-group">
 										<label>Category Name</label>
@@ -149,17 +155,15 @@
 									}
 
 								//==================== Insert New Branch =======================
+
 								if(isset($_POST['btnUpdate'])){
-										$id             =   post('Category');
-										$CompanyID	=   $_POST['txtCompany'];
+										$id             =   post('Category'); 
 										$txtCategory	=	post('txtCategory');
 										$txtOrderNo		=   post('txtOrder');
 										$txtDescrpiton	=	post('txtDescrpiton');
 											
-										if($UserID=="1"){
 											$update=$db->query("CALL sp_Category_Update(
 													'".$id."',
-													'".$CompanyID."',
 													N'".sql_quote($txtCategory)."',
 													'".$txtOrderNo."',
 													N'".sql_quote($txtDescrpiton)."'
@@ -170,7 +174,7 @@
 														//echo '<script>alert("'.	$CompanyID.'");</script>';
 															
 													}
-										}
+										
 								}
 								?>
 										<script language="javascript">
@@ -182,26 +186,28 @@
 										}
 										</script>
 							<form role="form" method="post" enctype="multipart/form-data">
-								
-								<div class="form-group">
-								<input  type="hidden" class="form-control" name="cboCategory" autocomplete="on"  id="cboCompany" >
-										<?php
-										$db->disconnect();
-										$db->connect();	
-										  $select=$db->query("CALL sp_Company_Select('')");
-											$rowselect=$db->dbCountRows($select);
-											
-											if($rowselect>0){
-												while($row=$db->fetch($select)){
-												
-												$CompanyID = $row->CompanyID;
-												$CompanyName = $row->CompanyName;
+							
+									
+										<div class="form-group">
+										<input  type="hidden" class="form-control" name="cboCategory" autocomplete="on"  id="cboCompany" >
+												<?php
+												$db->disconnect();
+												$db->connect();	
+												  $select=$db->query("CALL sp_Company_Select('')");
+													$rowselect=$db->dbCountRows($select);
 													
-												}
-												
-											}										
-										?>
-									</div>
+													if($rowselect>0){
+														while($row=$db->fetch($select)){
+														
+														$CompanyID = $row->CompanyID;
+														$CompanyName = $row->CompanyName;
+															
+														}
+														
+													}										
+												?>
+											</div>
+								
 									<div class="form-group">
 									<input type="hidden" name="txtCompany" id="companyId" class="form-control"  value="<?php echo $CompanyID; ?>" placeholder="Enter text" required />
 									</div>
@@ -262,7 +268,9 @@
 											    </div><!-- /btn-group -->
 													<input type="text" class="form-control" placeholder="Search" value="<?php echo $searchTemp;?>" name="srch-normal" id="search.php?dnsname=name&srch-term">
 														<div class="input-group-btn">
+													
 															 <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+														
 														</div><!-- /btn-group -->
 												</div><!-- /input-group -->
 												</div><!-- /.col-lg-3 -->
@@ -293,7 +301,7 @@
 									$db->disconnect();
 									$db->connect();
 								//	$txtsrch = get('srch-normal');
-									$_slide1 = $db->query("CALL sp_Category_Select_Company('".$searchTemp."')");
+									$_slide1 = $db->query("CALL sp_Category_Select_Company('".$searchTemp."','".$getComIDUser."');");
 						
 									$numrow=$db->dbCountRows($_slide1);
 										$i = 1;
@@ -314,7 +322,7 @@
 														<td>'.$OrderNo.'</td>
 														<td>'.$Decription.'</td>
 														<td class="center" >';
-														echo "<a  >Edit";
+														echo "<a onclick=\"GetField('".$CompanyID."','".$id."','".$CompanyName."','".$Category."','".$OrderNo."','".$Decription."')\">Edit";
 														echo '</a>
 														</td>
 													</tr>';

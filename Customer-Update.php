@@ -140,6 +140,7 @@ if(isset($_POST['btnSave'])){
 							<label><h3>Edit Customer</h3></label>
 							
 							<div class="form-group">
+
 								<label>Choose Company</label>
 								<select class="form-control" name="cboCompany" autocomplete="on">
 									<optgroup label = "Choose One">

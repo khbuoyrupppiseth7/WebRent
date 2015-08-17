@@ -64,7 +64,7 @@ $CategoryIDTemp=get('CatID');
 								</thead>
                                 <thead>
                                     <tr>
-                                        <th>No</th>
+                                        <th>No </th>
 										<th>Item Name</th>
 										<th>Company</th>
 										<th>Category</th>
@@ -83,7 +83,7 @@ $CategoryIDTemp=get('CatID');
 									$db->connect();
 								//	$txtsrch = get('srch-normal');
 								
-									$_slide1 = $db->query("CALL sp_RentItem_Select_Company('".$searchTemp."')");
+									$_slide1 = $db->query("CALL sp_RentItem_Select_Company('".$searchTemp."','".$getComIDUser."')");
 						
 									$numrow=$db->dbCountRows($_slide1);
 										$i = 1;

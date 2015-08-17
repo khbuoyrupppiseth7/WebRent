@@ -29,10 +29,10 @@ if(isset($_POST['btnsave'])){
 		$_SESSION['user']=$txtusername;
 		$_SESSION['Level']=$UserLevel;
 		$_SESSION['CompanyID']=$CompanyID;
+		$_SESSION['checksession']='2015';
 		$_SESSION['startDate'] = date("Y-m-d H:i:s");
 		}
-		cRedirect('Customer_Rent.php');
-		
+		cRedirect('Customer_Rent.php?ComID='.$CompanyID.'');
 	}
 	else
 	{
@@ -88,9 +88,11 @@ if(isset($_POST['btnsave'])){
                     </div>
 					
                     <div class="form-group">
-						<a href="">
+					
+					
                            <input class="btn btn-primary btn-block btn-lg" placeholder="Password" name="btnsave" type="submit" value="Login">
-						</a>
+		
+					
 					 </div>
                     
                 </div>
