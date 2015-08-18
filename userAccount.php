@@ -65,7 +65,9 @@ $CompanyID=get('CompanyID');
 										<div class="form-group">
 											<label>Choose Company</label>
 											<select class="form-control" name="cboCompanyID">   
+												
 												<?php
+													echo '<option></option>';	
 													$db->disconnect();
 													$db->connect();
 												    $select=$db->query("CALL sp_CompanySelectEdit('".$CompanyID."')");
@@ -75,8 +77,9 @@ $CompanyID=get('CompanyID');
 														while($row=$db->fetch($select)){
 														$CompanyID = $row->CompanyID;
 														$CompanyName = $row->CompanyName;
+															
 															echo'<option value='.$CompanyID.'>'.$CompanyName.'</option>';
-																
+															
 								
 														}
 													}
@@ -175,6 +178,7 @@ $CompanyID=get('CompanyID');
 							<thead>
 										<tr>
 											<th>No</th>
+											<th>Company</th>
 											<th>User Name</th>
 											<th>Level</th>
 											<th>Status</th>
@@ -198,6 +202,7 @@ $CompanyID=get('CompanyID');
 										{ 
 											while($row=$db->fetch($_slide1)){
 													$id=$row->UserID;
+													$CompanyName=$row->CompanyName;
 													$Status=$row->Status;
 													$Type = $row->Level;
 													$Decription=$row->Decription;
@@ -219,7 +224,7 @@ $CompanyID=get('CompanyID');
 													
 													echo '<tr class="gradeA">
 															<td>'.$i++.'</td>
-															
+															<td>'.$CompanyName.'</td>
 															<td>'.$userName.'</td>
 															
 															<td>'.$Level.'</td>

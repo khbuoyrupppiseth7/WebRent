@@ -19,7 +19,7 @@ if(isset($_POST['btnSave'])){
 		$txtOther 		=	post('txtOther');
 		$txtTotal 		=	post('txtTotal');	 
 			
-		if($UserID=="1"){
+	
 			$payment=$db->query("CALL sp_Customer_Rent_Payment_Insert(
 					'".$Customer_RentID."',
 					'".$UserID."',
@@ -40,7 +40,7 @@ if(isset($_POST['btnSave'])){
 				$db->query(" Update tblrentitem set isStatus=1 where RentItemID='".$RentItemID."'");
 					}
 		}
-}
+
 ?>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>

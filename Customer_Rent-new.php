@@ -11,6 +11,8 @@ $db->connect();
 //==================== Insert New Category ======================
 if(isset($_POST['btnSave'])){
 		$cboCustomers	=   get('CustomerID');
+		$cboCompany		=   $getComIDUser;
+		if($_SESSION['Level']=='1')
 		$cboCompany		=   get('CompanyID');
 		$cboRentItem	=   get('RentItemID');
 		$txtRentDate	=	post('txtRentDate');
@@ -109,15 +111,17 @@ if(isset($_POST['btnSave'])){
 							  <td class="col-md-10 text-center"> <input type="text" class="form-control" <?php echo 'value="'.$getCustomerTemp.'"'; ?> readonly></td>
 							  </tr>
 							
-							
-							  <tr>
-							  <td  class="col-md-2 text-center">
-								<div class="dropdown">
-								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
+							<?php 
+								if($_SESSION['Level']=='1'){
+							  echo '<tr>';
+							  echo'<td  class="col-md-2 text-center">';
+								echo'<div class="dropdown">';
+								  echo'<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
 									Choose Company
 									<span class="caret"></span>
-								  </button>
-								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+								  </button>';
+								  echo'<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">';
+							?>
 									<?php	
 											$db->disconnect();
 										
@@ -134,11 +138,13 @@ if(isset($_POST['btnSave'])){
 												}
 											
 									?>
-								  </ul>
-								</div>	
-							  </td>
+							  <?php
+								  echo'</ul>';
+								echo'</div>';	
+							  echo'</td>';
+							  ?>
 							  <td class="col-md-10 text-center"> <input type="text" class="form-control" <?php echo 'value="'.$getCompanyTemp.'"'; ?> readonly></td>
-							  </tr>
+							  <?php echo'</tr>';}?>
 							  
 							  <tr>
 							  <td  class="col-md-2 text-center">
@@ -151,9 +157,11 @@ if(isset($_POST['btnSave'])){
 									<?php
 											$db->disconnect();
 											$db->connect();
-											
-											  $select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."' ");
-												$rowselect=$db->dbCountRows($select);
+											  if($_SESSION['Level']=='1')
+												$select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."' ");
+											  else 
+												$select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$getComIDUser."' ");
+													$rowselect=$db->dbCountRows($select);
 												if($rowselect>0){
 													
 													while($row=$db->fetch($select)){

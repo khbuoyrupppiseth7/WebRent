@@ -121,11 +121,11 @@ $getdatepayTo=get('dateyetpayto');
 									if($getdatenotyetpay!="" && $getdatepayTo!=""){								
 									$getdatenotyetpays=$getdatenotyetpay."-01";
 									$getdatepayTos=$getdatepayTo."-01";
-									$_slide1 = $db->query("CALL sp_Customer_Rent_Payment_Detail('".$searchTemp."','".$getdatenotyetpay."','".$getdatepayTos."')");
+									$_slide1 = $db->query("CALL sp_Customer_Rent_Payment_Detail('".$searchTemp."','".$getdatenotyetpay."','".$getdatepayTos."','".$getComIDUser."')");
 									}
 									else{
 									$datenows=$datenow."-01";
-									$_slide1 = $db->query("CALL sp_Customer_Rent_Payment_Detail('".$searchTemp."','".$datenows."','".$datenows."')");
+									$_slide1 = $db->query("CALL sp_Customer_Rent_Payment_Detail('".$searchTemp."','".$datenows."','".$datenows."','".$getComIDUser."')");
 									}
 									$numrow=$db->dbCountRows($_slide1);
 										$i = 1;

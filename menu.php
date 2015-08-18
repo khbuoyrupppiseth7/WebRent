@@ -59,7 +59,7 @@
 										<?php
 										if($_SESSION['Level']=='1')
 										echo'<li><a href="userAccount.php"><i class="fa fa-angle-double-right"></i>User</a></li>';
-										echo'<li><a href="UserChangePassword.php"><i class="fa fa-angle-double-right"></i> Change Password</a></li>';
+										echo'<li ><a class="iframe_Changepwd" href="UserChangePassword.php"><i class="fa fa-angle-double-right"></i> Change Password</a></li>';
 										echo'<li><a href="logout.php"><i class="fa fa-angle-double-right"></i> Logout</a></li>';
 										?>
 									</ul>

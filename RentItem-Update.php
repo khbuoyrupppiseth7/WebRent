@@ -14,9 +14,8 @@ $db->disconnect();
 $db->connect();
 //==================== Insert New Branch =======================
 if(isset($_POST['btnSave'])){
-		if($_SESSION['Level']!='1')
 		$cboCompany		=	$getComIDUser;
-		else
+		if($_SESSION['Level']=='1')
 		$cboCompany		=  get('CompanyID');
 		$cboCategory	=  get('CategoryID');
 		$txtItemName	=  post('txtItem');
@@ -24,7 +23,7 @@ if(isset($_POST['btnSave'])){
 		$txtStatus		=  post('Status');
 		$txtDescrpiton	= post('txtDescrpiton');
 			
-		if($UserID=="1"){
+	
 			$update=$db->query("CALL sp_RentItem_Update(
 					'".$id."',
 					'".$cboCompany."',
@@ -40,7 +39,7 @@ if(isset($_POST['btnSave'])){
 						
 							
 					}
-		}
+		
 }
 ?>
 	<head>
@@ -100,7 +99,7 @@ if(isset($_POST['btnSave'])){
 													$CompanyID = $row->CompanyID;
 													$CompanyName = $row->CompanyName;
 														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1"
-														href="RentItem-new.php?CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'">'.$CompanyName.'</a></li>';
+														href="RentItem-new.php?CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'&Price='.$Price.'&ItemName='.$ItemName.'&Decription='.$Decription.'">'.$CompanyName.'</a></li>';
 													}
 												}
 											$db->disconnect();

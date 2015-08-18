@@ -2,20 +2,23 @@
 $db->disconnect();
 $db->connect();
 
-
 $selectuser=$db->query("call spSelect_UserID('".$_SESSION['UserID']."');");
 $numrow=$db->dbCountRows($selectuser);
 	if($numrow>0){
-		$row=$db->fetch($selectuser);
+		while($row=$db->fetch($selectuser)){
 		$UserNameChange = $row->UserName;
 		$Password=$row->Password;
+		}
 	}
-	
+?>
+<?php	
 //==================== Insert New Branch =======================
+$db->disconnect();
+$db->connect();
 if(isset($_POST['btnSave'])){
-		$txtUser	=	post('txtUser');
-		$txtold = post('txtold');
-		$txtNewPass=post('txtNewPass');
+		$txtUser	=post('txtUser');
+		$txtold 	=post('txtold');
+		$txtNewPass =post('txtNewPass');
 		$encrypt_oldpass = encrypt_decrypt('encrypt', $txtold);
 		$encrypt_password = encrypt_decrypt('encrypt', $txtNewPass);
 		

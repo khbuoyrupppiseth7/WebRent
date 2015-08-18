@@ -22,9 +22,10 @@
                                 
                                 	<?php
 											//Call Select for New company
+											$getComIDUser=$_SESSION['CompanyID'];
 											$db->disconnect();
 											$db->connect();
-											$select2=$db->query("CALL spCountCus();");
+											$select2=$db->query("CALL spCountCus('".$getComIDUser."');");
 											$rowselect2=$db->dbCountRows($select2);
 											if($rowselect2>0){
 												$row=$db->fetch($select2);
@@ -50,7 +51,7 @@
 										$db->disconnect();
 										$db->connect();
 										//Call Select for New company
-										$select3=$db->query("CALL spSelectCusPay()");	
+										$select3=$db->query("CALL spSelectCusPay('".$getComIDUser."')");	
 										$rowselect3=$db->dbCountRows($select3);
 										if($rowselect3>0){
 											

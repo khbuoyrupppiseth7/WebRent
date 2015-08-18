@@ -49,8 +49,6 @@ if(isset($_POST['btnUpdate'])){
 			
 		//echo $txtRentDate."+".$txtPayDate."+".$txtPrice."+".$Leave;
 		//echo $cboRentItem."".$txtPrice."ID=".$Customer_RentID;
-	
-		if($UserID=="1"){
 			$update=$db->query("CALL sp_Customer_Rent_Update(
 					'".$Customer_RentID."',
 					'".$cboCustomers."',
@@ -77,7 +75,6 @@ if(isset($_POST['btnUpdate'])){
 				cRedirect('Customer_Rent.php');
 			}
 		}
-}
 ?>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
@@ -156,15 +153,17 @@ if(isset($_POST['btnUpdate'])){
 							  <td class="col-md-10 text-center"> <input type="text" class="form-control" <?php echo 'value="'.$getCustomerTemp.'"'; ?> readonly></td>
 							  </tr>
 							
-							
-							  <tr>
-							  <td  class="col-md-2 text-center">
-								<div class="dropdown">
-								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
+							<?php
+							if($_SESSION['Level']=='1'){
+							  echo'<tr>';
+							  echo'<td  class="col-md-2 text-center">';
+								echo'<div class="dropdown">';
+								  echo'<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
 									Choose Company
 									<span class="caret"></span>
-								  </button>
-								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">
+								  </button>';
+								  echo'<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">';
+							?>
 									<?php
 											$db->disconnect();
 											$db->connect();
@@ -186,13 +185,15 @@ if(isset($_POST['btnUpdate'])){
 											
 										
 									?>
-								  </ul>
-								</div>	
-							  </td>
+							<?php	  
+								echo'</ul>';
+								echo'</div>';	
+							  echo'</td>';
+							?>
 							  <td class="col-md-10 text-center"> <input type="text" class="form-control" <?php echo 'value="'.$getCompanyTemp.'"'; ?> readonly></td>
 							  </tr>
 							  
-							  <tr>
+							<?php echo ' <tr>';}?>
 							  <td  class="col-md-2 text-center">
 								<div class="dropdown">
 								  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-expanded="true">

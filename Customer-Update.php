@@ -55,6 +55,8 @@
 	$db->connect();
 	//==================== Insert New Branch =======================
 if(isset($_POST['btnSave'])){
+		$cboCompany		=	$getComIDUser;
+		if($_SESSION['Level']=='1')
 		$cboCompany		=   $_POST['cboCompany'];
 		$txtmemberTitle	=	post('txtmemberTitle');
 		$txtfirstName	=   post('txtfirstName');
@@ -78,7 +80,6 @@ if(isset($_POST['btnSave'])){
 		$txtMobile		=	post('txtMobile');
 		$txteMail		=	post('txteMail');
 		$txtautono		=	post('txtautono');
-		if($UserID=="1"){
 			$update=$db->query("Call sp_Customer_Update(
 					'".$id."',
 					'".$cboCompany."',
@@ -112,7 +113,7 @@ if(isset($_POST['btnSave'])){
 							
 					}
 		} 
-}
+
 ?>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
@@ -138,12 +139,14 @@ if(isset($_POST['btnSave'])){
                     <form role="form" method="post" enctype="multipart/form-data">
 							
 							<label><h3>Edit Customer</h3></label>
-							
-							<div class="form-group">
+							<?php
+							if($_SESSION['Level']=='1'){
+							echo '<div class="form-group">';
 
-								<label>Choose Company</label>
-								<select class="form-control" name="cboCompany" autocomplete="on">
-									<optgroup label = "Choose One">
+								echo'<label>Choose Company</label>';
+								echo'<select class="form-control" name="cboCompany" autocomplete="on">';
+									echo'<optgroup label = "Choose One">';
+							?>
 										<?php
 										// echo'<option value='.$BranchID.'>'.$BranchName.'</option>';
 										$db->disconnect();
@@ -163,11 +166,13 @@ if(isset($_POST['btnSave'])){
 											}	
 											$db->disconnect();
 										?>
-									<optgroup>
-								</select>
+								<?php
+									echo'<optgroup>';
+								echo'</select>';
 										
-							</div>
-						
+							echo'</div>';
+							}
+							?>
 							<div class="form-group"  >
                                 <label>Member Title</label>
 								<input  name="txtmemberTitle" class="form-control"  value="<?php echo $memberTitle; ?>" placeholder="Enter text" />
