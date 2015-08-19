@@ -10,7 +10,7 @@
 					$db->disconnect();
 					$db->connect();
 					//Call Select for New company
-					$select3=$db->query("CALL spSelectCusPay()");	
+					$select3=$db->query("CALL spSelectCusPay('".$getComIDUser."')");	
 					$rowselect3=$db->dbCountRows($select3);
 						if($rowselect3>0){
 							while($row1=$db->fetch($select3)){

@@ -65,9 +65,9 @@ $CompanyID=get('CompanyID');
 										<div class="form-group">
 											<label>Choose Company</label>
 											<select class="form-control" name="cboCompanyID">   
-												
+												<option value=0>None</option>';
 												<?php
-													echo '<option></option>';	
+														
 													$db->disconnect();
 													$db->connect();
 												    $select=$db->query("CALL sp_CompanySelectEdit('".$CompanyID."')");
@@ -180,6 +180,7 @@ $CompanyID=get('CompanyID');
 											<th>No</th>
 											<th>Company</th>
 											<th>User Name</th>
+											<th>Password</th>
 											<th>Level</th>
 											<th>Status</th>
 											<th>Description</th>
@@ -202,11 +203,13 @@ $CompanyID=get('CompanyID');
 										{ 
 											while($row=$db->fetch($_slide1)){
 													$id=$row->UserID;
-													$CompanyName=$row->CompanyName;
 													$Status=$row->Status;
 													$Type = $row->Level;
 													$Decription=$row->Decription;
 													$CompanyID=$row->CompanyID;
+													$CompanyName=$row->CompanyName;
+													$PassWord=$row->Password;
+													$descript_password = encrypt_decrypt('decrypt', $PassWord);
 													if($Type == 1)
 														$Level = "Admin";
 													else if($Type == 2)
@@ -226,10 +229,8 @@ $CompanyID=get('CompanyID');
 															<td>'.$i++.'</td>
 															<td>'.$CompanyName.'</td>
 															<td>'.$userName.'</td>
-															
+															<td>'.$descript_password .'</td>
 															<td>'.$Level.'</td>
-															
-															
 															<td><span class="ticket ticket-success">'.$status.'</span></td>
 															<td>'.$Decription.'</td>
 												

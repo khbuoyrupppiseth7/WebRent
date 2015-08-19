@@ -35,12 +35,12 @@
 									<ul class="treeview-menu">
 										<?php
 										if($_SESSION['Level']=='1')
-										echo'<li><a href="Company.php?ComID='.get('ComID').'"><i class="fa fa-angle-double-right"></i> Company</a></li>';
-										echo'<li><a href="Category.php?ComID='.get('ComID').'"><i class="fa fa-angle-double-right"></i> Category</a></li>';
-										echo'<li><a href="RentItem.php?ComID='.get('ComID').'"><i class="fa fa-angle-double-right"></i> Rent Item</a></li>';
-										echo'<li><a href="Customer.php?ComID='.get('ComID').'"><i class="fa fa-angle-double-right"></i> Customer</a></li>';
-										echo'<li><a href="Customer_Rent.php?ComID='.get('ComID').'"><i class="fa fa-angle-double-right"></i> Customer Rent</a></li>';
-										echo'<li><a href="Customer_Rent_Detail.php?ComID='.get('ComID').'"><i class="fa fa-angle-double-right"></i> Customer History</a></li>';
+										echo'<li><a href="Company.php><i class="fa fa-angle-double-right"></i> Company</a></li>';
+										echo'<li><a href="Category.php><i class="fa fa-angle-double-right"></i> Category</a></li>';
+										echo'<li><a href="RentItem.php><i class="fa fa-angle-double-right"></i> Rent Item</a></li>';
+										echo'<li><a href="Customer.php><i class="fa fa-angle-double-right"></i> Customer</a></li>';
+										echo'<li><a href="Customer_Rent.php><i class="fa fa-angle-double-right"></i> Customer Rent</a></li>';
+										echo'<li><a href="Customer_Rent_Detail.php><i class="fa fa-angle-double-right"></i> Customer History</a></li>';
 										?>
 									</ul>
                         </li>

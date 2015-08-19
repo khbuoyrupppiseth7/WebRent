@@ -63,8 +63,7 @@
 											$PayDate = $row1->PayDate;
 											$Price = $row1->Price;
 											echo '<li>
-													<a href="Customer_Rent.ph
-													p?Customer_RentID='.$Customer_RentID .'">
+													<a href="Customer_Rent.php?Customer_RentID='.$Customer_RentID .'">
 														<h4>
 															'.$FullName.'
 															<small><i class="fa fa-clock-o"></i>'.$ItemName.'</small>
