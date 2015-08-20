@@ -20,28 +20,25 @@
 								$RentDate = $row1->RentDate;
 								$PayDate = $row1->PayDate;
 								$Price = $row1->Price;
-								echo '
-										<a href="Customer_Rent.php?Customer_RentID='.$Customer_RentID .'">
-										<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-											<tbody>	
-											<tr>
-												<td class="col-md-2">
-												<h4>
-													'.$FullName.'
-													<small class="right-side"><i class="fa fa-clock-o"></i>'.$ItemName.'</small>
-												</h4>
-													<p>Pay Date :'.$PayDate.' &nbsp;Price : $' .$Price. '</p>
-												</td>
-											</tr>
-											</tbody>
-										</table>
-										</a>
-									';
-											
-							}
-											
-					}
-			?>
+						echo '
+						<a href="Customer_Rent.php?Customer_RentID='.$Customer_RentID .'">
+							<div class="panel panel-default" style="background-color:#F5F5F5;">
+							  <div class="panel-body">
+								<h4>
+								'.$FullName.'
+								<small style="color:red;"> &nbsp &nbsp &nbsp Pay Date :'.$PayDate.' &nbsp;Price : $' .$Price. '</small>
+								<small class="right-side"><i class="glyphicon glyphicon-list-alt"></i>&nbsp&nbsp'.$ItemName.'</small>
+								</h4>
+								
+							  </div>
+							 </div>
+						</a>
+						';
+					     	}
+						}
+						?>
+						
+						
 			</select>
 		</aside>
 		</div>

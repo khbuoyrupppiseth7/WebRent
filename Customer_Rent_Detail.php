@@ -94,7 +94,7 @@ $getdatepayTo=get('dateyetpayto');
                                    
                                 </thead>
 								<thead>
-                                    <tr>
+                                    <tr style="background-color:#4682B4; color:white;">
                                         <th>No</th>
 										<th>RentItem</th>
 										<th>Customer</th>

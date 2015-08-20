@@ -30,7 +30,8 @@ if(isset($_POST['btnSave'])){
 		$txtDescription	=	post('txtDescription');
 		$txtStatus	    =	post('txtStatus');	
 		
-		$update=$db->query("CALL sp_UserAccount_Update('".$id."',
+		$update=$db->query("CALL sp_UserAccount_Update(
+						   '".$id."',
 							N'".sql_quote($txtCompanyID)."',
 							N'".sql_quote($txtUserName)."',
 							'".sql_quote($txtLevel)."',
@@ -71,32 +72,6 @@ if(isset($_POST['btnSave'])){
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data">
                           
-									<!--<div class="form-group">
-										<label>Choose Branch</label>
-										<select class="form-control" name="cboBranch" autocomplete="on">
-										   <optgroup label = "Choose One">
-										<?php
-										// echo'<option value='.$BranchID.'>'.$BranchName.'</option>';
-										
-										  $select=$db->query("CALL sp_Branch_Select('')");
-											$rowselect=$db->dbCountRows($select);
-											
-											if($rowselect>0){
-												while($row=$db->fetch($select)){
-												
-												$BranchID = $row->BranchID;
-												$BranchName = $row->BranchName;
-													echo'<option value='.$BranchID.'>'.$BranchName.'</option>';
-												}
-												//============= don't display value in option ================
-												echo'<option selected="true" style="display:none;" selected>'.$BranchName1.'</option>';
-											}										
-										?>
-										</optgroup>
-										</select>
-										
-										</div>
-										-->
 										<label><h3>Edit User</h3></label>
 										<div class="form-group">
 											
@@ -118,6 +93,7 @@ if(isset($_POST['btnSave'])){
 													}
 													
 												?>
+												<option value=0>None</option>
 											</select>
 										<div class="form-group">
                                             <label>User Name</label>

@@ -65,7 +65,7 @@ $CompanyID=get('CompanyID');
 										<div class="form-group">
 											<label>Choose Company</label>
 											<select class="form-control" name="cboCompanyID">   
-												<option value=0>None</option>';
+												
 												<?php
 														
 													$db->disconnect();
@@ -85,6 +85,7 @@ $CompanyID=get('CompanyID');
 													}
 													
 												?>
+												<option value=0>None</option>;
 											</select>
 									   </div>
 										
@@ -176,7 +177,7 @@ $CompanyID=get('CompanyID');
                                  </tr> 
                             </thead>
 							<thead>
-										<tr>
+										<tr style="background-color:#4682B4; color:white;">
 											<th>No</th>
 											<th>Company</th>
 											<th>User Name</th>
@@ -196,11 +197,14 @@ $CompanyID=get('CompanyID');
 										$db->connect();
 									//	$txtsrch = get('srch-normal');
 										$_slide1 = $db->query("CALL sp_UserAccount_Select('".$Search."')");
-							
+									
 										$numrow=$db->dbCountRows($_slide1);
+										
 											$i = 1;
 										if($numrow>0)
 										{ 
+											
+											
 											while($row=$db->fetch($_slide1)){
 													$id=$row->UserID;
 													$Status=$row->Status;

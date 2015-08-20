@@ -119,7 +119,7 @@ $CompanyIdUser=get('ComID');
                                     </tr> 
                                 </thead>
 								<thead>
-                                    <tr>
+                                    <tr style="background-color:#4682B4; color:white;">
 									
                                         <th>No</th>
 										<th>Customer</th>
@@ -267,8 +267,21 @@ $CompanyIdUser=get('ComID');
 
         <!-- add new calendar event modal -->
 		</body>
+    <script>
+
+        //  ** show date and time picker
+         $('#btnDate').datetimepicker({
+		 	
+            timepicker: false, //visible time = false
+            format: 'Y-m',
+            step: 10
 		
+        });
+		$('#btnDate').click({
 		
+		});
+		
+    </script>	
 		
 		
 

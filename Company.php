@@ -73,55 +73,7 @@ $searchTemp=get('srch-normal');
 							</div>
 						</form>
 						 </div><!-- /.row -->
-					   
-                    <!-- Table row -->
-                
-                  <section class="content invoice">
-                    <!-- title row -->
-					<div class="panel-body">
-                    <div class="dataTable_wrapper">
-				
-						<div class="row">
-						<div class="col-xs-12 table-responsive">
-							<table class="table table-bordered">
-											<thead>
-												<tr>
-												<th colspan="12">
-												<div class="row">	
-													<div class="col-md-3 pull-left">
-													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New</button>
-													</div>
-													
-													<div class="col-md-4 pull-right"> 
-														<form class="navbar-form" role="search">
-															<div class="pull-right" style="margin-top:-8px;">
-															<div class="input-group">
-															<div class="input-group-btn">
-															</div><!-- /btn-group -->
-																<input type="text" class="form-control" placeholder="Search" value="<?php echo $searchTemp?>" name="srch-normal" id="search.php?dnsname=name&srch-term">
-															<div class="input-group-btn">
-																<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
-															</div><!-- /btn-group -->
-															</div><!-- /input-group -->
-															</div>
-														</form>
-													</div>
-													
-													</tr>
-													</thead>
-												</div>
-										<thead>
-									
-											<tr>
-												<th>ID</th>
-												<th>Company Name</th>
-												<th>Description</th>
-												<th>Action</th>
-											</tr>
-									   
-										</thead>
-										<tbody>
-										<!--Modal Edit-->
+							<!--Modal Edit-->
 										<div class="modal fade bs-example-modal-sm" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 										  <div class="modal-dialog" role="document">
 											<div class="modal-content">
@@ -179,6 +131,54 @@ $searchTemp=get('srch-normal');
 											</div>
 											</form>
 										 </div>
+                  
+                
+                  <section class="content invoice">
+                    <!-- title row -->
+					<div class="panel-body">
+                    <div class="dataTable_wrapper">
+				
+						<div class="row">
+						<div class="col-xs-12 table-responsive">
+							<table class="table table-bordered">
+											<thead>
+												<tr>
+												<th colspan="12">
+												<div class="row">	
+													<div class="col-md-3 pull-left">
+													<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><i class="fa fa-file-o"></i>New</button>
+													</div>
+													
+													<div class="col-md-4 pull-right"> 
+														<form class="navbar-form" role="search">
+															<div class="pull-right" style="margin-top:-8px;">
+															<div class="input-group">
+															<div class="input-group-btn">
+															</div><!-- /btn-group -->
+																<input type="text" class="form-control" placeholder="Search" value="<?php echo $searchTemp?>" name="srch-normal" id="search.php?dnsname=name&srch-term">
+															<div class="input-group-btn">
+																<button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+															</div><!-- /btn-group -->
+															</div><!-- /input-group -->
+															</div>
+														</form>
+													</div>
+													
+													</tr>
+													</thead>
+												</div>
+										<thead>
+									
+											<tr style="background-color:#4682B4; color:white;">
+												<th>ID</th>
+												<th>Company Name</th>
+												<th>Description</th>
+												<th>Action</th>
+											</tr>
+									   
+										</thead>
+										<tbody>
+									
 										<?php
 										$db->disconnect();
 										$db->connect();
