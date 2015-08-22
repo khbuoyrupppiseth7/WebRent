@@ -267,21 +267,7 @@ $CompanyIdUser=get('ComID');
 
         <!-- add new calendar event modal -->
 		</body>
-    <script>
 
-        //  ** show date and time picker
-         $('#btnDate').datetimepicker({
-		 	
-            timepicker: false, //visible time = false
-            format: 'Y-m',
-            step: 10
-		
-        });
-		$('#btnDate').click({
-		
-		});
-		
-    </script>	
 		
 		
 

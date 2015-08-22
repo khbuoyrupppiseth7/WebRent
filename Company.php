@@ -30,26 +30,33 @@ $searchTemp=get('srch-normal');
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 							<h4 class="modal-title" id="exampleModalLabel">New</h4>
 							<div class="modal-body">
-								<?php
+											
+									
+									<?php
 									//=================== Insert New Company =======================
 									$db->disconnect();
 									$db->connect();
+									
 									if(isset($_POST['btnSave'])){
 											$txtCompanyName	=	post('txtCompanyName');
 											$txtDescrpiton	=	post('txtDescrpiton');
+												
+												$insert=$db->query("CALL sp_Company_Insert(
+																							'".time()."',
+																							N'".sql_quote($txtCompanyName)."',
+																							N'".sql_quote($txtDescrpiton)."'
+																							
+																							);
+																							");
+													
+												if($insert){
+													cRedirect('Company.php');
+													}
+												else
+													echo'<script>alert("CompanyName is Exit already"); </script>';
+												
+										}		
 											
-											$insert=$db->query("CALL sp_Company_Insert (
-																			'".time()."',
-																			N'".sql_quote($txtCompanyName)."',
-																			N'".sql_quote($txtDescrpiton)."'
-																			);
-																			");
-										
-														if($insert){
-																cRedirect('Company.php');
-																//$error = 'Success';
-														}	
-											}
 									?>
 									<form role="form" method="post" enctype="multipart/form-data">
 									<div class="form-group">

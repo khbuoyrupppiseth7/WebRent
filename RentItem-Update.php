@@ -80,7 +80,7 @@ if(isset($_POST['btnSave'])){
 							<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 							<tbody>	
 							<tr><h3>Edit RentItem</h3></tr>						
-							   <?php 
+						<?php 
 							  if($_SESSION['Level']=='1'){
 							   echo'<tr>';	
 								echo'<td  class="col-md-2 text-center">';
@@ -112,7 +112,7 @@ if(isset($_POST['btnSave'])){
 								    echo'</td>';
 								   ?>
 								<td class="col-md-10 text-center"> <input type="text" class="form-control" <?php echo 'value="'.$getCompanyTemp.'"'; ?> readonly></td>
-							  <?php echo '</tr>';	}?>							  
+							  <?php echo '</tr>';	}?>		  
 							<tr>
 							  <td  class="col-md-2 text-center">
 								<div class="dropdown">
