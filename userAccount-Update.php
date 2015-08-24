@@ -51,7 +51,7 @@ if(isset($_POST['btnSave'])){
 						U.CompanyID AS CompanyID,
 						CO.CompanyName AS CompanyName
 						FROM tblusers as U
-						INNER JOIN tblcompany as CO ON U.CompanyID=CO.CompanyID
+						LEFT JOIN tblcompany as CO ON U.CompanyID=CO.CompanyID
 						WHERE U.CompanyID= '".$ComID."'");
 
 	$numrow=$db->dbCountRows($select);
@@ -89,11 +89,12 @@ if(isset($_POST['btnSave'])){
 														$CompanyName = $row->CompanyName;
 															echo'<option value='.$CompanyID.'>'.$CompanyName.'</option>';
 														}
-														echo'<option value='.$CompanyID1.' selected="true" style="display:none;" selected>'.$CompanyName1.'</option>';
+														echo '<option value=0>None</option>';
+														echo'<option value='.$CompanyID1.'  selected />'.$CompanyName1.'</option>';
 													}
 													
 												?>
-												<option value=0>None</option>
+												
 											</select>
 										<div class="form-group">
                                             <label>User Name</label>

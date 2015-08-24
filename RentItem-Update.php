@@ -90,29 +90,33 @@ if(isset($_POST['btnSave'])){
 									<span class="caret"></span>
 								  </button>';
 								  echo '<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu2">';
-									
+						?>					
+											<?php
+											$db->disconnect();
 											$db->connect();
-											  $select=$db->query("CALL sp_Company_Select('')");
+											
+											   $select=$db->query("CALL sp_Company_Select('')");
 												$rowselect=$db->dbCountRows($select);
 												if($rowselect>0){
+													
 													while($row=$db->fetch($select)){
 													$CompanyID = $row->CompanyID;
 													$CompanyName = $row->CompanyName;
-														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1"
-														href="RentItem-new.php?CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'&Price='.$Price.'&ItemName='.$ItemName.'&Decription='.$Decription.'">'.$CompanyName.'</a></li>';
+														echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
+														href="RentItem-Update.php?CompanyID='.$CompanyID.'&CompanyName='.$CompanyName.'&id='.$id.'&Price='.$Price.'&ItemName='.$ItemName.'&Decription='.$Decription.'">'.$CompanyName.'</a></li>';
 													}
 												}
-											$db->disconnect();
+											?>
 											
-										
+								<?php		
 									  echo'</ul>';
 									
 									 
 									echo'</div>';	
 								    echo'</td>';
-								   ?>
+								?>
 								<td class="col-md-10 text-center"> <input type="text" class="form-control" <?php echo 'value="'.$getCompanyTemp.'"'; ?> readonly></td>
-							  <?php echo '</tr>';	}?>		  
+							  <?php echo '</tr>';	}?>		
 							<tr>
 							  <td  class="col-md-2 text-center">
 								<div class="dropdown">
@@ -122,7 +126,7 @@ if(isset($_POST['btnSave'])){
 								  </button>
 								  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
 									<?php
-										
+											$db->disconnect();
 											$db->connect();
 											
 											  $select=$db->query("SELECT CategoryID,CategoryName FROM tblcategory WHERE CompanyID='".$CompanyIDTemp."' ");
@@ -146,8 +150,8 @@ if(isset($_POST['btnSave'])){
 							</tr>
 						</tbody>
 					</table>
-							<input type="text" name="txtCateID" id="CateID" class="form-control" value="<?php echo $CategoryIDTemp; ?>"/>
-							<input type="text" name="txtItemID" id="RentID" class="form-control" value="<?php echo $id; ?>"/>
+							<input type="hidden" name="txtCateID" id="CateID" class="form-control" value="<?php echo $CategoryIDTemp; ?>"/>
+							<input type="hidden" name="txtItemID" id="RentID" class="form-control" value="<?php echo $id; ?>"/>
 							<?php 	$ItemName=get('ItemName');?>
 							<div class="form-group">
                                 <label>Rent Item</label>

@@ -32,7 +32,7 @@ if(isset($_POST['btnsave'])){
 		$_SESSION['checksession']='2015';
 		$_SESSION['startDate'] = date("Y-m-d H:i:s");
 		}
-		cRedirect('Customer_Rent.php?ComID='.$CompanyID.'');
+		cRedirect('Customer_Rent.php');
 	}
 	else
 	{

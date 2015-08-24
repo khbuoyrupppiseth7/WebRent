@@ -216,16 +216,17 @@ $CompanyID=get('CompanyID');
 													$descript_password = encrypt_decrypt('decrypt', $PassWord);
 													if($Type == 1)
 														$Level = "Admin";
-													else if($Type == 2)
-														$Level = "Manager";
-													else 
+													else if($Type == 0)
 														$Level = "User";
-													
+													else 
+														$Level = "Unknown";
 													$status=$row->Status;
 													if($status==1)
 														$status="Active";
-													else
+													else if ($status==0)
 														$status="Suspend";
+													else
+														$status="Unknown";
 													
 													$userName= $row->UserName;
 													

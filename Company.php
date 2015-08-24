@@ -49,10 +49,7 @@ $searchTemp=get('srch-normal');
 																							);
 																							");
 													
-												if($insert){
-													cRedirect('Company.php');
-													}
-												else
+												if($insert==false)
 													echo'<script>alert("CompanyName is Exit already"); </script>';
 												
 										}		
