@@ -48,15 +48,19 @@
 																			'".$ComId."',
 																			N'".sql_quote($txtCategory)."',
 																			'".$txtOrder."',	
-																			N'".sql_quote($txtDescrpiton)."'
+																			N'".sql_quote($txtDescrpiton)."',
+																			@Insert
 																			);
 																			");
+											$Ins=$db->query(" select @Insert;");	
+																$Result= mysql_fetch_row($Ins);
+																$In =implode(" ",$Result);
+																if($In==1)
+																	cRedirect('Category.php');
+																else if($In==0)
+																	echo'<script>alert("CategoryName has exited already");</script>';
 										
-														if($insert){
-																cRedirect('Category.php');
-																//$error = 'Success';
-																
-														}		
+															
 											}
 									?>
 											<script language="javascript">
@@ -166,14 +170,17 @@
 													'".$id."',
 													N'".sql_quote($txtCategory)."',
 													'".$txtOrderNo."',
-													N'".sql_quote($txtDescrpiton)."'
+													N'".sql_quote($txtDescrpiton)."',
+													@Insert
 													);			
 										");
-											if($update){
-														cRedirect('Category.php');
-														//echo '<script>alert("'.	$CompanyID.'");</script>';
-															
-													}
+											$Ins=$db->query(" select @Insert;");	
+																$Result= mysql_fetch_row($Ins);
+																$In =implode(" ",$Result);
+																if($In==1)
+																	cRedirect('Category.php');
+																else if($In==0)
+																	echo'<script>alert("Category has exited already");</script>';
 										
 								}
 								?>
@@ -247,7 +254,7 @@
 				</div>
 					</form>
 				</div><!-- /.row -->
-				 <section class="content invoice">
+				
                    <div class="panel-body" >
                    <div class="dataTable_wrapper">
                     <div class="row">
@@ -355,7 +362,7 @@
                  </div>    
                     
                     
-                </section>
+               
 				<script type="text/javascript">
 					var CompanyID=document.getElementById("companyId");
 					var CategoryID=document.getElementById("categoryId");

@@ -24,15 +24,18 @@ if(isset($_POST['btnSave'])){
 										'".$cboCategory."',
 										".$txtPrice.",	
 										".$txtStatus.",
-										N'".sql_quote($txtDescrpiton)."'
+										N'".sql_quote($txtDescrpiton)."',
+										@Insert
 										);
 										");
 	
-					if($insert){
-							cRedirect('RentItem.php');
-							//$error = 'Success';
-							
-					}		
+									$Ins=$db->query(" select @Insert;");	
+										$Result= mysql_fetch_row($Ins);
+										$In =implode(" ",$Result);
+										if($In==1)
+											cRedirect('RentItem.php');
+										else if($In==0)
+											echo'<script>alert("ItemName has exited already");</script>';
 		}
 ?>
 	<head>

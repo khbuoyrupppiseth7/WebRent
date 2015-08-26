@@ -31,21 +31,28 @@ if(isset($_POST['btnSave'])){
 					'".$cboCategory."',
 					".$txtPrice.",
 					".$txtStatus.",
-					N'".sql_quote($txtDescrpiton)."'
+					N'".sql_quote($txtDescrpiton)."',
+					@Insert
 					)			
 		");
-			if($update){
-							cRedirect('RentItem.php');
-						
-							
-					}
-		
+		$Ins=$db->query(" select @Insert;");	
+		$Result= mysql_fetch_row($Ins);
+		$In =implode(" ",$Result);
+			if($In==1)
+				cRedirect('Category.php');
+			else if($In==0)
+				echo'<script>alert("CategoryName has exited already");</script>';		
 }
 ?>
 	<head>
 	<?php
 		$RentNameTemp=post('txtItem');
 	?>
+<script>
+		  $(function() {
+			$( "#dialog" ).dialog();
+		  });
+</script>
 <script type="text/javascript">
 		<script language="javascript">
 		function checkInput(ob) {

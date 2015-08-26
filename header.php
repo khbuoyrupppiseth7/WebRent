@@ -50,6 +50,7 @@
         <script src="js/inputonlynumber.js" type="text/javascript" ></script>
 		<script src="js/jquery.colorbox.js"></script>
 		
+		
 		<script>
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements

@@ -36,12 +36,17 @@ if(isset($_POST['btnSave'])){
 							N'".sql_quote($txtUserName)."',
 							'".sql_quote($txtLevel)."',
 							N'".sql_quote($txtDescription)."',
-							'".sql_quote($txtStatus)."'
+							'".sql_quote($txtStatus)."',
+							@Insert
 							)");
-			
-		if($update){
-				cRedirect('userAccount.php');
-		}
+		$Ins=$db->query(" select @Insert;");	
+			$Result= mysql_fetch_row($Ins);
+			$In =implode(" ",$Result);
+			if($In==1)
+				cRedirect('Category.php');
+			else if($In==0)
+				echo'<script>alert("UserName has exited already");</script>';
+										
 	}
 ?>
 <?php

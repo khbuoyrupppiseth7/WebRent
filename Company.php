@@ -44,13 +44,17 @@ $searchTemp=get('srch-normal');
 												$insert=$db->query("CALL sp_Company_Insert(
 																							'".time()."',
 																							N'".sql_quote($txtCompanyName)."',
-																							N'".sql_quote($txtDescrpiton)."'
-																							
+																							N'".sql_quote($txtDescrpiton)."',
+																							@Result 
 																							);
 																							");
-													
-												if($insert==false)
-													echo'<script>alert("CompanyName is Exit already"); </script>';
+												$Res=$db->query(" select @Result;");	
+												$Total= mysql_fetch_row($Res);
+												$Insert =implode(" ",$Total);
+												if($Insert==1)
+													cRedirect('Company.php');
+												else if($Insert==0)
+													echo'<script>alert("CompanyName has exited already");</script>';
 												
 										}		
 											
@@ -101,11 +105,17 @@ $searchTemp=get('srch-normal');
 															$update=$db->query("CALL sp_Company_Update(
 																		'".$id."',
 																		N'".sql_quote($txtCompanyName)."',
-																		N'".sql_quote($txtDescrpiton)."'
+																		N'".sql_quote($txtDescrpiton)."',
+																		@Insert
 																		);");
-																if($update){
-																				cRedirect('Company.php');
-																		}
+																$Ins=$db->query(" select @Insert;");	
+																$Result= mysql_fetch_row($Ins);
+																$In =implode(" ",$Result);
+																if($In==1)
+																	cRedirect('Company.php');
+																else if($In==0)
+																	echo'<script>alert("CompanyName has exited already");</script>';
+										
 															}
 														?>
 														<form role="form" method="post" enctype="multipart/form-data">
@@ -137,7 +147,7 @@ $searchTemp=get('srch-normal');
 										 </div>
                   
                 
-                  <section class="content invoice">
+                 
                     <!-- title row -->
 					<div class="panel-body">
                     <div class="dataTable_wrapper">
@@ -233,7 +243,7 @@ $searchTemp=get('srch-normal');
 					</div>
 					</div>
 						
-                </section>
+                
 				<script type="text/javascript">
 					var companyName=document.getElementById("txtcompanyName");
 					var companyID=document.getElementById("txtcompanyID");
