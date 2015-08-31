@@ -28,7 +28,7 @@ $searchTemp=get('srch-normal');
 						<div class="modal-content">
 						  <div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							<h4 class="modal-title" id="exampleModalLabel">New Customer</h4>
+							<h4 class="modal-title" id="exampleModalLabel"><i class="glyphicon glyphicon-file">New</em></i></h4>
 							<div class="modal-body">
 										<?php 
 												$db->disconnect();
@@ -257,14 +257,13 @@ $searchTemp=get('srch-normal');
 					</div><!-- /.row -->
 					   
                     <!-- Table row -->
-					<section class="content invoice">
                     <!-- title row -->
 					<div class="panel-body">
                     <div class="dataTable_wrapper">
 				
 						<div class="row">
 						<div class="col-xs-12 table-responsive">
-							<table class="table table-bordered">
+							<table class="table table-bordered  table-hover">
                  
 									<thead>
 												<tr>
@@ -380,8 +379,6 @@ $searchTemp=get('srch-normal');
                     </div>
                   </div>
                  </div>   
-                    
-                </section>
                     
             </aside><!-- /.right-side -->
             

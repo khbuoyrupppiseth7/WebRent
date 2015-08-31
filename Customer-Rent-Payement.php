@@ -72,7 +72,7 @@ if(isset($_POST['btnSave'])){
                 <div class="row" style="margin: 0 auto;>
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data" id="myForm">
-                     		  <label><h3>Payment</h3></label>				  
+                     		  <label><h3><i class="glyphicon glyphicon-book">Payment</h3></i></label>				  
 						    <div class="form-group">
                              <label>Pay Date</label>
 							<!--	<input name="txtPayDate" class="form-control" placeholder="Enter text" required /> -->

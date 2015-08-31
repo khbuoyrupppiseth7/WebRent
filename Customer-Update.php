@@ -138,7 +138,7 @@ if(isset($_POST['btnSave'])){
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data">
 							
-							<label><h3>Edit Customer</h3></label>
+							<label><h3><i class="glyphicon glyphicon-pencil">Edit</i> </h3></label>
 							<?php
 							if($_SESSION['Level']=='1'){
 							echo '<div class="form-group">';

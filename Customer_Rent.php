@@ -58,14 +58,12 @@ $CompanyIdUser=get('ComID');
                 </section>
 
                 <!-- Main content -->
-			
-                  <section class="content invoice">
 				   <div class="panel-body">
                    <div class="dataTable_wrapper">
                     <!-- Table row -->
                     <div class="row">
                           <div class="col-xs-12 table-responsive">
-							<table class="table table-bordered">
+							<table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
                                         
@@ -255,10 +253,6 @@ $CompanyIdUser=get('ComID');
                         </div>
                     </div>
 				</div>
-              
-				
-   
-                </section>
 				
 		</aside><!-- /.right-side -->
             

@@ -79,7 +79,7 @@ if(isset($_POST['btnSave'])){
 				   <form role="form" method="post" enctype="multipart/form-data">   
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
 							<tbody>	
-							  <tr><h3>Add New Rent</h3></tr>
+							  <tr><h3><i class="glyphicon glyphicon-file">New</em></i></h3></tr>
 							  <tr>
 							  <td  class="col-md-2 text-center">
 								<div class="dropdown">
@@ -91,7 +91,7 @@ if(isset($_POST['btnSave'])){
 									<?php
 											$db->disconnect();
 											$db->connect();
-											  $select=$db->query("CALL sp_Customer_Select('')");
+											  $select=$db->query("CALL sp_Customer_Select('".$getComIDUser."')");
 												$rowselect=$db->dbCountRows($select);
 												if($rowselect>0){
 													while($row=$db->fetch($select)){

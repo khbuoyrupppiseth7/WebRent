@@ -89,7 +89,7 @@ if(isset($_POST['btnSave'])){
                 <div class="row">
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data">
-                          
+							<h3><i class="glyphicon glyphicon-file">New</em></i></h3>
 							<div class="form-group">
 									<label>Choose Company</label>
 									<select class="form-control" name="cboCompany">   

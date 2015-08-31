@@ -27,8 +27,6 @@ $getdatepayTo=get('dateyetpayto');
                 </section>
 
                 <!-- Main content -->
-                
-                  <section class="content invoice">
                     <!-- title row -->
                     <div class="row">
                         <div class="col-xs-12">
@@ -53,12 +51,12 @@ $getdatepayTo=get('dateyetpayto');
 											<th colspan="12">
 											
                                            <div class="col-md-12"> 
-													<form class="form-inline">
-                                                     <div class=" col-md-9 pull-right" >
+											<form class="row-fluid">
+                                                  <div class=" col-md-8 pull-left" >
                                                     
                                                      <div class="form-group">
 												
-                                                     <input type="text" id="btnDate" name="datanotyetpay" class="form-control col-md-1" <?php 
+                                                     <input type="text" id="btnDate" name="datanotyetpay"  class="inline form-control col-md-1" <?php 
 													 if($getdatenotyetpay!=""){
 													 echo 'value="'.$getdatenotyetpay.'"';
 													 }
@@ -67,7 +65,7 @@ $getdatepayTo=get('dateyetpayto');
 													 $getdatenotyetpay=date("Y-m");
 													 }?>/>  
 													 
-												     <input type="text" id="btnDateTo" name="dateyetpayto" class="form-control col-md-1" <?php 
+												     <input type="text" id="btnDateTo" name="dateyetpayto"  class="inline form-control col-md-1" <?php 
 													 if($getdatepayTo!=""){
 													 echo 'value="'.$getdatepayTo.'"';
 													 }
@@ -78,7 +76,7 @@ $getdatepayTo=get('dateyetpayto');
 													 
 					
 													
-													 <div class="col-md-3 pull-right input-group">
+													 <div class="col-md-4 pull-right input-group">
 													 <div class="input-group-btn">
 													 <input type="text" class="form-control" placeholder="Search" name="srch-normal" id="search.php?dnsname=name&srch-term" <?php echo 'value="'.$searchTemp.'"'?>/>
                                                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
@@ -139,7 +137,6 @@ $getdatepayTo=get('dateyetpayto');
 												$CustomerID=$row->CustomerID;
 												$CusName=$row->fullName;
 												$OldPayDate = $row->PayDate;
-												$PayDate= date('d',strtotime($OldPayDate));
 												$RealPayDate= $row->RealPayDate;
 												$Price=$row->Price;
 												$Electric = $row->Electric;
@@ -153,7 +150,7 @@ $getdatepayTo=get('dateyetpayto');
 														<td>'.$i++.'</td>
 														<td>'.$ItemName.'</td>
 														<td>'.$CusName.'</td>
-														<td>'.$RealPayDate.'</td>
+														<td>'.$OldPayDate.'</td>
 														<td>'.$RealPayDate.'</td>
 														<td>'.$Price.'$</td>
 														<td>'.$Electric.'$</td>
@@ -200,7 +197,6 @@ $getdatepayTo=get('dateyetpayto');
                     </div>
 				   </div>
                  </div>
-                </section>
                     
             </aside><!-- /.right-side -->
             

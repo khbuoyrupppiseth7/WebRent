@@ -69,14 +69,14 @@ if(isset($_POST['btnSave'])){
 	<!-- Right side column. Contains the navbar and content of the page -->
             <aside class="right-side" >
                 <!-- Content Header (Page header) -->
-                <section class="content-header" style="margin: 0 auto; >
+                <section class="content-header" >
                 <div class="row"  style="margin: 0 auto; >
                    <div class="col-xs-8"  >
                     <form role="form" method="post" enctype="multipart/form-data" >
 						
 						<table  style="margin: 0 auto;" class="table table-striped table-bordered table-hover" id="dataTables-example">
 							<tbody>								
-							  <tr> <h3>Add New RentItem<h3></tr>
+							  <tr> <h3><i class="glyphicon glyphicon-file">New</em></i></h3></tr>
 							  <?php 
 							  if($_SESSION['Level']=='1'){
 							   echo'<tr>';	
@@ -150,7 +150,7 @@ if(isset($_POST['btnSave'])){
 							
 								<input name="txtItem" class="form-control" placeholder="Enter text"  required />
                             </div>
-								
+							 	
 							<div class="form-group">
                                 <label>Price</label>
 							

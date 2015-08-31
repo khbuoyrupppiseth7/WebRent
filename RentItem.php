@@ -25,7 +25,6 @@ $CategoryIDTemp=get('CatID');
                         <li class="active">Dashboard</li>
                     </ol>
                 </section>
-			    <section class="content invoice">
                     <!-- title row -->
                     <div class="panel-body">
                    <div class="dataTable_wrapper">
@@ -33,7 +32,7 @@ $CategoryIDTemp=get('CatID');
 						<div class="row">
 					
                         <div class="col-xs-12 table-responsive">
-							<table class="table table-bordered">
+							<table class="table table-bordered  table-hover">
 								<thead>
 									<tr>
 									<th colspan="12">
@@ -157,7 +156,6 @@ $CategoryIDTemp=get('CatID');
 					
 				  </script>
                     
-                </section>
                     
             </aside><!-- /.right-side -->
             

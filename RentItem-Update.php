@@ -79,14 +79,14 @@ if(isset($_POST['btnSave'])){
     <body class="skin-blue">
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
-                <section class="content-header">
+                <section class="content-header" >
                 <div class="row" style="margin: 0 auto;>
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data">
 							
-							<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+						<table  style="margin: 0 auto;" class="table table-striped table-bordered table-hover" id="dataTables-example">
 							<tbody>	
-							<tr><h3>Edit RentItem</h3></tr>						
+							<tr><h3><i class="glyphicon glyphicon-pencil">Edit</i></h3></tr>						
 						<?php 
 							  if($_SESSION['Level']=='1'){
 							   echo'<tr>';	
@@ -157,8 +157,7 @@ if(isset($_POST['btnSave'])){
 							</tr>
 						</tbody>
 					</table>
-							<input type="hidden" name="txtCateID" id="CateID" class="form-control" value="<?php echo $CategoryIDTemp; ?>"/>
-							<input type="hidden" name="txtItemID" id="RentID" class="form-control" value="<?php echo $id; ?>"/>
+							
 							<?php 	$ItemName=get('ItemName');?>
 							<div class="form-group">
                                 <label>Rent Item</label>
@@ -169,14 +168,13 @@ if(isset($_POST['btnSave'])){
                                 <label>Price</label>
 								<input name="txtPrice" class="form-control" value="<?php echo $Price; ?>" placeholder="Enter text" onkeypress="return isNumberKey(event)" required />
                             </div>
-	
-							<div class="form-group">
-                                <label>Status</label><br/>
-							<!--	<input name="txtisLeave" class="form-control" placeholder="Enter text" required /> -->
-								<input type="radio" name="Status" value="0" <?php if($StatusGet==0) echo 'checked' ?> class="form-control">Busy
-								<input type="radio" name="Status" value="1" <?php if($StatusGet==1) echo 'checked' ?> class="form-control">Free
+							<div class="row-fluid">
+                                <label>Status</label><br>
+								<input type="radio" name="Status" value="0" class="inline" <?php if($StatusGet==0) echo 'checked' ?> class="form-control">Busy&emsp;&emsp;&emsp;
+								
+								<input type="radio" name="Status" value="1" class="inline" <?php if($StatusGet==1) echo 'checked' ?> class="form-control">Free
                             </div> 
-							 
+							<br> 
 							<div class="form-group">
                                 <label>Description</label>
                                 <textarea class="form-control" name="txtDescrpiton" id="editor1" rows="3">

@@ -1,6 +1,8 @@
 <?php include 'header.php';
 $Search=get('srch-normal');
-$CompID=get('CompanyID');
+$CompID=get('ID');
+
+														$ComName=get('CompanyName');
 	
 ?>
 
@@ -23,9 +25,145 @@ $CompID=get('CompanyID');
                         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
                         <li class="active">Dashboard</li>
                     </ol>
-                </section
+                </section>
+					<!--ADD New-->
+					
+					<?php 
 						
-				
+						//==================== Insert New User =======================
+						$db->disconnect();
+						$db->connect();
+						
+						
+						if(isset($_POST['btnSave'])){
+								//$cboBranch		=   $_POST['cboBranch'];
+								$txtUserName	=	post('txtUserName');
+								$txtPassword    =	post('txtPassword');
+								$txtLevel		=	post('txtLevel');
+								$txtDescription	=	post('txtDescription');
+								$txtStatus	    =	post('cboStatus');		
+								$encrypted_pass = 	encrypt_decrypt('encrypt', $txtPassword);
+								$CompanyID		=   post('cboCompanyID');
+									
+								$insert=$db->query("CALL sp_Insert_UserAccount(
+										'".time()."',
+										N'".sql_quote($txtUserName)."',
+										N'".sql_quote($encrypted_pass)."',
+										'".sql_quote($txtLevel)."',
+										N'".sql_quote($txtDescription)."',
+										'".sql_quote($txtStatus)."'	,
+										'".$CompanyID."',
+										@Insert
+										)");
+								$Ins=$db->query(" select @Insert;");	
+									$Result= mysql_fetch_row($Ins);
+									$In =implode(" ",$Result);
+									if($In==0)
+									    echo'<script>alert("UserName has exit already");</script>';
+								}
+							?>
+						
+							
+						
+								
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+					  <div class="modal-dialog" role="document">
+						<div class="modal-content">
+						  <div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="exampleModalLabel">New User</h4>
+							<div class="modal-body">
+								 <form role="form" method="post" enctype="multipart/form-data">
+											<table>
+											<td>
+											<tr>
+											<div class="dropdown">
+											  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-expanded="true">
+												Choose Category
+												<span class="caret"></span>
+											  </button>
+											<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
+												<?php
+														
+													$db->disconnect();
+													$db->connect();
+												    $select=$db->query("CALL sp_CompanySelectEdit('".$CompanyID."')");
+													$rowselect=$db->dbCountRows($select);
+													if($rowselect>0){
+														
+														while($row=$db->fetch($select)){
+														$CompanyID = $row->CompanyID;
+														$CompanyName = $row->CompanyName;
+																	echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
+																	href="#?ID='.$CompanyID.'&CompanyName='.$CompanyName.'">'.$CompanyName.'</a></li>';
+																}
+															}
+														
+														
+														?>
+										
+											  </ul>	
+									   </div>
+									   </tr>
+										<tr>
+									    <input type="text" class="form-control" <?php echo 'value="'.$ComName.'"'; ?> readonly></td>
+										</tr>	 
+									    </td>
+										</table>
+												
+										<div class="form-group">
+                                            <label>User Name</label>
+                                            <input type="text"  class="form-control" name="txtUserName" placeholder="UserName" required/>
+											
+										</div>
+										<div class="form-group">
+                                            <label>Password</label>
+                                            <input  name="txtPassword" type="password" class="form-control" placeholder="Password" required/>
+                                        </div>
+										
+                                        <div class="form-group">
+                                            <label>Level</label>
+											<select name="txtLevel" class="form-control">
+											
+											
+											<?php
+											
+												 if($CompID!=0)
+												 echo'<option value=0 >User</option>';
+												 if($CompID==0)
+												 echo'<option value=1>Admin</option>';
+											
+											
+											 ?>
+											
+											
+											</select>
+											<input type="text" id="txtId"  class="form-control" name="ComID"/>
+										</div>
+										
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea class="form-control" name="txtDescription" rows="3"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select name="cboStatus" class="form-control">
+												<option value=1>Active</option>
+												<option value=0>Suspend</option>
+											</select>
+                                        </div>
+							</div>
+							<div class="modal-footer">
+							 <a href="userAccount.php">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </a>
+                            <input type="submit" name="btnSave" class="btn btn-primary" value="Save" />
+							</div>
+						  </div>
+						</div>
+						</div>
+						</form>
+						</div>
 				<!--Edit User-->
 				<div class="modal fade bs-example-modal-sm" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 					<div class="modal-dialog" role="document">
@@ -52,16 +190,16 @@ $CompID=get('CompanyID');
                  
 					<div class="panel-body">
 					<div class="dataTable_wrapper">
-                    <div class="row" >
+                    <div class="row">
 						<div class="col-xs-12 table-responsive">
-						  <table class="table table-bordered  table-hover">
+						  <table class="table table-bordered">
                             <thead>
                             <tr>
                               <th colspan="12">
 								 <div class="col-md-8" style="margin-left:-20px;">
-									<a href="userAccount-new.php" class="iframe">
+									
 									<button class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-file-o"></i> New</button>
-									</a>
+									
 								 </div>
 								<div class="col-md-4"> 
 											<form class="navbar-form" role="search">
@@ -147,7 +285,7 @@ $CompID=get('CompanyID');
 															<td>
 															
 																
-																<a  class="iframe" href="userAccount-Update.php?id='.$id.'&CompanyName='.$CompanyName.'&UserName='.$userName.'
+																<a  class="iframe" href="userAccount-Update.php?id='.$id.'&UserName='.$userName.'
 																	&Level='.$Type.'&Status='.$Status.'&Decription='.$Decription.'&CompanyID='.$CompanyID.'">
 																<button class="btn btn-sm btn-primary">
 																	<i class="glyphicon glyphicon-pencil"></i>

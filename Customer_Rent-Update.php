@@ -114,7 +114,7 @@ if(isset($_POST['btnUpdate'])){
 						 <form role="form" method="post" enctype="multipart/form-data">   
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
 							<tbody>		
-							  <tr><h4>Edit Customer Rent</h4></tr>
+							  <tr><h3><i class="glyphicon glyphicon-pencil">Edit</i></h3></tr>
 							  <tr>
 							  <td  class="col-md-2 text-center">
 								<div class="dropdown">

@@ -1,12 +1,13 @@
 <?php include 'header.php';
 
+$ComName=get('CompanyName');
 //================ Get Field From Page User =================
 	$id=get('id');
 	$UserName=get('UserName');
 	$Level=get('Level');
 	$Status=get('Status');
 	$Decription=get('Decription');
-	$ComID=get('CompanyID');
+	$CompamyIDTemp=get('CompanyID');
 	$db->disconnect();
 	$db->connect();
 	/*$select=$db->query(" call spInnerjoin_User_Branch('".$id."');");
@@ -24,7 +25,7 @@
 //==================== Insert New User =======================
 if(isset($_POST['btnSave'])){
 		//$cboBranch		=   $_POST['cboBranch'];
-		$txtCompanyID   =	post('cboCompanyID');
+		$CompamyID      =get('CompanyID');
 		$txtUserName	=	post('txtUserName');
 		$txtLevel		=	post('txtLevel');
 		$txtDescription	=	post('txtDescription');
@@ -32,7 +33,7 @@ if(isset($_POST['btnSave'])){
 		
 		$update=$db->query("CALL sp_UserAccount_Update(
 						   '".$id."',
-							N'".sql_quote($txtCompanyID)."',
+							N'".$CompamyID."',
 							N'".sql_quote($txtUserName)."',
 							'".sql_quote($txtLevel)."',
 							N'".sql_quote($txtDescription)."',
@@ -49,26 +50,6 @@ if(isset($_POST['btnSave'])){
 										
 	}
 ?>
-<?php
-	$db->disconnect();
-	$db->connect();
-	$select=$db->query("SELECT 
-						U.CompanyID AS CompanyID,
-						CO.CompanyName AS CompanyName
-						FROM tblusers as U
-						LEFT JOIN tblcompany as CO ON U.CompanyID=CO.CompanyID
-						WHERE U.CompanyID= '".$ComID."'");
-
-	$numrow=$db->dbCountRows($select);
-	if($numrow>0){
-		$row=$db->fetch($select);
-		$CompanyID1 = $row->CompanyID;
-		$CompanyName1 = $row->CompanyName;
-	}
-
-
-?>
-
     <body class="skin-blue">
             <aside class="right-side">
                 <!-- Content Header (Page header) -->
@@ -76,51 +57,85 @@ if(isset($_POST['btnSave'])){
                 <div class="row" style="margin: 0 auto;>
                    <div class="col-xs-8">
                     <form role="form" method="post" enctype="multipart/form-data">
-                          
-										<label><h3>Edit User</h3></label>
-										<div class="form-group">
-											
-											<label>Choose Company</label>
-											<select class="form-control" name="cboCompanyID"> 
-												<?php
-												$db->disconnect();
-												$db->connect();
-												  $select=$db->query("CALL sp_Company_Select('')");
-													$rowselect=$db->dbCountRows($select);
-													if($rowselect>0){
-														
-														while($row=$db->fetch($select)){
-														$CompanyID = $row->CompanyID;
-														$CompanyName = $row->CompanyName;
-															echo'<option value='.$CompanyID.'>'.$CompanyName.'</option>';
-														}
-														echo '<option value=0>None</option>';
-														echo'<option value='.$CompanyID1.'  selected />'.$CompanyName1.'</option>';
-													}
+                        	<table  style="margin: 0 auto;" class="table table-striped table-bordered table-hover" id="dataTables-example">
+										<tbody>
+											<tr> <h3><em><i class="glyphicon glyphicon-pencil">Edit</i></em> </h3></tr>
+											<tr>
+												<td  class="col-md-2 text-center">
+														<div class="dropdown">
+														  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-expanded="true">
+															Choose Company
+															<span class="caret"></span>
+														  </button>
+														<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu3">
+															<?php
+																	
+																$db->disconnect();
+																$db->connect();
+																$select=$db->query("CALL sp_CompanySelectEdit('')");
+																$rowselect=$db->dbCountRows($select);
+																if($rowselect>0){
+																	
+																	while($row=$db->fetch($select)){
+																	$CompanyID = $row->CompanyID;
+																	$CompanyName = $row->CompanyName;
+																				echo'<li role="presentation"><a role="mmenuitem" tabindex="-1" 
+																				href="userAccount-Update.php?id='.$id.'&Level='.$Level.'&Status='.$Status.'&Decription='.$Decription.'&CompanyID='.$CompanyID.'&UserName='.$UserName.'&CompanyName='.$CompanyName.'">'.$CompanyName.'</a></li>';
+																			}
+																		}
+																	echo '<li><a role="mmenuitem" tabindex="-1" href="userAccount-Update.php?id='.$id.'&Level='.$Level.'&Status='.$Status.'&Decription='.$Decription.'&CompanyID=0&UserName='.$UserName.'">None</a></li>' ;
+																	
+																	?>
 													
-												?>
-												
-											</select>
+															  </ul>	
+													   </div>
+														</td>
+												<td class="col-md-10 text-center"><input  type="text"  class="form-control" <?php echo 'value="'.$ComName.'"'; ?> readonly/></td>
+											</tr>
+									</tbody>
+								</table>
+										<br>
 										<div class="form-group">
                                             <label>User Name</label>
                                             <input name="txtUserName" class="form-control" value="<?php echo $UserName; ?>" placeholder="User Name" />
 										</div>
-                                      
-                                        <div class="form-group">
-                                            <label>Level</label>
-                                            <input name="txtLevel" required class="form-control" value="<?php echo 	$Level; ?>" placeholder="Enter text" />
-                                        </div>
+										<div  class="form-group">
+											 <label>Level</label>
+											<select class="form-control" name="txtLevel">   
+												<?php
+												if($Level==1)
+													$LevelName='Admin';
+												elseif($Level==0)
+													$LevelName='User';
+												if($CompamyIDTemp==0)
+													echo'<option value=1>Admin</option>';
+												if($CompamyIDTemp!=0)
+													echo'<option value=0>User</option>';
+												//echo'<option value='.$Level.' selected="true" style="display:none;"  selected>'.$LevelName.'</option>';
+												?>
+											</select>
                                         <div class="form-group">
                                             <label>Description</label>
                                             <textarea class="form-control" name="txtDescription"  rows="3">
 											<?php  echo $Decription ?>
 											</textarea>
                                         </div>
-                                        <div class="form-group">
-                                            <label>Status</label>
-                                            <input name="txtStatus" required class="form-control" value="<?php echo $Status; ?>"  placeholder="Enter text" />
-                                        </div>
-                                   
+										<div  class="form-group">
+											 <label>Status</label>
+											<select class="form-control" name="txtStatus">   
+												<option value=1>Active</option>
+												<option value=0>Suspend</option>
+												<?php
+												if($Status==1)
+												$StatusName='Active';
+												elseif($Status==0)
+												$StatusName='Suspend';
+												echo'<option value='.$Status.' selected="true" style="display:none;"  selected>'.$StatusName.'</option>';
+												?>
+											</select>
+											
+										</div>
+                                       
                             <div class="modal-footer">
                             <a href="userAccount.php">
                             <button type="button" class="btn btn-default" data-dismiss="modal" onClick='parent.jQuery.fn.colorbox.close();'>Close</button>

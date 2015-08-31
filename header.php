@@ -55,7 +55,7 @@
 			$(document).ready(function(){
 				//Examples of how to assign the Colorbox event to elements
 				$(".iframe_Changepwd").colorbox({iframe:true, width:"500px",scrolling: false, height:"300px", onClosed:function(){ location.reload(true); }});
-				$(".iframe").colorbox({iframe:true, width:"600px",scrolling: false, height:"730px", onClosed:function(){ location.reload(true); }});
+				$(".iframe").colorbox({iframe:true, width:"600px",scrolling: false, height:"700px", onClosed:function(){ location.reload(true); }});
 				$(".iframe_meduim").colorbox({iframe:true, width:"550px",scrolling: false, height:"900px", onClosed:function(){ location.reload(true); }});
 				$(".aboutus").colorbox({iframe:true, width:"85%", height:"80%", onClosed:function(){ location.reload(true); }});
 				$(".iframelong").colorbox({iframe:true, width:"550px",scrolling: false, height:"1800px", onClosed:function(){ location.reload(true); }});
